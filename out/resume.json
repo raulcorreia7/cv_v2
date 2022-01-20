@@ -1,0 +1,163 @@
+{
+  "basics": {
+    "label": "Software Developer",
+    "characterClass": "Programmer",
+    "quote": "Be the change you want to see in the world.",
+    "website": "https://raulcorreia.dev",
+    "phone": "(+31)0627253238",
+    "email": "raulcorreia7@gmail.com",
+    "name": "Raúl Correia",
+    "summary": "**Imaginary full-stack software developer with 6+ years industry experience** specializing in cloud-driven web applications and middleware. A native of southern CA, Jane enjoys hiking, mystery novels, and the company of Rufus, her two year old beagle.",
+    "picture": "jane_doe.png",
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "raulcorreia7",
+        "url": "https://github.com/raulcorreia7"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "raul-correia",
+        "url": "https://www.linkedin.com/in/raul-correia"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "OMRT B.V",
+      "website": "https://omrt.tech",
+      "position": "Backend Developer",
+      "startDate": "2021-08",
+      "summary": "Backend developer and Software Architect for [**Ostate**](https://omrt.tech/ostate/), a parametric tool to generate architectural buildings.",
+      "highlights": [
+        "Re-engineered Ostate to capture new business requirements.",
+        "Interaction with Leads, Architects, Physicists."
+      ]
+    },
+    {
+      "company": "Uniface B.V",
+      "website": "https://www.uniface.com/",
+      "position": "Software Developer R&D",
+      "startDate": "2020-09",
+      "endDate": "2021-08",
+      "summary": "Developer on Web team, researching and developing Uniface solutions to modern standards.",
+      "highlights": [
+        "Development of Uniface Web SDK",
+        "Development of a custom VSCode extension for ProcScript"
+      ]
+    },
+    {
+      "company": "Critical Manufacturing",
+      "website": "https://www.criticalmanufacturing.com/",
+      "position": "Software Developer",
+      "startDate": "2020-10",
+      "endDate": "2021-08",
+      "summary": "Developer on MES Product, developing main CMF product.",
+      "highlights": [
+        "Successfully migrated the main CMF Product from legacy code base to next gen implementation.",
+        "Worked with 40+ developers.",
+        "Re-engineered a module for highly regulated fields like medical devices or weighing tools."
+      ]
+    },
+    {
+      "company": "3C Techlab",
+      "position": "Intern - Software Developer",
+      "startDate": "2019-03",
+      "endDate": "2019-09",
+      "summary": "Developer of an SDK in .NET to interact with payment terminals.",
+      "highlights": [
+        "Successfully migrated the main CMF Product from legacy code base to next gen implementation.",
+        "Worked with 40+ developers.",
+        "Re-engineered a module for highly regulated fields like medical devices or weighing tools."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Instituto Superior de Engenharia do Porto",
+      "gpa": "16/20 (A)",
+      "startDate": "2016-09",
+      "endDate": "2019-09"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Web",
+      "level": "advanced",
+      "keywords": [
+        "JavaScript",
+        "HTML 5",
+        "CSS",
+        "LAMP",
+        "MVC",
+        "REST"
+      ]
+    },
+    {
+      "name": "JavaScript",
+      "level": "master",
+      "keywords": [
+        "Node.js",
+        "Angular.js",
+        "jQuery",
+        "Bootstrap",
+        "React.js",
+        "Backbone.js"
+      ]
+    },
+    {
+      "name": "Database",
+      "level": "intermediate",
+      "keywords": [
+        "MySQL",
+        "PostgreSQL",
+        "NoSQL",
+        "ORM",
+        "Hibernate"
+      ]
+    },
+    {
+      "name": "Cloud",
+      "level": "intermediate",
+      "keywords": [
+        "AWS",
+        "EC2",
+        "RDS",
+        "S3",
+        "Azure",
+        "Dropbox"
+      ]
+    },
+    {
+      "name": "Project",
+      "level": "beginner",
+      "keywords": [
+        "Agile",
+        "TFS",
+        "JIRA",
+        "GitHub",
+        "Unified Process",
+        "MS Project"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "flavor": "honor",
+      "title": "Cum laude",
+      "date": "2019",
+      "awarder": "Informatics Engineering, Instituto Superior de Engenharia do Porto"
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "level": "Native"
+    },
+    {
+      "language": "Spanish",
+      "level": "Moderate",
+      "years": 10
+    }
+  ]
+}

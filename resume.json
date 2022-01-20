@@ -1,0 +1,305 @@
+{
+    "name": "Raúl Correia",
+    "meta": {
+        "format": "FRESH@0.6.0",
+        "version": "0.4.0"
+    },
+    "info": {
+        "label": "Software Developer",
+        "characterClass": "Programmer",
+        "brief": "**Imaginary full-stack software developer with 6+ years industry experience** specializing in cloud-driven web applications and middleware. A native of southern CA, Jane enjoys hiking, mystery novels, and the company of Rufus, her two year old beagle.",
+        "image": "jane_doe.png",
+        "quote": "Be the change you want to see in the world."
+    },
+    "contact": {
+        "website": "https://raulcorreia.dev",
+        "phone": "(+31)0627253238",
+        "email": "raulcorreia7@gmail.com"
+    },
+    "location": {
+        "city": "Almere",
+        "region": "Flevoland",
+        "country": "Netherlands"
+    },
+    "projects": [
+        {
+            "title": "HackMyResume",
+            "category": "FOSS",
+            "role": "contributor",
+            "url": "https://fluentdesk.com/hackmyresume",
+            "start": "2015-09",
+            "repo": "https://github.com/hacksalot/hackmyresume",
+            "description": "A resume authoring and analysis tool for OS X, Linux, and Windows.",
+            "summary": "Exemplar user for HackMyResume and FluentCV!",
+            "keywords": [
+                "JavaScript",
+                "Node.js",
+                "cross-platform",
+                "JSON"
+            ],
+            "media": [
+                {
+                    "category": "download",
+                    "url": "https://www.npmjs.com/package/hackmyresume"
+                }
+            ]
+        }
+    ],
+    "social": [
+        {
+            "label": "GitHub",
+            "network": "GitHub",
+            "user": "raulcorreia7",
+            "url": "https://github.com/raulcorreia7"
+        },
+        {
+            "label": "LinkedIn",
+            "network": "LinkedIn",
+            "user": "raul-correia",
+            "url": "https://www.linkedin.com/in/raul-correia"
+        }
+    ],
+    "employment": {
+        "summary": "3+ years industry IT and software development experience.",
+        "history": [
+            {
+                "employer": "OMRT B.V",
+                "url": "https://omrt.tech",
+                "position": "Backend Developer",
+                "summary": "Backend developer and Software Architect for [**Ostate**](https://omrt.tech/ostate/), a parametric tool to generate architectural buildings.",
+                "start": "2021-08",
+                "keywords": [
+                    "Agile",
+                    "Software Architecture",
+                    ".NET (Framework/Core)",
+                    "C++",
+                    "Python",
+                    "3D",
+                    "PostgreSQL",
+                    "Playwright",
+                    "Docker",
+                    "Linux",
+                    "DevOps",
+                    "Gitlab",
+                    "Git",
+                    "Code Optimization",
+                    "Technical Mentor"
+                ],
+                "highlights": [
+                    "Re-engineered Ostate to capture new business requirements.",
+                    "Interaction with Leads, Architects, Physicists."
+                ],
+                "location": "Amsterdam, Netherlands"
+            },
+            {
+                "employer": "Uniface B.V",
+                "url": "https://www.uniface.com/",
+                "position": "Software Developer R&D",
+                "summary": "Developer on Web team, researching and developing Uniface solutions to modern standards.",
+                "start": "2020-09",
+                "end": "2021-08",
+                "keywords": [
+                    "Scrum",
+                    "Agile",
+                    "C++",
+                    "C",
+                    ".NET",
+                    "Java",
+                    "ProcScript",
+                    "HTML",
+                    "Javascript",
+                    "Linux",
+                    "Gitlab",
+                    "Git",
+                    "Docker",
+                    "JIRA"
+                ],
+                "highlights": [
+                    "Development of Uniface Web SDK",
+                    "Development of a custom VSCode extension for ProcScript"
+                ],
+                "location": "Amsterdam, Netherlands"
+            },
+            {
+                "employer": "Critical Manufacturing",
+                "url": "https://www.criticalmanufacturing.com/",
+                "position": "Software Developer",
+                "summary": "Developer on MES Product, developing main CMF product.",
+                "start": "2020-10",
+                "end": "2021-08",
+                "keywords": [
+                    "Scrum",
+                    "Agile",
+                    ".NET Framework",
+                    ".NET Core",
+                    "Angular",
+                    "HTML 5",
+                    "Typescript",
+                    "Gitlab",
+                    "Azure DevOps",
+                    "Docker",
+                    "Git"
+                ],
+                "highlights": [
+                    "Successfully migrated the main CMF Product from legacy code base to next gen implementation.",
+                    "Worked with 40+ developers.",
+                    "Re-engineered a module for highly regulated fields like medical devices or weighing tools."
+                ],
+                "location": "Porto, Portugal"
+            },
+            {
+                "employer": "3C Techlab",
+                "position": "Intern - Software Developer",
+                "summary": "Developer of an SDK in .NET to interact with payment terminals.",
+                "start": "2019-03",
+                "end": "2019-09",
+                "keywords": [
+                    ".NET Framework",
+                    "Java",
+                    "Git",
+                    "Bitbucket"
+                ],
+                "highlights": [
+                    "Successfully migrated the main CMF Product from legacy code base to next gen implementation.",
+                    "Worked with 40+ developers.",
+                    "Re-engineered a module for highly regulated fields like medical devices or weighing tools."
+                ],
+                "location": "Porto, Portugal"
+            }
+        ]
+    },
+    "education": {
+        "summary": "",
+        "level": "degree",
+        "degree": "BSc",
+        "history": [
+            {
+                "institution": "Instituto Superior de Engenharia do Porto",
+                "title": "BSc Informatics Engineering",
+                "url": "https://isep.pt/",
+                "start": "2016-09",
+                "end": "2019-09",
+                "grade": "16/20 (A)"
+            }
+        ]
+    },
+    "skills": {
+        "sets": [
+            {
+                "name": "Web",
+                "level": "advanced",
+                "skills": [
+                    "JavaScript",
+                    "HTML 5",
+                    "CSS",
+                    "LAMP",
+                    "MVC",
+                    "REST"
+                ]
+            },
+            {
+                "name": "JavaScript",
+                "level": "master",
+                "skills": [
+                    "Node.js",
+                    "Angular.js",
+                    "jQuery",
+                    "Bootstrap",
+                    "React.js",
+                    "Backbone.js"
+                ]
+            },
+            {
+                "name": "Database",
+                "level": "intermediate",
+                "skills": [
+                    "MySQL",
+                    "PostgreSQL",
+                    "NoSQL",
+                    "ORM",
+                    "Hibernate"
+                ]
+            },
+            {
+                "name": "Cloud",
+                "level": "intermediate",
+                "skills": [
+                    "AWS",
+                    "EC2",
+                    "RDS",
+                    "S3",
+                    "Azure",
+                    "Dropbox"
+                ]
+            },
+            {
+                "name": "Project",
+                "level": "beginner",
+                "skills": [
+                    "Agile",
+                    "TFS",
+                    "JIRA",
+                    "GitHub",
+                    "Unified Process",
+                    "MS Project"
+                ]
+            }
+        ],
+        "list": [
+            {
+                "name": "C++",
+                "id": "1",
+                "summary": "Optional summary of your experience with the skill.",
+                "level": "9",
+                "years": 7,
+                "proof": "http://myblog.com/interesting-cplusplus-post"
+            },
+            {
+                "name": "Ruby",
+                "id": "2",
+                "summary": "Optional summary of your experience with the skill.",
+                "level": "9",
+                "years": 7,
+                "proof": "http://myblog.com/interesting-cplusplus-post"
+            },
+            {
+                "name": "Xcode",
+                "summary": "Xcode 6 development.",
+                "level": "5",
+                "years": "3"
+            },
+            {
+                "name": "Linux",
+                "summary": "Optional summary of your experience with the skill.",
+                "level": "advanced",
+                "years": "4+"
+            },
+            {
+                "name": "Agile",
+                "summary": "Optional summary of your experience with the skill.",
+                "level": "B+",
+                "years": 2
+            }
+        ]
+    },
+    "recognition": [
+        {
+            "flavor": "honor",
+            "from": "Informatics Engineering, Instituto Superior de Engenharia do Porto",
+            "title": "Cum laude",
+            "event": "graduation",
+            "date": "2019"
+        }
+    ],
+    "languages": [
+        {
+            "language": "English",
+            "level": "Native"
+        },
+        {
+            "language": "Spanish",
+            "level": "Moderate",
+            "years": 10
+        }
+    ]
+}
