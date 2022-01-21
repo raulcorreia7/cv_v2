@@ -21,6 +21,30 @@
         "region": "Flevoland",
         "country": "Netherlands"
     },
+    "projects": [
+        {
+            "title": "HackMyResume",
+            "category": "FOSS",
+            "role": "contributor",
+            "url": "https://fluentdesk.com/hackmyresume",
+            "start": "2015-09",
+            "repo": "https://github.com/hacksalot/hackmyresume",
+            "description": "A resume authoring and analysis tool for OS X, Linux, and Windows.",
+            "summary": "Exemplar user for HackMyResume and FluentCV!",
+            "keywords": [
+                "JavaScript",
+                "Node.js",
+                "cross-platform",
+                "JSON"
+            ],
+            "media": [
+                {
+                    "category": "download",
+                    "url": "https://www.npmjs.com/package/hackmyresume"
+                }
+            ]
+        }
+    ],
     "social": [
         {
             "label": "GitHub",
