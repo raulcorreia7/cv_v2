@@ -52,13 +52,14 @@
           "Testing",
           "DevOps",
           "AWS",
-          "Git"
+          "Git",
+          "Serverless"
         ],
         "highlights": [
-          "Re-engineered integration tests written by QA team to a generic framework, making it easier to capture new business requirements, target multiple environments and automated features validation per customer configuration.",
+          "Developed integration framework, with a declarative approach. Allowing writing tests to a target multiple environments and validated features based on configuration.",
           "Introduced the concept of personal development environments to the Onboarding product, allowing multiple developers to work concurrently.",
-          "Developed dynamic configuration module, allowing inferring values based on a template and customer configuration files. Removing human errors and making runtime, deployment and integration-tests configuration composable and seamless.",
-          "Automated CI/CD pipelines with concurrent tenant deployment, testing and reporting.",
+          "Developed dynamic configuration module, allowing inferring values based on a template and tenant configuration files. Removed human errors and made runtime, deployment and tests configuration composable and seamless.",
+          "Automated CI/CD pipelines with concurrent tenant deployment, testing and reporting, proving efficiency and reducing errors.",
           "Migrated Serverless framework to CDK, resulting in a seamless tech stack across teams, maintainable IoC, easy deployment and allowing new features to be developed."
         ],
         "location": "Amsterdam, Netherlands"
@@ -67,7 +68,7 @@
         "employer": "OMRT B.V",
         "url": "https://omrt.tech",
         "position": "Backend Developer",
-        "summary": "Backend developer and minor Software Architect role for [**Ostate**](https://omrt.tech/ostate/), a parametric tool to generate architectural buildings.",
+        "summary": "Backend developer for Ostate project, a parametric tool to generate architectural buildings.",
         "start": "2021-07",
         "end": "2022-03",
         "keywords": [
@@ -88,10 +89,11 @@
           "Technical Mentor"
         ],
         "highlights": [
-          "Re-engineered and re-architected Ostate to capture new business requirements.",
-          "Interaction with Leads, Architects, Physicists.",
-          "Automated CI/CD pipelines for E2E frontend testing.",
-          "Created Ostate build automation."
+          "Re-engineered and re-architected Ostate project to implement multiple non deterministic algorithms.",
+          "Clearly and concisely communicated with many different people of different backgrounds, like Architects and Physicists.",
+          "Automated CI/CD pipelines with Playwright for E2E frontend testing, improving reliability and reducing manual testing time.",
+          "Automated Ostate compiling project with nuke.build.",
+          "Implemented C++ 3D Geometrical code and wrapped into Python for safe usage by non tech people."
         ],
         "location": "Amsterdam, Netherlands"
       },
@@ -119,8 +121,8 @@
           "JIRA"
         ],
         "highlights": [
-          "Development of Uniface Web SDK",
-          "Integrated new logic E2E from a low code platform, HTML, Database, to C++ interaction on Backend."
+          "Development of Uniface Web SDK in HTML, Javascript and ProcScript.",
+          "Integrated new logic in end-to-end fashion. From a low code platform, HTML, Database, to C++ on Backend."
         ],
         "location": "Amsterdam, Netherlands"
       },
@@ -128,7 +130,7 @@
         "employer": "Critical Manufacturing",
         "url": "https://www.criticalmanufacturing.com/",
         "position": "Software Developer",
-        "summary": "Developer on main CMF Product, MES.",
+        "summary": "Developer on main CMF Product, MES",
         "start": "2019-10",
         "end": "2020-08",
         "keywords": [
@@ -144,9 +146,9 @@
           "MSSQL"
         ],
         "highlights": [
-          "Successfully migrated the main CMF Product from legacy code base to next gen implementation.",
-          "Worked with 40+ developers.",
-          "Re-engineered a module for highly regulated fields like medical devices or weighing tools."
+          "Successfully migrated the main CMF Product from Silverlight to next gen implementation in Angular and .NET Core.",
+          "Worked in a product driven company in Agile faction, in multiple domain teams.",
+          "Re-engineered a module for highly regulated fields, precision weighting tools or medical fields, achieving certification and being used in production."
         ],
         "location": "Porto, Portugal"
       },
@@ -168,10 +170,10 @@
           "TCP"
         ],
         "highlights": [
-          "Successfully developed an SDK to interact with payment terminals",
-          "Worked on multi threaded, event oriented architecture.",
+          "Developed an SDK in .NET to interact with Worldline Terminals",
+          "Worked on SDK multi threaded, async event oriented architecture.",
           "Implemented multiple network protocols with different paradigms, sync, async, like TCP, UDP, RS232, HTTP.",
-          "Implemeted layers of resilience and fault tolerance on top of networking protocols."
+          "Implemented layers of resilience and fault tolerance on top of networking protocols."
         ],
         "location": "Porto, Portugal"
       }
@@ -196,28 +198,25 @@
     "sets": [
       {
         "name": "Web",
-        "level": "Master",
         "skills": [
-          ".NET (Framework/Core)",
-          "MVC",
-          "REST",
-          "Network Programming"
+          ".NET",
+          "Node.js",
+          "Typescript",
+          "Serverless Computing",
+          "Microservices"
         ]
       },
       {
-        "name": "Other",
-        "level": "intermediate",
-        "skills": ["Node.js", "Typescript", "Multi threading"]
-      },
-      {
         "name": "Database",
-        "level": "intermediate",
-        "skills": ["MSSQL", "NoSQL", "ORM", "Entity Framework"]
+        "skills": ["DynamoDB", "NoSQL", "MSSQL", "Entity Framework"]
       },
       {
         "name": "Cloud",
-        "level": "beginner",
-        "skills": ["AWS", "Azure"]
+        "skills": ["AWS"]
+      },
+      {
+        "name": "Other",
+        "skills": ["Rust", "Bash", "Docker", "Network Programming"]
       }
     ],
     "list": [
@@ -228,20 +227,6 @@
         "level": "9",
         "years": 7,
         "proof": "http://myblog.com/interesting-cplusplus-post"
-      },
-      {
-        "name": "Ruby",
-        "id": "2",
-        "summary": "Optional summary of your experience with the skill.",
-        "level": "9",
-        "years": 7,
-        "proof": "http://myblog.com/interesting-cplusplus-post"
-      },
-      {
-        "name": "Xcode",
-        "summary": "Xcode 6 development.",
-        "level": "5",
-        "years": "3"
       },
       {
         "name": "Linux",

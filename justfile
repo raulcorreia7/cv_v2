@@ -1,7 +1,7 @@
 #!/usr/bin/env just --justfile
 
 # theme
-theme := "macchiato"
+theme := "macchiato-macea"
 
 #files and folders
 assets_fldr := "assets"
@@ -33,7 +33,7 @@ build: convert
 	{{res}} {{output_template}} --theme {{theme}} -o {{output_html}}
 
 serve: 
-	{{serve}} --watch={{output_fldr}} --entry-file={{output_html}}
+	{{serve}} --watch={{output_fldr}} --open={{output_html}}
 
 watch:
 	watchexec -w {{template_fldr}} just build
