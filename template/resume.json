@@ -7,7 +7,7 @@
   "info": {
     "label": "Software Developer",
     "characterClass": "Programmer",
-    "brief": "Pragmatic software developer with 3+ years industry experience specializing in web applications, middleware, sdk development and concurrent software. As native of Porto, Portugal, I enjoy karaté, computer games, cycling, traveling and a eternal tinkerer at heart.",
+    "brief": "Pragmatic software developer with 3+ years industry experience specializing in web applications, middleware, sdk development and concurrent software. Native of Porto, Portugal, I enjoy karaté, computer games, cycling, traveling and a eternal tinkerer at heart.",
     "image": "raul-circle.png",
     "quote": "Two steps back, one step forward."
   },
@@ -197,26 +197,39 @@
   "skills": {
     "sets": [
       {
-        "name": "Web",
+        "name": "Languages",
+        "skills": [".NET", "Typescript", "Rust", "Bash", "C++"]
+      },
+      {
+        "name": "Framework and Libraries",
         "skills": [
-          ".NET",
-          "Node.js",
-          "Typescript",
-          "Serverless Computing",
-          "Microservices"
+          "NodeJS",
+          "Serverless Framework",
+          "AWS CDK",
+          "Projen",
+          "Deno",
+          "Entity Framework"
         ]
       },
       {
         "name": "Database",
-        "skills": ["DynamoDB", "NoSQL", "MSSQL", "Entity Framework"]
+        "skills": ["DynamoDB", "NoSQL", "MSSQL"]
       },
       {
         "name": "Cloud",
         "skills": ["AWS"]
       },
       {
-        "name": "Other",
-        "skills": ["Rust", "Bash", "Docker", "Network Programming"]
+        "name": "Tools",
+        "skills": [
+          "Docker",
+          "Linux",
+          "Windows",
+          "MacOS",
+          "AWS(S3, EC2, Lambda)",
+          "CI/CD",
+          "Jira"
+        ]
       }
     ],
     "list": [
@@ -253,15 +266,15 @@
   ],
   "languages": [
     {
-      "language": "English",
-      "level": "Advanced"
-    },
-    {
-      "language": "Portuguese",
+      "language": "Portuguese (native)",
       "level": "Native"
     },
     {
-      "language": "Dutch",
+      "language": "English (advanced)",
+      "level": "Advanced"
+    },
+    {
+      "language": "Dutch (A1.1)",
       "level": "A1"
     }
   ]

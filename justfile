@@ -1,13 +1,14 @@
 #!/usr/bin/env just --justfile
 
 # theme
-theme := "macchiato-macea"
+theme := "macchiato"
 
 #files and folders
 assets_fldr := "assets"
 output_fldr := "output"
 output_template := output_fldr / "resume.json"
 output_html := output_fldr / "resume.html"
+output_pdf := output_fldr / "resume.pdf"
 # source template file
 template_fldr := "template"
 template_file := template_fldr / "resume.json"
@@ -19,15 +20,22 @@ serve := "npx live-server"
 
 
 
-default: create_output copy 
+default:
+	@just --list
+
+clean:
+	rm {{output_fldr}}/*
+
+base: create_output copy 
+
 create_output:
 	mkdir -p {{output_fldr}}
+
 copy:
 	cp {{assets_fldr}}/* {{output_fldr}}/
 
-convert: default
+convert: base
 	{{hmr}} convert {{template_file}} {{output_template}}
-
 
 build: convert
 	{{res}} {{output_template}} --theme {{theme}} -o {{output_html}}
@@ -37,3 +45,8 @@ serve:
 
 watch:
 	watchexec -w {{template_fldr}} just build
+
+export-pdf:
+	wkhtmltopdf -T 0 -B 0 -L 0 -R 0 --zoom 1.05 --enable-smart-shrinking --print-media-type --enable-local-file-access {{output_html}} {{output_pdf}}
+
+all:build export-pdf

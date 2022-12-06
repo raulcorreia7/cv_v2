@@ -7,7 +7,7 @@
     "phone": "(+31)0627253238",
     "email": "raulcorreia7@gmail.com",
     "name": "Raúl Correia",
-    "summary": "Pragmatic software developer with 3+ years industry experience specializing in web applications, middleware, sdk development and concurrent software. As native of Porto, Portugal, I enjoy karaté, computer games, cycling, traveling and a eternal tinkerer at heart.",
+    "summary": "Pragmatic software developer with 3+ years industry experience specializing in web applications, middleware, sdk development and concurrent software. Native of Porto, Portugal, I enjoy karaté, computer games, cycling, traveling and a eternal tinkerer at heart.",
     "picture": "raul-circle.png",
     "profiles": [
       {
@@ -101,13 +101,24 @@
   ],
   "skills": [
     {
-      "name": "Web",
+      "name": "Languages",
       "keywords": [
         ".NET",
-        "Node.js",
         "Typescript",
-        "Serverless Computing",
-        "Microservices"
+        "Rust",
+        "Bash",
+        "C++"
+      ]
+    },
+    {
+      "name": "Framework and Libraries",
+      "keywords": [
+        "NodeJS",
+        "Serverless Framework",
+        "AWS CDK",
+        "Projen",
+        "Deno",
+        "Entity Framework"
       ]
     },
     {
@@ -115,8 +126,7 @@
       "keywords": [
         "DynamoDB",
         "NoSQL",
-        "MSSQL",
-        "Entity Framework"
+        "MSSQL"
       ]
     },
     {
@@ -126,12 +136,15 @@
       ]
     },
     {
-      "name": "Other",
+      "name": "Tools",
       "keywords": [
-        "Rust",
-        "Bash",
         "Docker",
-        "Network Programming"
+        "Linux",
+        "Windows",
+        "MacOS",
+        "AWS(S3, EC2, Lambda)",
+        "CI/CD",
+        "Jira"
       ]
     }
   ],
@@ -145,15 +158,15 @@
   ],
   "languages": [
     {
-      "language": "English",
-      "level": "Advanced"
-    },
-    {
-      "language": "Portuguese",
+      "language": "Portuguese (native)",
       "level": "Native"
     },
     {
-      "language": "Dutch",
+      "language": "English (advanced)",
+      "level": "Advanced"
+    },
+    {
+      "language": "Dutch (A1.1)",
       "level": "A1"
     }
   ]
