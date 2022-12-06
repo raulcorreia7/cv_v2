@@ -1,5 +1,10 @@
 {
   "dependencies": {
-    "jsonresume-theme-macchiato": "^1.1.0"
+    "hackmyresume": "^1.9.0-beta",
+    "jsonresume-theme-macchiato": "^1.1.0",
+    "resumed": "^1.0.3"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
   }
 }
