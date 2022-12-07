@@ -19,7 +19,6 @@ hmr := "npx hackmyresume"
 serve := "npx live-server"
 
 
-
 default:
 	@just --list
 
@@ -50,3 +49,6 @@ export-pdf:
 	wkhtmltopdf -T 0 -B 0 -L 0 -R 0 --zoom 1.05 --enable-smart-shrinking --print-media-type --enable-local-file-access {{output_html}} {{output_pdf}}
 
 all:build export-pdf
+
+install:
+	npm i

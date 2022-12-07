@@ -1,0 +1,9 @@
+FROM alpine:3.14
+RUN apk add --no-cache \
+    wkhtmltopdf \
+    xvfb \
+    ttf-dejavu ttf-droid ttf-freefont ttf-liberation \
+    ;
+
+RUN ln -s /usr/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf;
+RUN chmod +x /usr/local/bin/wkhtmltopdf;

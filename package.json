@@ -1,14 +1,10 @@
 {
   "private": true,
   "type": "module",
-  "scripts": {
-    "pdf": "node src/puppeteer.js"
-  },
   "dependencies": {
     "hackmyresume": "^1.9.0-beta",
     "jsonresume-theme-macchiato": "^1.1.0",
     "resume-cli": "^3.0.8",
-    "resume-html": "^1.0.0",
     "resumed": "^1.0.3"
   },
   "devDependencies": {
