@@ -51,4 +51,5 @@ export-pdf:
 all:build export-pdf
 
 install:
-	npm i
+	npm i -g pnpm
+	pnpm i

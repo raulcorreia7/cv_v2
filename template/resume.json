@@ -171,7 +171,7 @@
         ],
         "highlights": [
           "Developed an SDK in .NET to interact with Worldline Terminals",
-          "Worked on SDK multi threaded, async event oriented architecture.",
+          "Worked on SDK in a multi threaded, async event oriented architecture.",
           "Implemented multiple network protocols with different paradigms, sync, async, like TCP, UDP, RS232, HTTP.",
           "Implemented layers of resilience and fault tolerance on top of networking protocols."
         ],
@@ -198,7 +198,13 @@
     "sets": [
       {
         "name": "Languages",
-        "skills": [".NET", "Typescript", "Rust", "Bash", "C++"]
+        "skills": [
+          ".NET",
+          "Typescript",
+          "Bash",
+          "Rust",
+          "C++"
+        ]
       },
       {
         "name": "Framework and Libraries",
@@ -213,11 +219,17 @@
       },
       {
         "name": "Database",
-        "skills": ["DynamoDB", "NoSQL", "MSSQL"]
+        "skills": [
+          "DynamoDB",
+          "NoSQL",
+          "MSSQL"
+        ]
       },
       {
         "name": "Cloud",
-        "skills": ["AWS"]
+        "skills": [
+          "AWS"
+        ]
       },
       {
         "name": "Tools",
