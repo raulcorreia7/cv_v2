@@ -4,13 +4,13 @@
 theme := "macchiato"
 
 #files and folders
-assets_fldr := "assets"
+assets_fldr := "src/assets"
 output_fldr := "output"
 output_template := output_fldr / "resume.json"
 output_html := output_fldr / "resume.html"
 output_pdf := output_fldr / "resume.pdf"
 # source template file
-template_fldr := "template"
+template_fldr := "src/template"
 template_file := template_fldr / "resume.json"
 
 # commands
@@ -53,3 +53,13 @@ all:build export-pdf
 install:
 	npm i -g pnpm
 	pnpm i
+
+install-prod:
+	npm i -g pnpm
+	pnpm i --prod
+
+docker-build:
+	docker build -f dockerfile.alpine . -t rcorreia-cv
+
+docker-run:
+	docker run -d -v $(pwd)/output:/app/output -v $(pwd)/src:/app/src rcorreia-cv

@@ -1,9 +1,16 @@
-FROM alpine:3.14
+FROM surnet/alpine-node-wkhtmltopdf:18.12.0-0.12.6-small
+
 RUN apk add --no-cache \
-    wkhtmltopdf \
-    xvfb \
-    ttf-dejavu ttf-droid ttf-freefont ttf-liberation \
+    watchexec --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
+    && \
+    apk add --no-cache \
+    just --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
     ;
 
-RUN ln -s /usr/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf;
-RUN chmod +x /usr/local/bin/wkhtmltopdf;
+WORKDIR /app
+VOLUME [ "/app/output" ]
+VOLUME [ "/app/src"]
+COPY package.json justfile ./
+RUN just install-prod
+
+CMD ["just", "all"]
