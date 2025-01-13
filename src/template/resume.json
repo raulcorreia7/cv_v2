@@ -1,293 +1,307 @@
 {
-  "name": "Raúl Correia",
-  "meta": {
-    "format": "FRESH@0.6.0",
-    "version": "0.4.0"
-  },
-  "info": {
-    "label": "Software Developer",
-    "characterClass": "Programmer",
-    "brief": "Pragmatic software developer with 3+ years industry experience specializing in web applications, middleware, sdk development and concurrent software. Native of Porto, Portugal, I enjoy karaté, computer games, cycling, traveling and a eternal tinkerer at heart.",
-    "image": "raul-circle.png",
-    "quote": "Two steps back, one step forward."
-  },
-  "contact": {
-    "website": "https://raulcorreia.dev",
-    "phone": "(+31)0627253238",
-    "email": "raulcorreia7@gmail.com"
-  },
-  "location": {
-    "city": "Almere",
-    "region": "Flevoland",
-    "country": "Netherlands"
-  },
-  "social": [
-    {
-      "label": "GitHub",
-      "network": "GitHub",
-      "user": "raulcorreia7",
-      "url": "https://github.com/raulcorreia7"
+    "name": "Raúl Correia",
+    "meta": {
+      "format": "FRESH@0.6.0",
+      "version": "0.4.0"
     },
-    {
-      "label": "LinkedIn",
-      "network": "LinkedIn",
-      "user": "raul-correia",
-      "url": "https://www.linkedin.com/in/raul-correia"
-    }
-  ],
-  "employment": {
-    "summary": "3+ years industry IT and software development experience.",
-    "history": [
+    "info": {
+      "label": "Software Developer",
+      "characterClass": "Programmer",
+      "brief": "Software developer with 5+ years of experience developing AWS-native applications and progressively leading technical teams. Specialized in serverless architectures and distributed systems, with deep expertise in SDK development and service migration. Native of Porto, Portugal, passionate about computer games, cycling, traveling and technological innovation.",
+      "image": "raul-circle-ai.jpg",
+      "quote": "Two steps back, one step forward."
+    },
+    "contact": {
+      "phone": "(+31)0627253238",
+      "email": "raulcorreia7@gmail.com"
+    },
+    "location": {
+      "city": "Almere",
+      "region": "Flevoland",
+      "country": "Netherlands"
+    },
+    "social": [
       {
-        "employer": "TM-Pro B.V",
-        "url": "https://tm-pro.eu",
-        "position": "Backend Developer - Amsterdam, Netherlands",
-        "summary": "Backend developer for Core Onboarding product. A serverless, multi tenant platform, that performs KYC/KYB.",
-        "start": "2022-04",
-        "keywords": [
-          "Agile",
-          "Typescript",
-          "Nodejs",
-          "Linux",
-          "Testing",
-          "DevOps",
-          "AWS",
-          "Git",
-          "Serverless"
-        ],
-        "highlights": [
-          "Developed integration framework, with a declarative approach. Allowing writing tests to a target multiple environments and validated features based on configuration.",
-          "Introduced the concept of personal development environments to the Onboarding product, allowing multiple developers to work concurrently.",
-          "Developed dynamic configuration module, allowing inferring values based on a template and tenant configuration files. Removed human errors and made runtime, deployment and tests configuration composable and seamless.",
-          "Automated CI/CD pipelines with concurrent tenant deployment, testing and reporting, proving efficiency and reducing errors.",
-          "Migrated Serverless framework to CDK, resulting in a seamless tech stack across teams, maintainable IoC, easy deployment and allowing new features to be developed."
-        ],
-        "location": "Amsterdam, Netherlands"
+        "label": "GitHub",
+        "network": "GitHub",
+        "user": "raulcorreia7",
+        "url": "https://github.com/raulcorreia7"
       },
       {
-        "employer": "OMRT B.V",
-        "url": "https://omrt.tech",
-        "position": "Backend Developer - Amsterdam, Netherlands",
-        "summary": "Backend developer for Ostate project, a parametric tool to generate architectural buildings.",
-        "start": "2021-07",
-        "end": "2022-03",
-        "keywords": [
-          "Agile",
-          "Software Architecture",
-          ".NET (Framework/Core)",
-          "C++",
-          "Python",
-          "3D",
-          "PostgreSQL",
-          "Playwright",
-          "Docker",
-          "Linux",
-          "DevOps",
-          "Gitlab",
-          "Git",
-          "Code Optimization",
-          "Technical Mentor"
-        ],
-        "highlights": [
-          "Re-engineered and re-architected Ostate project to implement multiple non deterministic algorithms.",
-          "Clearly and concisely communicated with many different people of different backgrounds, like Architects and Physicists.",
-          "Automated CI/CD pipelines with Playwright for E2E frontend testing, improving reliability and reducing manual testing time.",
-          "Automated Ostate compiling project with nuke.build.",
-          "Implemented C++ 3D Geometrical code and wrapped into Python for safe usage by non tech people."
-        ],
-        "location": "Amsterdam, Netherlands"
-      },
-      {
-        "employer": "Uniface B.V",
-        "url": "https://www.uniface.com/",
-        "position": "Software Developer R&D - Amsterdam, Netherlands",
-        "summary": "Developer on Web team, researching and developing Uniface solutions to modern standards.",
-        "start": "2020-09",
-        "end": "2021-06",
-        "keywords": [
-          "Scrum",
-          "Agile",
-          "C++",
-          "C",
-          ".NET",
-          "Java",
-          "ProcScript",
-          "HTML",
-          "Javascript",
-          "Linux",
-          "Gitlab",
-          "Git",
-          "Docker",
-          "JIRA"
-        ],
-        "highlights": [
-          "Development of Uniface Web SDK in HTML, Javascript and ProcScript.",
-          "Integrated new logic in end-to-end fashion. From a low code platform, HTML, Database, to C++ on Backend."
-        ],
-        "location": "Amsterdam, Netherlands"
-      },
-      {
-        "employer": "Critical Manufacturing",
-        "url": "https://www.criticalmanufacturing.com/",
-        "position": "Software Developer - Porto, Portugal",
-        "summary": "Developer on main CMF Product, MES",
-        "start": "2019-10",
-        "end": "2020-08",
-        "keywords": [
-          "Scrum",
-          "Agile",
-          ".NET Framework",
-          ".NET Core",
-          "Angular",
-          "HTML 5",
-          "Typescript",
-          "Azure DevOps",
-          "Git",
-          "MSSQL"
-        ],
-        "highlights": [
-          "Successfully migrated the main CMF Product from Silverlight to next gen implementation in Angular and .NET Core.",
-          "Worked in a product driven company in Agile faction, in multiple domain teams.",
-          "Re-engineered a module for highly regulated fields, precision weighting tools or medical fields, achieving certification and being used in production."
-        ],
-        "location": "Porto, Portugal"
-      },
-      {
-        "employer": "3C Techlab (Currently Planet)",
-        "position": "Intern Software Developer - Porto, Portugal",
-        "summary": "Developer of an SDK in .NET",
-        "start": "2019-03",
-        "end": "2019-09",
-        "keywords": [
-          ".NET Framework",
-          "Java",
-          "Git",
-          "Bitbucket",
-          "HTTP",
-          "RS232",
-          "SSL",
-          "UDP",
-          "TCP"
-        ],
-        "highlights": [
-          "Developed an SDK in .NET to interact with Worldline Terminals",
-          "Worked on SDK in a multi threaded, async event oriented architecture.",
-          "Implemented multiple network protocols with different paradigms, sync, async, like TCP, UDP, RS232, HTTP.",
-          "Implemented layers of resilience and fault tolerance on top of networking protocols."
-        ],
-        "location": "Porto, Portugal"
-      }
-    ]
-  },
-  "education": {
-    "summary": "",
-    "level": "degree",
-    "degree": "BSc",
-    "history": [
-      {
-        "institution": "Instituto Superior de Engenharia do Porto",
-        "title": "BSc Informatics Engineering",
-        "url": "https://isep.pt/",
-        "start": "2016-09",
-        "end": "2019-09",
-        "grade": "16/20 (A)"
-      }
-    ]
-  },
-  "skills": {
-    "sets": [
-      {
-        "name": "Languages",
-        "skills": [
-          ".NET",
-          "Typescript",
-          "Bash",
-          "Rust",
-          "C++"
-        ]
-      },
-      {
-        "name": "Framework and Libraries",
-        "skills": [
-          "NodeJS",
-          "Serverless Framework",
-          "AWS CDK",
-          "Projen",
-          "Deno",
-          "Entity Framework"
-        ]
-      },
-      {
-        "name": "Database",
-        "skills": [
-          "DynamoDB",
-          "NoSQL",
-          "MSSQL"
-        ]
-      },
-      {
-        "name": "Cloud",
-        "skills": [
-          "AWS"
-        ]
-      },
-      {
-        "name": "Tools",
-        "skills": [
-          "Docker",
-          "Linux",
-          "Windows",
-          "MacOS",
-          "AWS(S3, EC2, Lambda)",
-          "CI/CD",
-          "Jira"
-        ]
+        "label": "LinkedIn",
+        "network": "LinkedIn",
+        "user": "raul-correia",
+        "url": "https://www.linkedin.com/in/raul-correia"
       }
     ],
-    "list": [
+    "employment": {
+      "summary": "5+ years of experience in cloud-native development, progressing from software development to technical leadership roles.",
+      "history": [
+        {
+          "employer": "Shell Recharge B.V",
+          "url": "https://shellrecharge.com/nl-nl",
+          "position": "Technical Lead - Amsterdam, Netherlands",
+          "summary": "Asset Management Team",
+          "start": "2023-09",
+          "keywords": [
+            "AWS Lambda",
+            "AWS DynamoDB",
+            "Event-Driven Architecture",
+            "TypeScript",
+            "NodeJS",
+            "Infrastructure as Code",
+            "DevOps",
+            "Datadog",
+            "GitOps"
+          ],
+          "highlights": [
+            "Techical Lead of the Asset Management platform using AWS serverless technologies, processing and enriching data for thousands EV chargepoints",
+            "Drive technical direction for the Asset Management API while ensuring Shell's enterprise security standards",
+            "Contribute to cross-team TypeScript and AWS service pattern initiatives, aligning with Shell's Recharge cloud governance framework",
+            "Performed migration of CI/CD pipelines from GitLab to GitHub, being compliant to Shell guidelines",
+            "Establish comprehensive monitoring using Datadog and CloudWatch, maintaining 99.9% service uptime",
+            "Mentor team members in AWS serverless architecture and compliance-first development"
+          ],
+          "location": "Amsterdam, Netherlands"
+        },
+        {
+          "position": "Software Engineer - Amsterdam, Netherlands",
+          "summary": "Backend developer for Business API Team",
+          "start": "2023-03",
+          "keywords": [
+            "AWS Lambda",
+            "Event-Driven Architecture",
+            "TypeScript",
+            "NodeJS",
+            "Infrastructure as Code",
+            "DevOps",
+            "Compliance",
+            "Security"
+          ],
+          "highlights": [
+            "Developed highly available serverless applications processing thousands of monthly requests",
+            "Implemented complex service migrations to meet Shell's enterprise requirements",
+            "Designed error handling and retry mechanisms using AWS SQS and EventBridge",
+            "Created automated compliance checking and security scanning in CI/CD pipelines",
+            "Optimized AWS Lambda utilization, reducing operational costs",
+            "Developed and documented post-mortems during the migration to Shell and shared with the Backend Guild as lessons learned"
+          ],
+          "location": "Amsterdam, Netherlands"
+        },
+        {
+          "employer": "TM-Pro B.V",
+          "url": "https://tm-pro.eu",
+          "position": "Backend Developer - Amsterdam, Netherlands",
+          "summary": "Developer for core multi-tenant KYC/KYB platform",
+          "start": "2022-04",
+          "end": "2023-02",
+          "keywords": [
+            "AWS Lambda",
+            "DynamoDB",
+            "AWS CDK",
+            "TypeScript",
+            "NodeJS",
+            "Infrastructure as Code"
+          ],
+          "highlights": [
+            "Developed multi-tenant serverless platform using AWS Lambda and DynamoDB",
+            "Implemented migration from Serverless Framework to AWS CDK v2",
+            "Built dynamic configuration system using AWS Parameter Store and Secrets Manager",
+            "Implemented comprehensive observability using AWS CloudWatch and X-Ray",
+            "Implemented KYC processes, for Germany and Netherlands, from third-party vendors."
+          ],
+          "location": "Amsterdam, Netherlands"
+        },
+        {
+          "employer": "OMRT B.V",
+          "url": "https://omrt.tech",
+          "position": "Backend Developer - Amsterdam, Netherlands",
+          "summary": "Developer for Ostate architectural parametric generation platform",
+          "start": "2021-07",
+          "end": "2022-03",
+          "keywords": [
+            "AWS EC2",
+            "PostgreSQL",
+            "Docker",
+            "C++",
+            "Python",
+            "Infrastructure as Code"
+          ],
+          "highlights": [
+            "Developed scalable compute pipeline using AWS EC2 and Docker",
+            "Implemented high-performance C++ fluid simulation algorithms with Python bindings for ease of use",
+            "Re-architected Ostate project to allow better code scalability and allow non deterministic algorithms"
+          ],
+          "location": "Amsterdam, Netherlands"
+        },
+        {
+          "employer": "Uniface B.V",
+          "url": "https://www.uniface.com/",
+          "position": "Software Developer R&D - Amsterdam, Netherlands",
+          "summary": "Developer on Web team modernization efforts",
+          "start": "2020-09",
+          "end": "2021-06",
+          "keywords": [
+            "C++",
+            "C",
+            ".NET",
+            "Java",
+            "ProcScript",
+            "HTML",
+            "JavaScript",
+            "Linux",
+            "GitLab",
+            "Git",
+            "Docker",
+            "JIRA"
+          ],
+          "highlights": [
+            "Developed features for Uniface Web SDK implementing modern web standards",
+            "Implemented end-to-end functionality across low-code platform and C++ backend",
+            "Created cross-platform compatibility features for consistent system behavior",
+            "Developed an d maintained a 30 year old C++ 98 codebase",
+            "Developed documentation for new features and APIs"
+          ],
+          "location": "Amsterdam, Netherlands"
+        },
+        {
+          "employer": "Critical Manufacturing",
+          "url": "https://www.criticalmanufacturing.com/",
+          "position": "Software Developer - Porto, Portugal",
+          "summary": "Developer for Manufacturing Execution System (MES)",
+          "start": "2019-10",
+          "end": "2020-08",
+          "keywords": [
+            "Scrum",
+            "Agile",
+            ".NET Framework",
+            ".NET Core",
+            "Angular",
+            "HTML 5",
+            "TypeScript",
+            "Azure DevOps",
+            "Git",
+            "MSSQL"
+          ],
+          "highlights": [
+            "Contributed to the migration of MES from Silverlight to Angular/.NET Core",
+            "Development of a high precision module for regulated industries (medical)",
+            "Worked on the core team for the next-gen MES product"
+          ],
+          "location": "Porto, Portugal"
+        },
+        {
+          "employer": "3C Techlab (Currently Planet)",
+          "position": "Intern Software Developer - Porto, Portugal",
+          "summary": "Developer of .NET SDK",
+          "start": "2019-03",
+          "end": "2019-09",
+          "keywords": [
+            ".NET Framework",
+            "Java",
+            "Git",
+            "Bitbucket",
+            "HTTP",
+            "RS232",
+            "SSL",
+            "UDP",
+            "TCP"
+          ],
+          "highlights": [
+            "Developed components for .NET SDK integrating with Worldline Terminals",
+            "Implemented multi-threaded event handling system",
+            "Built network communication layers supporting multiple protocols",
+            "Created error handling systems for payment processing",
+            "Contributed to SDK documentation"
+          ],
+          "location": "Porto, Portugal"
+        }
+      ]
+    },
+    "education": {
+      "summary": "Bachelor's degree in Informatics Engineering with honors",
+      "level": "degree",
+      "degree": "BSc",
+      "history": [
+        {
+          "institution": "Instituto Superior de Engenharia do Porto",
+          "title": "BSc Informatics Engineering",
+          "url": "https://isep.pt/",
+          "start": "2016-09",
+          "end": "2019-09",
+          "grade": "16/20 - (8/10 NL Equivalent)"
+        }
+      ]
+    },
+    "skills": {
+      "sets": [
+        {
+          "name": "AWS Services",
+          "skills": [
+            "Lambda",
+            "DynamoDB",
+            "API Gateway",
+            "EventBridge",
+            "SQS",
+            "SNS",
+            "CloudWatch",
+            "X-Ray",
+            "CloudFormation",
+            "IAM",
+            "Parameter Store",
+            "Secrets Manager"
+          ]
+        },
+        {
+          "name": "Languages & Frameworks",
+          "skills": [
+            "TypeScript",
+            "NodeJS",
+            "SST Framework",
+            "AWS CDK",
+            "Infrastructure as Code",
+            "C++",
+            "Python"
+          ]
+        },
+        {
+          "name": "DevOps & Tools",
+          "skills": [
+            "GitHub Actions",
+            "GitLab CI",
+            "Docker",
+            "Terraform",
+            "Datadog",
+            "Snyk",
+            "SonarQube"
+          ]
+        },
+        {
+          "name": "Methodologies",
+          "skills": [
+            "Event-Driven Architecture",
+            "Microservices",
+            "Domain-Driven Design",
+            "GitOps",
+            "Infrastructure as Code"
+          ]
+        }
+      ]
+    },
+    "recognition": [
+    ],
+    "languages": [
       {
-        "name": "C++",
-        "id": "1",
-        "summary": "Optional summary of your experience with the skill.",
-        "level": "9",
-        "years": 7,
-        "proof": "http://myblog.com/interesting-cplusplus-post"
+        "language": "Portuguese",
+        "level": "Native"
       },
       {
-        "name": "Linux",
-        "summary": "Optional summary of your experience with the skill.",
-        "level": "advanced",
-        "years": "4+"
+        "language": "English",
+        "level": "Professional working proficiency"
       },
       {
-        "name": "Agile",
-        "summary": "Optional summary of your experience with the skill.",
-        "level": "B+",
-        "years": 2
+        "language": "Dutch",
+        "level": "Elementary proficiency (A1)"
       }
     ]
-  },
-  "recognition": [
-    {
-      "flavor": "honor",
-      "from": "Informatics Engineering, Instituto Superior de Engenharia do Porto",
-      "title": "Cum laude",
-      "event": "graduation",
-      "date": "2019"
-    }
-  ],
-  "languages": [
-    {
-      "language": "Portuguese (native)",
-      "level": "Native"
-    },
-    {
-      "language": "English (advanced)",
-      "level": "Advanced"
-    },
-    {
-      "language": "Dutch (A1.1)",
-      "level": "A1"
-    }
-  ]
-}
+  }

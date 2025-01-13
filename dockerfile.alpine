@@ -1,7 +1,7 @@
-FROM surnet/alpine-node-wkhtmltopdf:18.12.0-0.12.6-small
+FROM surnet/alpine-node-wkhtmltopdf:22.11.0-0.12.6-small
 
 RUN apk add --no-cache \
-    watchexec --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ \
+    watchexec --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
     && \
     apk add --no-cache \
     just --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
