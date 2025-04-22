@@ -1,65 +1,72 @@
-#!/usr/bin/env just --justfile
 
-# theme
+# set shell := ["sh", "-c"]
+
+# Define variables for directories and files
+assets_dir := "src/assets"
+output_dir := "output"
+template_dir := "src/template"
+template_file := template_dir / "resume.json"
+output_template := output_dir / "resume.json"
+output_html := output_dir / "resume.html"
+output_pdf := output_dir / "resume.pdf"
 theme := "macchiato"
 
-#files and folders
-assets_fldr := "src/assets"
-output_fldr := "output"
-output_template := output_fldr / "resume.json"
-output_html := output_fldr / "resume.html"
-output_pdf := output_fldr / "resume.pdf"
-# source template file
-template_fldr := "src/template"
-template_file := template_fldr / "resume.json"
-
-# commands
-res := "npx resumed"
-hmr := "npx hackmyresume"
-serve := "npx live-server"
-
-
+# Define the default recipe to list available commands
 default:
 	@just --list
 
+# Clean the output directory
 clean:
-	rm {{output_fldr}}/*
+	rm -f {{output_dir}}/*
 
-base: create_output copy 
-
+# Create the output directory if it doesn't exist
 create_output:
-	mkdir -p {{output_fldr}}
+	mkdir -p {{output_dir}}
 
-copy:
-	cp {{assets_fldr}}/* {{output_fldr}}/
+# Copy assets to the output directory
+copy_assets: create_output
+	cp {{assets_dir}}/* {{output_dir}}/
 
-convert: base
-	{{hmr}} convert {{template_file}} {{output_template}}
+# Convert the template file to the output template
+convert: copy_assets
+	npx hackmyresume convert {{template_file}} {{output_template}}
 
+# Build the HTML resume using the specified theme
 build: convert
-	{{res}} {{output_template}} --theme {{theme}} -o {{output_html}}
+	npx resumed {{output_template}} --theme {{theme}} -o {{output_html}}
 
-serve: 
-	{{serve}} --watch={{output_fldr}} --open={{output_html}}
+# Serve the output directory with live reload
+serve:
+	npx live-server --watch={{output_dir}} --open={{output_html}}
 
+# Watch for changes in the template directory and rebuild
 watch:
-	watchexec -w {{template_fldr}} just build
+	watchexec -w {{template_file}} just docker-run
 
-export-pdf:
-	wkhtmltopdf -T 0 -B 0 -L 0 -R 0 --zoom 1.05 --enable-smart-shrinking --print-media-type --enable-local-file-access {{output_html}} {{output_pdf}}
+# Export the HTML resume to PDF
+export_pdf: build
+	wkhtmltopdf -T 0 -B 0 --enable-local-file-access {{output_html}} {{output_pdf}}
 
-all:build export-pdf
+# Build and export the resume to PDF
+all: export_pdf
 
+# Install dependencies using pnpm
 install:
-	npm i -g pnpm
-	pnpm i
+	npm install -g pnpm
+	pnpm install
 
+# Install production dependencies using pnpm
 install-prod:
-	npm i -g pnpm
-	pnpm i --prod
+	npm install -g pnpm
+	pnpm install --prod
 
+# Build the Docker image
 docker-build:
 	docker build -f dockerfile.alpine . -t rcorreia-cv
 
+# Run the Docker container with volume mounts
 docker-run:
-	docker run -d -v $(pwd)/output:/app/output -v $(pwd)/src:/app/src rcorreia-cv
+	docker run -d \
+		-v $(pwd)/output:/app/output \
+		-v $(pwd)/src:/app/src \
+		rcorreia-cv

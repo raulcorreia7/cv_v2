@@ -1,16 +1,23 @@
-FROM surnet/alpine-node-wkhtmltopdf:22.11.0-0.12.6-small
+# Use a minimal base image with necessary tools
+FROM surnet/alpine-node-wkhtmltopdf:22.13.0-0.12.6-small
 
+# Install required packages
 RUN apk add --no-cache \
-    watchexec --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
-    && \
-    apk add --no-cache \
-    just --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/ \
-    ;
+    watchexec \
+    just \
+    --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/
 
+# Set working directory
 WORKDIR /app
-VOLUME [ "/app/output" ]
-VOLUME [ "/app/src"]
+
+# Define volumes
+VOLUME ["/app/output", "/app/src"]
+
+# Copy necessary files
 COPY package.json justfile ./
+
+# Install production dependencies
 RUN just install-prod
 
+# Default command
 CMD ["just", "all"]
