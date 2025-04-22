@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   hackmyresume:
-    hash: mbf2waboul3tr74ae72syiiwp4
+    hash: d00b4533e565bffb601894281ea40c7eb22c7f3de1ec9627630c2e92e3af3097
     path: patches/hackmyresume.patch
 
 importers:
@@ -15,7 +15,7 @@ importers:
     dependencies:
       hackmyresume:
         specifier: 1.9.0-beta
-        version: 1.9.0-beta(patch_hash=mbf2waboul3tr74ae72syiiwp4)
+        version: 1.9.0-beta(patch_hash=d00b4533e565bffb601894281ea40c7eb22c7f3de1ec9627630c2e92e3af3097)
       jsonresume-theme-macchiato:
         specifier: ^1.1.0
         version: 1.1.0
@@ -2461,7 +2461,7 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
-  hackmyresume@1.9.0-beta(patch_hash=mbf2waboul3tr74ae72syiiwp4):
+  hackmyresume@1.9.0-beta(patch_hash=d00b4533e565bffb601894281ea40c7eb22c7f3de1ec9627630c2e92e3af3097):
     dependencies:
       chalk: 2.4.2
       commander: 2.20.3

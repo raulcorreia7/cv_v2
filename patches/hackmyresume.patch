@@ -4,3 +4,16 @@ index fa350f714f8334abb7d165e0772ab0e4db7cc18a..00000000000000000000000000000000
 diff --git a/CHANGELOG.md b/CHANGELOG.md
 deleted file mode 100644
 index 36f8cf8d88e0953cf80a866acba4c1e39a5b569f..0000000000000000000000000000000000000000
+diff --git a/dist/core/fresh-resume.js b/dist/core/fresh-resume.js
+index dc65debccf5229bd1ea1301f00c27c901c82b302..f8c91e4ed504e38804fcab3bceb8b257e911a97b 100644
+--- a/dist/core/fresh-resume.js
++++ b/dist/core/fresh-resume.js
+@@ -121,7 +121,7 @@
+       } else if (parts[0] === 'JRS') {
+         useEdgeSchema = parts.length > 1 ? parts[1] === '1' : false;
+         newRep = CONVERTER.toJRS(this, {
+-          edge: useEdgeSchema
++          edge: true
+         });
+         FS.writeFileSync(filename, JRSResume.stringify(newRep), 'utf8');
+       } else {
