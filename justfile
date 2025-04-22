@@ -2,11 +2,13 @@
 # set shell := ["sh", "-c"]
 
 # Define variables for directories and files
+
+resume_file := "resume-jrs.json"
 assets_dir := "src/assets"
 output_dir := "output"
 template_dir := "src/template"
-template_file := template_dir / "resume.json"
-output_template := output_dir / "resume.json"
+template_file := template_dir / resume_file
+output_template := output_dir / resume_file
 output_html := output_dir / "resume.html"
 output_pdf := output_dir / "resume.pdf"
 theme := "jsonresume-theme-macchiato"

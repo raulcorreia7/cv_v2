@@ -16,6 +16,9 @@ VOLUME ["/app/output", "/app/src"]
 # Copy necessary files
 COPY package.json justfile ./
 
+# Copy patches
+COPY patches/ ./patches/
+
 # Install production dependencies
 RUN just install-prod
 
