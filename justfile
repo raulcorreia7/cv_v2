@@ -9,7 +9,7 @@ template_file := template_dir / "resume.json"
 output_template := output_dir / "resume.json"
 output_html := output_dir / "resume.html"
 output_pdf := output_dir / "resume.pdf"
-theme := "macchiato"
+theme := "jsonresume-theme-macchiato"
 
 # Define the default recipe to list available commands
 default:
@@ -41,14 +41,14 @@ serve:
 
 # Watch for changes in the template directory and rebuild
 watch:
-	watchexec -w {{template_file}} just docker-run
+	watchexec -w {{template_dir}} just docker-run
 
 # Export the HTML resume to PDF
-export_pdf: build
-	wkhtmltopdf -T 0 -B 0 --enable-local-file-access {{output_html}} {{output_pdf}}
+export-pdf: build
+	wkhtmltopdf -T 0 -B 0 -L 0 -R 0 --zoom 0.95 --enable-smart-shrinking --print-media-type --enable-local-file-access {{output_html}} {{output_pdf}}
 
 # Build and export the resume to PDF
-all: export_pdf
+all: export-pdf
 
 # Install dependencies using pnpm
 install:
