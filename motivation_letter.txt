@@ -1,0 +1,14 @@
+Dear Hiring Team,
+
+I am excited to apply for the Senior Backend Engineer position at Fastned, as it represents a unique opportunity to contribute to a company that is at the forefront of sustainable mobility. My current role as a Technical Lead at Shell Recharge, a direct competitor in the fast-charging industry, has given me understanding of the challenges and opportunities in this space. I am eager to bring my expertise and passion for sustainable energy solutions to Fastned and contribute to your mission of accelerating the transition to electric vehicles.
+
+In my current role at Shell Recharge, I have gained hands-on experience in developing and scaling backend systems that support a network of fast-charging stations across Europe. I have led teams in designing and implementing solutions that ensure seamless user experiences, high availability, and integration with various payment and energy management systems. My professional experience with Kotlin, Spring Boot is lacking, but should be easy to get up to speed and get the ball rolling soon as I join the company.
+
+What excites me most about Fastned is everytime I drive my car, I see two companies chargepoints in Shell Gas Stations. Our own and fasteneds. I admire how Fastned has established itself as a direct competitor to Shell in the industry by providing high-quality, user-friendly charging solutions.
+
+My experience in the Netherlands has also given me a strong understanding of the local market, which I believe will be valuable as you continue to expand your operations. I am confident that my technical expertise, industry knowledge, and leadership experience make me a strong fit for your team.
+
+Thank you for considering my application. I look forward to the opportunity to discuss how I can contribute to Fastned’s continued success and growth.
+
+Sincerely,
+Raul Correia
