@@ -7,9 +7,8 @@
   "info": {
     "label": "Software Developer",
     "characterClass": "Programmer",
-    "brief": "Software developer with 5+ years of experience developing AWS-native applications and progressively leading technical teams. Specialized in serverless architectures and distributed systems, with deep expertise in SDK development and service migration. Native of Porto, Portugal, passionate about computer games, cycling, traveling and technological innovation.",
-    "image": "raul-circle-ai.jpg",
-    "quote": "Two steps back, one step forward."
+    "brief": "Experienced Software Developer with over 5 years in AWS-native application development and technical leadership. Specialized in serverless architectures and distributed systems, with deep expertise in SDK development and service migration. Proficient in TypeScript and C#, currently expanding skills in Go to diversify backend development capabilities. Passionate about technological innovation, gaming, cycling, and traveling.",
+    "image": "raul-circle-ai.jpg"
   },
   "contact": {
     "phone": "(+31)0627253238",
@@ -51,16 +50,15 @@
           "NodeJS",
           "Infrastructure as Code",
           "DevOps",
-          "Datadog",
-          "GitOps"
+          "Datadog"
         ],
         "highlights": [
-          "Techical Lead of the Asset Management platform using AWS serverless technologies, processing and enriching data for thousands EV chargepoints",
-          "Drive technical direction for the Asset Management API while ensuring Shell's enterprise security standards",
+          "Led the Asset Management platform using AWS serverless technologies, processing and enriching data for thousands of EV chargepoint sessions monthly",
+          "Drove technical direction for the Asset Management API while ensuring Shell's enterprise security standards",
           "Contribute to cross-team TypeScript and AWS service pattern initiatives, aligning with Shell's Recharge cloud governance framework",
           "Performed migration of CI/CD pipelines from GitLab to GitHub, being compliant to Shell guidelines",
-          "Establish comprehensive monitoring using Datadog and CloudWatch, maintaining 99.9% service uptime",
-          "Mentor team members in AWS serverless architecture and compliance-first development"
+          "Established comprehensive monitoring using Datadog and CloudWatch, maintaining 99.9% service uptime",
+          "Mentor team members in AWS serverless architecture"
         ],
         "location": "Amsterdam, Netherlands"
       },
@@ -70,16 +68,18 @@
         "start": "2023-03",
         "keywords": [
           "AWS Lambda",
+          "AWS DynamoDB",
           "Event-Driven Architecture",
           "TypeScript",
           "NodeJS",
           "Infrastructure as Code",
           "DevOps",
+          "Datadog",
           "Compliance",
           "Security"
         ],
         "highlights": [
-          "Developed highly available serverless applications processing thousands of monthly requests",
+          "Engineered highly available serverless applications handling over thousands of monthly requests, ensuring scalability and reliability.",
           "Implemented complex service migrations to meet Shell's enterprise requirements",
           "Designed error handling and retry mechanisms using AWS SQS and EventBridge",
           "Created automated compliance checking and security scanning in CI/CD pipelines",
@@ -104,11 +104,11 @@
           "Infrastructure as Code"
         ],
         "highlights": [
-          "Developed multi-tenant serverless platform using AWS Lambda and DynamoDB",
-          "Implemented migration from Serverless Framework to AWS CDK v2",
+          "Developed a multi-tenant serverless platform using AWS Lambda, DynamoDB, TypeScript, and Node.js, supporting multiple banks from a single codebase",
+          "Implemented migration from Serverless Framework to AWS CDK v2, reducing technical debt by 50%",
           "Built dynamic configuration system using AWS Parameter Store and Secrets Manager",
           "Implemented comprehensive observability using AWS CloudWatch and X-Ray",
-          "Implemented KYC processes, for Germany and Netherlands, from third-party vendors."
+          "Implemented KYC processes, for Germany and Netherlands, from third-party vendors in a asynchronous fashion."
         ],
         "location": "Amsterdam, Netherlands"
       },
@@ -159,7 +159,7 @@
           "Developed features for Uniface Web SDK implementing modern web standards",
           "Implemented end-to-end functionality across low-code platform and C++ backend",
           "Created cross-platform compatibility features for consistent system behavior",
-          "Developed an d maintained a 30 year old C++ 98 codebase",
+          "Developed and maintained a 30-year-old C++98 codebase.",
           "Developed documentation for new features and APIs"
         ],
         "location": "Amsterdam, Netherlands"
@@ -229,16 +229,16 @@
         "url": "https://isep.pt/",
         "start": "2016-09",
         "end": "2019-09",
-        "grade": "16/20 - (8/10 NL Equivalent)"
+        "grade": "16/20 - Cum laude (8/10 NL Equivalent)"
       }
     ]
   },
   "skills": {
     "sets": [
       {
-        "name": "AWS Services",
+        "name": "Cloud & DevOps",
         "skills": [
-          "Lambda",
+          "AWS Lambda",
           "DynamoDB",
           "API Gateway",
           "EventBridge",
@@ -249,35 +249,30 @@
           "CloudFormation",
           "IAM",
           "Parameter Store",
-          "Secrets Manager"
-        ]
-      },
-      {
-        "name": "Languages & Frameworks",
-        "skills": [
-          "TypeScript",
-          "NodeJS",
-          "SST Framework",
-          "AWS CDK",
-          "Infrastructure as Code",
-          "C++",
-          "Python"
-        ]
-      },
-      {
-        "name": "DevOps & Tools",
-        "skills": [
+          "Secrets Manager",
+          "Terraform",
+          "Docker",
           "GitHub Actions",
           "GitLab CI",
-          "Docker",
-          "Terraform",
           "Datadog",
           "Snyk",
           "SonarQube"
         ]
       },
       {
-        "name": "Methodologies",
+        "name": "Programming Languages & Frameworks",
+        "skills": [
+          "TypeScript",
+          "Node.js",
+          "C#",
+          "Go",
+          "SST Framework",
+          "AWS CDK",
+          "Serverless Framework"
+        ]
+      },
+      {
+        "name": "Architectural & Development Methodologies",
         "skills": [
           "Event-Driven Architecture",
           "Microservices",
@@ -288,8 +283,7 @@
       }
     ]
   },
-  "recognition": [
-  ],
+  "recognition": [],
   "languages": [
     {
       "language": "Portuguese",
@@ -302,6 +296,72 @@
     {
       "language": "Dutch",
       "level": "Elementary proficiency (A1)"
+    }
+  ],
+  "projects": [
+    {
+      "title": "Elderly Home Medicine Ordering System Enhancement",
+      "category": "Probono",
+      "role": "Backend Developer",
+      "start": "2020-03",
+      "end": "2020-06",
+      "description": "Enhanced an existing ticketing system to introduce a specialized queue facilitating medicine orders for Elderly Homes during the COVID-19 pandemic.",
+      "summary": "Developed and integrated a priority queue system within the existing ticketing platform to streamline medicine ordering processes for Elderly Homes, ensuring timely deliveries during critical periods.",
+      "keywords": [
+        "C#",
+        ".NET Framework",
+        "Entity Framework",
+        "MSSQL",
+        "COVID-19 Response"
+      ]
+    },
+    {
+      "title": "Codecrafters HTTP Server in Go",
+      "category": "Personal",
+      "role": "Developer",
+      "start": "2025-02",
+      "end": "2024-05",
+      "description": "Developed an HTTP server from scratch in Go as part of the Codecrafters challenge, focusing on low-level networking and protocol implementation.",
+      "summary": "Built a fully functional HTTP server in Go, passing all Codecrafters test cases, demonstrating proficiency in Go and understanding of HTTP protocols.",
+      "url": "https://github.com/raulcorreia7/codecrafters-http-server-go",
+      "keywords": ["Go", "HTTP", "Networking", "Codecrafters"]
+    },
+    {
+      "title": "Lambda Component Testing Framework",
+      "category": "Professional",
+      "role": "Developer",
+      "start": "2023-06",
+      "end": "2023-08",
+      "description": "Created a testing framework in TypeScript/Node.js for AWS Lambda functions, enabling direct testing of deployed Lambdas across teams.",
+      "summary": "Developed a framework to facilitate end-to-end testing of AWS Lambda functions in production, improving testing efficiency and reliability.",
+      "url": "https://github.com/raulcorreia7/component-testing-framework",
+      "keywords": [
+        "TypeScript",
+        "Node.js",
+        "AWS Lambda",
+        "Testing",
+        "Shell Recharge"
+      ]
+    }
+  ],
+  "interests": [
+    {
+      "name": "Computers"
+    },
+    {
+      "name": "Gaming"
+    },
+    {
+      "name": "Cycling"
+    },
+    {
+      "name": "Food"
+    },
+    {
+      "name": "Traveling"
+    },
+    {
+      "name": "Conferences"
     }
   ]
 }
