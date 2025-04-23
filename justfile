@@ -3,7 +3,7 @@
 
 # Define variables for directories and files
 
-resume_file := "resume-jrs.json"
+resume_file := "resume.json"
 assets_dir := "src/assets"
 output_dir := "output"
 template_dir := "src/template"
