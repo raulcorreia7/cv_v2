@@ -1,6 +1,9 @@
 {
   "private": true,
   "type": "module",
+  "scripts": {
+    "build:themes": "node scripts/build-themes.mjs"
+  },
   "dependencies": {
     "hackmyresume": "1.9.0-beta",
     "jsonresume-theme-macchiato": "^1.1.0",
