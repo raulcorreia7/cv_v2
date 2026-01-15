@@ -1,6 +1,22 @@
-out/
+# Dependencies
 node_modules/
-output
-output/*
-public
-public/*
+
+# Build output
+output/
+out/
+
+# Git
+.git/
+.gitignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Docker
+Dockerfile
+.dockerignore

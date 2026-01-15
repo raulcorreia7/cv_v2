@@ -8,8 +8,15 @@
     "resumed": "5.0.0"
   },
   "devDependencies": {
-    "live-server": "^1.2.2",
-    "patch-package": "^8.0.0"
+    "http-server": "^14.1.0",
+    "nodemon": "^3.0.0"
+  },
+  "packageManager": "pnpm@9.15.0",
+  "scripts": {
+    "convert": "hackmyresume convert src/template/resume.json output/resume.json",
+    "build": "resumed output/resume.json --theme jsonresume-theme-macchiato -o output/resume.html",
+    "serve": "http-server output --open /resume.html",
+    "watch": "nodemon --watch src/template --exec \"make build\""
   },
   "pnpm": {
     "patchedDependencies": {
