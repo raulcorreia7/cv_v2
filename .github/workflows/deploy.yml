@@ -1,14 +1,17 @@
 name: Build and Deploy CV
 
 on:
+  pull_request:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
+
+concurrency:
+  group: cv-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -18,47 +21,46 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version-file: .nvmrc
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9.15.0
+          bun-version: 1.3.11
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: bun install --frozen-lockfile
 
-      - name: Install wkhtmltopdf
-        run: sudo apt-get update && sudo apt-get install -y wkhtmltopdf
+      - name: Install Chromium
+        run: bunx playwright install --with-deps chromium
 
-      - name: Build resume
-        run: make all
+      - name: Build site
+        run: make run ACTION=ci
 
-      - name: Create dated PDF
-        run: cp output/resume.pdf "output/resume_$(date +%d_%m_%Y).pdf"
-
-      - name: Create latest PDF
-        run: cp output/resume.pdf output/resume_latest.pdf
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - name: Create release-friendly PDF names
+        run: |
+          cp output/resume.pdf output/resume_latest.pdf
+          cp output/resume.pdf "output/resume_$(date +%Y-%m-%d).pdf"
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
+          name: cv-site
           path: output
 
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     needs: build
 
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: cv-site
+          path: output
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy output --project-name=${{ vars.CLOUDFLARE_PAGES_PROJECT }} --branch=${{ github.ref_name }}

@@ -1,59 +1,84 @@
 .POSIX:
+.SUFFIXES:
 .DELETE_ON_ERROR:
+.DEFAULT_GOAL := help
 
-.PHONY: clean copy-assets build serve watch export-pdf all install docker-build docker-run help
+.PHONY: all build ci clean cover-letter cover-letter-pdf dev help install pdf resume serve stop
 
-RESUME_FILE := resume.json
-ASSETS_DIR := src/assets
-OUTPUT_DIR := output
-TEMPLATE_DIR := src/template
-THEME := jsonresume-theme-macchiato
-TEMPLATE_FILE := $(TEMPLATE_DIR)/$(RESUME_FILE)
-OUTPUT_TEMPLATE := $(OUTPUT_DIR)/$(RESUME_FILE)
-OUTPUT_HTML := $(OUTPUT_DIR)/resume.html
-OUTPUT_PDF := $(OUTPUT_DIR)/resume.pdf
+-include .env
+
+BUN ?= bun
+PLAYWRIGHT ?= bunx playwright
+RUNNER := $(BUN) scripts/run.ts
+
+RESUME_FILE ?= resume.json
+ASSETS_DIR ?= src/assets
+OUTPUT_DIR ?= output
+TEMPLATE_DIR ?= src/template
+THEME ?= jsonresume-theme-macchiato
+COVER_LETTER_FILE ?= $(TEMPLATE_DIR)/cover-letter.json
+OUTPUT_HTML ?= $(OUTPUT_DIR)/resume.html
+OUTPUT_PDF ?= $(OUTPUT_DIR)/resume.pdf
+OUTPUT_LETTER_HTML ?= $(OUTPUT_DIR)/cover-letter.html
+OUTPUT_LETTER_PDF ?= $(OUTPUT_DIR)/cover-letter.pdf
+PORT ?= 8080
+
+export ASSETS_DIR COVER_LETTER_FILE OUTPUT_DIR OUTPUT_HTML OUTPUT_LETTER_HTML OUTPUT_LETTER_PDF OUTPUT_PDF PORT RESUME_FILE TEMPLATE_DIR THEME
 
 clean:
-	rm -f $(OUTPUT_DIR)/*
-
-copy-assets:
-	mkdir -p $(OUTPUT_DIR)
-	[ -d $(ASSETS_DIR) ] && cp $(ASSETS_DIR)/* $(OUTPUT_DIR)/ || true
-
-build: copy-assets
-	pnpm run convert
-	pnpm run build
-
-serve: build
-	pnpm run serve
-
-watch:
-	pnpm run watch
-
-export-pdf: build
-	OUTPUT_DIR=$(OUTPUT_DIR) ./scripts/export-pdf.sh
-
-all: export-pdf
+	rm -rf "$(OUTPUT_DIR)"
 
 install:
-	pnpm install
+	$(BUN) install
+	$(PLAYWRIGHT) install chromium
 
-docker-build:
-	docker build -f Dockerfile -t rcorreia-cv .
+build:
+	$(RUNNER) build
 
-docker-run:
-	docker run -d -v $$(pwd)/$(OUTPUT_DIR):/app/$(OUTPUT_DIR) -v $$(pwd)/src:/app/src rcorreia-cv
+resume:
+	$(RUNNER) build:resume
+
+cover-letter:
+	$(RUNNER) build:cover-letter
+
+pdf:
+	$(RUNNER) pdf
+
+cover-letter-pdf:
+	$(RUNNER) pdf:cover-letter
+
+all: ci
+
+serve:
+	$(RUNNER) serve
+
+dev:
+	$(RUNNER) dev
+
+stop:
+	$(RUNNER) stop
+
+ci:
+	$(RUNNER) ci
 
 help:
-	@echo "Available targets:"
-	@echo "  clean          - Remove output directory contents"
-	@echo "  copy-assets    - Copy assets to output directory"
-	@echo "  build          - Build HTML resume (includes convert)"
-	@echo "  serve          - Start local development server"
-	@echo "  watch          - Watch for changes and rebuild"
-	@echo "  export-pdf     - Export resume to PDF"
-	@echo "  all            - Run all build tasks (build + export-pdf)"
-	@echo "  install        - Install dependencies"
-	@echo "  docker-build   - Build Docker image"
-	@echo "  docker-run     - Run Docker container (detached)"
-	@echo "  help           - Show this help message"
+	@echo ""
+	@echo "Setup"
+	@echo "  install           Install Bun dependencies and Chromium"
+	@echo ""
+	@echo "Primary"
+	@echo "  build             Build resume and cover-letter HTML"
+	@echo "  resume            Build the resume HTML only"
+	@echo "  cover-letter      Build the cover-letter HTML only"
+	@echo "  pdf               Build the resume PDF"
+	@echo "  cover-letter-pdf  Build the cover-letter PDF"
+	@echo "  all               Run the full flow"
+	@echo "  ci                Run the full local smoke-check"
+	@echo ""
+	@echo "Development"
+	@echo "  serve             Build once and serve the output"
+	@echo "  dev               Build, serve, and live reload on changes"
+	@echo "  stop              Stop the local Bun server"
+	@echo ""
+	@echo "Maintenance"
+	@echo "  clean             Remove generated output"

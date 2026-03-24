@@ -1,0 +1,12 @@
+/*
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+
+/resume.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/cover-letter.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/*.pdf
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400

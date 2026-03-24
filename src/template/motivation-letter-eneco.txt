@@ -1,0 +1,12 @@
+Dear Hiring Team,
+
+I’m a backend engineer based in the Netherlands, currently leading backend work at Shell Recharge Solutions. I enjoy building systems that turn unclear requirements into reliable services with clear ownership, pragmatic design, and steady delivery.
+
+In recent roles I have led AWS serverless backend services, owned API design and technical direction, improved observability and delivery pipelines, and worked closely with product and stakeholders from discovery through production. My background spans TypeScript, Node.js, AWS, and earlier C#/.NET and Go work across product teams, platform work, and R&D.
+
+What I’m looking for next is a team that values strong backend engineering, thoughtful system design, and pragmatic collaboration. I do my best work where reliability, maintainability, and business impact matter, and where engineers are expected to take ownership rather than just implement tickets.
+
+I’d welcome the chance to bring that mindset and experience to a new team and contribute to backend systems that are dependable, well-shaped, and genuinely useful.
+
+Kind regards,
+Raúl Correia

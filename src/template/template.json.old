@@ -1,0 +1,269 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "meta": {
+    "version": "0.4.0",
+    "lastModified": "2026-01-19T17:19:16.196Z"
+  },
+  "basics": {
+    "label": "Software Developer",
+    "characterClass": "Programmer",
+    "phone": "(+31) 627253238",
+    "email": "raulcorreia7@gmail.com",
+    "name": "Raúl Correia",
+    "summary": "Experienced Software Developer with over 5 years in AWS-native application development and technical leadership. Specialized in serverless architectures and distributed systems, with deep expertise in SDK development and service migration. Proficient in TypeScript and C#, currently expanding skills in Go to diversify backend development capabilities. Passionate about technological innovation, gaming, cycling, and traveling.",
+    "picture": "raul-circle-ai.jpg",
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "raulcorreia7",
+        "url": "https://github.com/raulcorreia7"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "raul-correia",
+        "url": "https://www.linkedin.com/in/raul-correia"
+      }
+    ]
+  },
+  "work": [
+    {
+      "company": "Shell Recharge B.V",
+      "website": "https://shellrecharge.com/nl-nl",
+      "position": "Technical Lead - Amsterdam, Netherlands",
+      "startDate": "2024-09",
+      "summary": "Asset Management Team",
+      "highlights": [
+        "Led the Asset Management platform using AWS serverless technologies, processing and enriching data for thousands of EV chargepoint sessions monthly",
+        "Drove technical direction for the Asset Management API while ensuring Shell's enterprise security standards",
+        "Contribute to cross-team TypeScript and AWS service pattern initiatives, aligning with Shell's Recharge cloud governance framework",
+        "Performed migration of CI/CD pipelines from GitLab to GitHub, being compliant to Shell guidelines",
+        "Established comprehensive monitoring using Datadog and CloudWatch, maintaining 99.9% service uptime",
+        "Mentor team members in AWS serverless architecture"
+      ]
+    },
+    {
+      "position": "Software Engineer - Amsterdam, Netherlands",
+      "startDate": "2023-03",
+      "summary": "Backend developer for Business API Team",
+      "highlights": [
+        "Engineered highly available serverless applications handling over thousands of monthly requests, ensuring scalability and reliability.",
+        "Implemented complex service migrations to meet Shell's enterprise requirements",
+        "Designed error handling and retry mechanisms using AWS SQS and EventBridge",
+        "Created automated compliance checking and security scanning in CI/CD pipelines",
+        "Optimized AWS Lambda utilization, reducing operational costs",
+        "Developed and documented post-mortems during the migration to Shell and shared with the Backend Guild as lessons learned"
+      ]
+    },
+    {
+      "company": "TM-Pro B.V",
+      "website": "https://tm-pro.eu",
+      "position": "Backend Developer - Amsterdam, Netherlands",
+      "startDate": "2022-04",
+      "endDate": "2023-02",
+      "summary": "Developer for core multi-tenant KYC/KYB platform",
+      "highlights": [
+        "Developed a multi-tenant serverless platform using AWS Lambda, DynamoDB, TypeScript, and Node.js, supporting multiple banks from a single codebase",
+        "Implemented migration from Serverless Framework to AWS CDK v2, reducing technical debt by 50%",
+        "Built dynamic configuration system using AWS Parameter Store and Secrets Manager",
+        "Implemented comprehensive observability using AWS CloudWatch and X-Ray",
+        "Implemented KYC processes, for Germany and Netherlands, from third-party vendors in a asynchronous fashion."
+      ]
+    },
+    {
+      "company": "OMRT B.V",
+      "website": "https://omrt.tech",
+      "position": "Backend Developer - Amsterdam, Netherlands",
+      "startDate": "2021-07",
+      "endDate": "2022-03",
+      "summary": "Developer for Ostate architectural parametric generation platform",
+      "highlights": [
+        "Developed scalable compute pipeline using AWS EC2 and Docker",
+        "Implemented high-performance C++ fluid simulation algorithms with Python bindings for ease of use",
+        "Re-architected Ostate project to allow better code scalability and allow non deterministic algorithms"
+      ]
+    },
+    {
+      "company": "Uniface B.V",
+      "website": "https://www.uniface.com/",
+      "position": "Software Developer R&D - Amsterdam, Netherlands",
+      "startDate": "2020-09",
+      "endDate": "2021-06",
+      "summary": "Developer on Web team modernization efforts",
+      "highlights": [
+        "Developed features for Uniface Web SDK implementing modern web standards",
+        "Implemented end-to-end functionality across low-code platform and C++ backend",
+        "Created cross-platform compatibility features for consistent system behavior",
+        "Developed and maintained a 30-year-old C++98 codebase.",
+        "Developed documentation for new features and APIs"
+      ]
+    },
+    {
+      "company": "Critical Manufacturing",
+      "website": "https://www.criticalmanufacturing.com/",
+      "position": "Software Developer - Porto, Portugal",
+      "startDate": "2019-10",
+      "endDate": "2020-08",
+      "summary": "Developer for Manufacturing Execution System (MES)",
+      "highlights": [
+        "Contributed to the migration of MES from Silverlight to Angular/.NET Core",
+        "Development of a high precision module for regulated industries (medical)",
+        "Worked on the core team for the next-gen MES product"
+      ]
+    },
+    {
+      "company": "3C Techlab (Currently Planet)",
+      "position": "Intern Software Developer - Porto, Portugal",
+      "startDate": "2019-03",
+      "endDate": "2019-09",
+      "summary": "Developer of .NET SDK",
+      "highlights": [
+        "Developed components for .NET SDK integrating with Worldline Terminals",
+        "Implemented multi-threaded event handling system",
+        "Built network communication layers supporting multiple protocols",
+        "Created error handling systems for payment processing",
+        "Contributed to SDK documentation"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "Instituto Superior de Engenharia do Porto",
+      "gpa": "16/20 - Cum laude (8/10 NL Equivalent)",
+      "startDate": "2016-09",
+      "endDate": "2019-09"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Elderly Home Medicine Ordering System Enhancement",
+      "description": "Enhanced an existing ticketing system to introduce a specialized queue facilitating medicine orders for Elderly Homes during the COVID-19 pandemic.",
+      "keywords": [
+        "C#",
+        ".NET Framework",
+        "Entity Framework",
+        "MSSQL",
+        "COVID-19 Response"
+      ],
+      "startDate": "2020-03",
+      "endDate": "2020-06",
+      "roles": [
+        "Backend Developer"
+      ]
+    },
+    {
+      "name": "Codecrafters HTTP Server in Go",
+      "description": "Developed an HTTP server from scratch in Go as part of the Codecrafters challenge, focusing on low-level networking and protocol implementation.",
+      "keywords": [
+        "Go",
+        "HTTP",
+        "Networking",
+        "Codecrafters"
+      ],
+      "startDate": "2025-02",
+      "endDate": "2024-05",
+      "url": "https://github.com/raulcorreia7/codecrafters-http-server-go",
+      "roles": [
+        "Developer"
+      ]
+    },
+    {
+      "name": "Lambda Component Testing Framework",
+      "description": "Created a testing framework in TypeScript/Node.js for AWS Lambda functions, enabling direct testing of deployed Lambdas across teams.",
+      "keywords": [
+        "TypeScript",
+        "Node.js",
+        "AWS Lambda",
+        "Testing",
+        "Shell Recharge"
+      ],
+      "startDate": "2023-06",
+      "endDate": "2023-08",
+      "url": "https://github.com/raulcorreia7/component-testing-framework",
+      "roles": [
+        "Developer"
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "Programming Languages & Frameworks",
+      "keywords": [
+        "TypeScript",
+        "Node.js",
+        "C#",
+        "Go",
+        "AWS CDK",
+        "SST Framework",
+        "Serverless Framework"
+      ]
+    },
+    {
+      "name": "Cloud & DevOps",
+      "keywords": [
+        "AWS Lambda",
+        "DynamoDB",
+        "API Gateway",
+        "EventBridge",
+        "SQS",
+        "SNS",
+        "IAM",
+        "CloudWatch",
+        "X-Ray",
+        "CloudFormation",
+        "Parameter Store",
+        "Secrets Manager",
+        "Terraform",
+        "Docker",
+        "GitHub Actions",
+        "GitLab CI",
+        "Datadog",
+        "Snyk",
+        "SonarQube"
+      ]
+    },
+    {
+      "name": "Architectural & Development Methodologies",
+      "keywords": [
+        "Event-Driven Architecture",
+        "Domain-Driven Design",
+        "Microservices",
+        "Infrastructure as Code",
+        "GitOps"
+      ]
+    }
+  ],
+  "interests": [
+    {
+      "name": "Computers"
+    },
+    {
+      "name": "Gaming"
+    },
+    {
+      "name": "Cycling"
+    },
+    {
+      "name": "Food"
+    },
+    {
+      "name": "Traveling"
+    },
+    {
+      "name": "Conferences"
+    }
+  ],
+  "languages": [
+    {
+      "language": "Portuguese",
+      "fluency": "Native"
+    },
+    {
+      "language": "English",
+      "fluency": "Fluent"
+    },
+    {
+      "language": "Dutch",
+      "fluency": "A1.1"
+    }
+  ]
+}

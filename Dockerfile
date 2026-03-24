@@ -1,16 +1,19 @@
-FROM surnet/alpine-node-wkhtmltopdf:22.22.0-0.12.6-small
+FROM oven/bun:1.3.11-debian
 
-RUN apk add --no-cache make
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends make \
+  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
 VOLUME ["/app/output", "/app/src"]
 
-COPY package.json pnpm-lock.yaml ./
-COPY patches/ ./patches/
+COPY package.json bun.lock ./
 COPY Makefile ./
 COPY scripts/ ./scripts/
+COPY src/ ./src/
 
-RUN corepack enable && corepack prepare pnpm@9.15.0 --activate && pnpm install --prod
+RUN bun install --frozen-lockfile \
+  && bunx playwright install --with-deps chromium
 
-CMD ["make", "all"]
+CMD ["make", "run", "ACTION=ci"]

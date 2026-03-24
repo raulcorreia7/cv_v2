@@ -1,26 +1,23 @@
 {
   "private": true,
   "type": "module",
-  "dependencies": {
-    "hackmyresume": "1.9.0-beta",
+  "packageManager": "bun@1.3.11",
+  "devDependencies": {
     "jsonresume-theme-macchiato": "^1.1.0",
-    "react": "^18.3.1",
+    "playwright": "^1.53.2",
     "resumed": "5.0.0"
   },
-  "devDependencies": {
-    "http-server": "^14.1.0",
-    "nodemon": "^3.0.0"
-  },
-  "packageManager": "pnpm@9.15.0",
   "scripts": {
-    "convert": "hackmyresume convert src/template/resume.json output/resume.json",
-    "build": "resumed output/resume.json --theme jsonresume-theme-macchiato -o output/resume.html",
-    "serve": "http-server output --open /resume.html",
-    "watch": "nodemon --watch src/template --exec \"make build\""
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "hackmyresume": "patches/hackmyresume.patch"
-    }
+    "build": "bun scripts/run.ts build",
+    "build:cover-letter": "bun scripts/run.ts build:cover-letter",
+    "build:resume": "bun scripts/run.ts build:resume",
+    "ci": "bun scripts/run.ts ci",
+    "cover-letter": "bun scripts/run.ts build:cover-letter",
+    "dev": "bun scripts/run.ts dev",
+    "pdf": "bun scripts/run.ts pdf",
+    "pdf:cover-letter": "bun scripts/run.ts pdf:cover-letter",
+    "resume": "bun scripts/run.ts build:resume",
+    "serve": "bun scripts/run.ts serve",
+    "stop": "bun scripts/run.ts stop"
   }
 }
