@@ -7,7 +7,8 @@ Purpose
 
 Repository snapshot (observed)
 - Primary artifact: `src/template/resume.json` (FRESH format data).
-- Generated outputs live in `output/` (HTML/PDF/JSON).
+- Default local outputs live in `./tmp/` (HTML/PDF/JSON).
+- Release artifacts live in `output/` when `make release` is used.
 - Build tooling: `Makefile`, `pnpm`, `hackmyresume`, `resumed`.
 - Theme patches live in `patches/` and apply to `node_modules`.
 - Runtime: Node.js v24.12.0 (`.nvmrc`).
@@ -18,17 +19,18 @@ Cursor/Copilot rules
 Key paths
 - `src/template/resume.json` — primary content source.
 - `src/assets/` — images and static assets used by the theme.
-- `scripts/export-pdf.sh` — wkhtmltopdf wrapper.
+- `scripts/export-pdf.ts` — Playwright PDF export.
 - `patches/` — pnpm patches for theme/tooling.
-- `output/` — generated artifacts (do not edit by hand).
+- `./tmp/` — generated artifacts (do not edit by hand).
 
 Commands (from README + Makefile)
 - Install dependencies: `make install`
 - Build HTML resume: `make build`
-- Export PDF (requires wkhtmltopdf): `make export-pdf`
+- Export PDF: `make pdf`
 - Build HTML + PDF: `make all`
+- Build release bundle to `output/`: `make release`
 - Start local server: `make serve`
-- Watch for changes: `make watch`
+- Watch for changes: `make dev`
 - Clean generated files: `make clean`
 - Docker build: `make docker-build`
 - Docker run: `make docker-run`
@@ -38,7 +40,7 @@ Commands (from README + Makefile)
 Single-task “test” guidance
 - There is no automated test runner configured.
 - Treat `make build` as a smoke check after data or theme changes.
-- If PDFs are affected, run `make export-pdf`.
+- If PDFs are affected, run `make pdf`.
 - If you add tests in the future, document the single-test command here.
 
 Linting/formatting
@@ -83,7 +85,7 @@ Theme and patch workflow
 - Keep patch scope minimal and focused on specific UI tweaks.
 
 Data and content rules
-- `output/` is generated and should not be hand-edited or committed.
+- `./tmp/` is generated and should not be hand-edited or committed.
 - Add new images to `src/assets/` and run `make build`.
 - Keep skill, employment, and project entries consistent in structure.
 
@@ -94,7 +96,11 @@ Error handling and resilience
 
 Security and secrets
 - `.env` is present; do not commit secrets or add sensitive data.
-- Avoid embedding private info in `output/` artifacts.
+- Avoid embedding private info in `./tmp/` artifacts.
+
+Agent workflow note
+- Write generated HTML, PDF, and JSON artifacts only to `./tmp/` unless the user explicitly requests a different `OUTPUT_DIR`.
+- Prefer `make release` when the user explicitly wants publishable artifacts in `output/`.
 
 Documentation hygiene
 - Update `README.md` or this file when commands or workflows change.
@@ -111,6 +117,6 @@ Quick examples
 - Rebuild after changing `resume.json`:
   - `make build`
 - Generate a PDF after theme tweaks:
-  - `make export-pdf`
+  - `make pdf`
 
 End of file

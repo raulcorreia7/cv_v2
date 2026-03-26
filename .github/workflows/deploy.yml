@@ -32,8 +32,8 @@ jobs:
       - name: Install Chromium
         run: bunx playwright install --with-deps chromium
 
-      - name: Build site
-        run: make run ACTION=ci
+      - name: Build release bundle
+        run: make release
 
       - name: Create release-friendly PDF names
         run: |

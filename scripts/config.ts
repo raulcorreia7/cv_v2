@@ -2,6 +2,7 @@ import path from "node:path";
 
 export type BuildConfig = {
   assetsDir: string;
+  colorVariant: string;
   coverLetterFile: string;
   outputDir: string;
   outputHtml: string;
@@ -19,9 +20,10 @@ export type BuildConfig = {
 };
 
 export function resolveConfig(overrides: Partial<BuildConfig> = {}): BuildConfig {
-  const outputDir = overrides.outputDir ?? process.env.OUTPUT_DIR ?? "output";
+  const outputDir = overrides.outputDir ?? process.env.OUTPUT_DIR ?? "tmp";
   const templateDir = overrides.templateDir ?? process.env.TEMPLATE_DIR ?? "src/template";
   const assetsDir = overrides.assetsDir ?? process.env.ASSETS_DIR ?? "src/assets";
+  const colorVariant = overrides.colorVariant ?? process.env.RESUME_COLOR_VARIANT ?? "slate-green";
   const resumeFile = overrides.resumeFile ?? process.env.RESUME_FILE ?? "resume.json";
   const theme = overrides.theme ?? process.env.THEME ?? "jsonresume-theme-macchiato";
   const coverLetterFile =
@@ -38,6 +40,7 @@ export function resolveConfig(overrides: Partial<BuildConfig> = {}): BuildConfig
 
   return {
     assetsDir,
+    colorVariant,
     coverLetterFile,
     outputDir,
     outputHtml,

@@ -81,8 +81,7 @@ export async function exportPdf(config: BuildConfig = resolveConfig()): Promise<
       },
       preferCSSPageSize: true,
       printBackground: true,
-      // Enlarges the printed output while keeping the explicit two-page split stable.
-      scale: 0.94,
+      scale: 1,
     });
   } finally {
     await browser.close();

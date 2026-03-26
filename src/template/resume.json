@@ -16,7 +16,7 @@
           ],
           "right": [
             "summary",
-            "work"
+            "work:all"
           ]
         },
         {
@@ -60,6 +60,9 @@
       "position": "Lead Software Engineer - Amsterdam, Netherlands",
       "startDate": "2024-10",
       "summary": "Led Asset Management services on an AWS serverless stack. Key technologies: TypeScript, API design, Datadog, CloudWatch.",
+      "x-layout": {
+        "page": "core"
+      },
       "highlights": [
         "Led AWS serverless Asset Management services that unified multiple Shell Recharge APIs behind a single entry point for consumer teams",
         "Led a five-person team including two senior engineers, one junior engineer, and one contractor",
@@ -77,6 +80,9 @@
       "startDate": "2023-03",
       "endDate": "2024-12",
       "summary": "Business API / Bridge team. Key technologies: TypeScript, Node.js, AWS, SST, Serverless Framework, GitLab CI, Terraform, Docker, Vault, Datadog.",
+      "x-layout": {
+        "page": "core"
+      },
       "highlights": [
         "Delivered the Work Orders Service integrating Salesforce with Shell/Shell Recharge systems to keep charge point repairs available and protect EV uptime",
         "Maintained >99.9% uptime across multiple services, including Work Orders",
@@ -94,6 +100,9 @@
       "startDate": "2022-04",
       "endDate": "2023-03",
       "summary": "Backend engineer for a multi-tenant KYC/KYB platform in banking that achieved SOC 2 Type I certification. Key technologies: AWS Lambda, DynamoDB, TypeScript/Node.js, Serverless Framework, AWS CDK v2, KYC/KYB, CloudWatch/X-Ray.",
+      "x-layout": {
+        "page": "core"
+      },
       "highlights": [
         "Designed a dynamic onboarding backend enabling configurable customer onboarding workflows across clients",
         "Integrated KYC/KYB and fraud checks with multiple vendor APIs to strengthen compliance and security",
@@ -111,6 +120,9 @@
       "startDate": "2021-07",
       "endDate": "2022-04",
       "summary": "Backend developer for the Ostate architectural parametric generation platform. Key technologies: C#, C++, Python, AWS, Docker, Microservices.",
+      "x-layout": {
+        "page": "core"
+      },
       "highlights": [
         "Re-architected the platform to enable new generation requirements and algorithms",
         "Implemented backend services and algorithms in C#, C++, and Python for building generation",
@@ -124,6 +136,9 @@
       "startDate": "2020-09",
       "endDate": "2021-06",
       "summary": "Developer on Web team modernization efforts. Key technologies: JavaScript, C++, Java, ProcScript, GitLab CI/Jenkins, Linux/Windows.",
+      "x-layout": {
+        "page": "secondary"
+      },
       "highlights": [
         "Researched and prototyped modern web technologies for Uniface Web solutions",
         "Implemented features across the low-code platform and C++ backend",
@@ -138,6 +153,9 @@
       "startDate": "2019-10",
       "endDate": "2020-08",
       "summary": "Full stack developer for Manufacturing Execution System (MES). Key technologies: C#/.NET, SQL Server, Angular, PowerShell, Selenium, Scrum.",
+      "x-layout": {
+        "page": "secondary"
+      },
       "highlights": [
         "Developed MES product features using C# .NET, SQL Server, and Angular",
         "Worked in a Scrum team with requirements discussions and feature demos",
@@ -147,10 +165,14 @@
     },
     {
       "company": "3C Payment",
+      "website": "https://www.weareplanet.com/blog/3c-payment",
       "position": "Software Developer Intern - Porto, Portugal",
       "startDate": "2019-03",
       "endDate": "2019-09",
       "summary": "Internship developing a .NET SDK for payment terminals. Key technologies: C#/.NET, TCP, TLS/OpenSSL, HTTP, multithreading.",
+      "x-layout": {
+        "page": "secondary"
+      },
       "highlights": [
         "Built a C# framework for terminal communication over TCP, TLS/OpenSSL, and HTTP",
         "Implemented multi-threaded, event-oriented processing for payment events",
