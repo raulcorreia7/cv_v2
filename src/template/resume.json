@@ -38,7 +38,7 @@
     "phone": "(+31) 627253238",
     "email": "raulcorreia7@gmail.com",
     "name": "Raúl Correia",
-    "summary": "Lead Backend Engineer with 6+ years in software engineering and 10+ years of overall professional experience. Hands-on in AWS-native, event-driven backend services and API delivery with end-to-end ownership. Strong in requirements discovery, workflow automation, CI/CD, observability, and service migrations. Experienced in TypeScript, C#/.NET, and Go.",
+    "summary": "Lead backend engineer with 7+ years in software engineering and 10+ years of professional experience. Experience leading delivery, shaping requirements, and improving observability and CI/CD across AWS-native backend services and APIs.",
     "picture": "raul-circle-ai.jpg",
     "profiles": [
       {
@@ -59,18 +59,18 @@
       "website": "https://shellrecharge.com/nl-nl",
       "position": "Lead Software Engineer - Amsterdam, Netherlands",
       "startDate": "2024-10",
-      "summary": "Led Asset Management services on an AWS serverless stack. Key technologies: TypeScript, API design, Datadog, CloudWatch.",
+      "summary": "Promoted to Lead Software Engineer in October 2024 to lead Asset Management backend services for Shell Recharge on AWS serverless infrastructure. || TypeScript, Node.js, AWS, API design, Datadog, CloudWatch",
       "x-layout": {
         "page": "core"
       },
       "highlights": [
-        "Led AWS serverless Asset Management services that unified multiple Shell Recharge APIs behind a single entry point for consumer teams",
-        "Led a five-person team including two senior engineers, one junior engineer, and one contractor",
-        "Owned API design and technical direction, from requirements shaping to delivery alignment with enterprise security standards",
-        "Partnered with product and stakeholders to align roadmap, requirements, and delivery",
-        "Contributed to the cross-team golden path for TypeScript and AWS services to improve maintainability and consistency",
-        "Implemented monitoring and alerting with Datadog and CloudWatch to improve reliability and observability",
-        "Coached and mentored engineers on serverless architecture, code quality, and delivery practices"
+        "Led backend services that unified multiple internal Shell Recharge APIs behind a single entry point for other internal teams",
+        "Led a five-person team with two senior engineers, one junior engineer, and one contractor",
+        "Owned API design and technical direction from requirements through delivery",
+        "Partnered with product and stakeholders on roadmap, scope, and delivery",
+        "Helped define shared TypeScript and AWS service patterns used across teams",
+        "Improved monitoring and alerting with Datadog and CloudWatch",
+        "Coached engineers on serverless architecture, code quality, and delivery practices"
       ]
     },
     {
@@ -78,19 +78,19 @@
       "website": "https://shellrecharge.com/nl-nl",
       "position": "Backend Software Engineer - Amsterdam, Netherlands",
       "startDate": "2023-03",
-      "endDate": "2024-12",
-      "summary": "Business API / Bridge team. Key technologies: TypeScript, Node.js, AWS, SST, Serverless Framework, GitLab CI, Terraform, Docker, Vault, Datadog.",
+      "endDate": "2024-09",
+      "summary": "Backend engineer in the Business API / Bridge team, building integrations between Salesforce and Shell Recharge systems for charge point repair workflows. || TypeScript, AWS, DynamoDB, SST, Terraform, Datadog",
       "x-layout": {
         "page": "core"
       },
       "highlights": [
-        "Delivered the Work Orders Service integrating Salesforce with Shell/Shell Recharge systems to keep charge point repairs available and protect EV uptime",
+        "Built the Work Orders Service connecting Salesforce with Shell Recharge systems to support charge point repair workflows and EV uptime",
         "Maintained >99.9% uptime across multiple services, including Work Orders",
-        "Built and maintained Node.js/TypeScript services using SST and Serverless Framework",
+        "Built TypeScript services with SST and Serverless Framework",
         "Operated AWS services including DynamoDB, S3, and CloudWatch with Datadog monitoring",
         "Delivered CI/CD in GitLab and infrastructure automation with Terraform and Docker",
         "Reduced end-to-end pipeline time by 30% across multiple projects",
-        "Managed secrets and configuration with HashiCorp Vault and aligned delivery with cross-discipline stakeholders"
+        "Managed secrets and configuration with HashiCorp Vault"
       ]
     },
     {
@@ -99,18 +99,18 @@
       "position": "Backend Engineer - Amsterdam, Netherlands",
       "startDate": "2022-04",
       "endDate": "2023-03",
-      "summary": "Backend engineer for a multi-tenant KYC/KYB platform in banking that achieved SOC 2 Type I certification. Key technologies: AWS Lambda, DynamoDB, TypeScript/Node.js, Serverless Framework, AWS CDK v2, KYC/KYB, CloudWatch/X-Ray.",
+      "summary": "Built backend services for a multi-tenant KYC/KYB platform in banking, covering configurable onboarding flows, vendor integrations, and platform reliability. || TypeScript, AWS Lambda, DynamoDB, AWS CDK v2, CloudWatch, X-Ray",
       "x-layout": {
         "page": "core"
       },
       "highlights": [
-        "Designed a dynamic onboarding backend enabling configurable customer onboarding workflows across clients",
-        "Integrated KYC/KYB and fraud checks with multiple vendor APIs to strengthen compliance and security",
+        "Designed configurable onboarding workflows for multiple clients",
+        "Integrated KYC/KYB and fraud-check APIs from multiple vendors",
         "Built serverless services on AWS Lambda and DynamoDB with TypeScript and Node.js",
-        "Migrated infrastructure from Serverless Framework to AWS CDK v2 to reduce technical debt and enable dynamic multi-customer deployments from a single codebase",
-        "Built a declarative testing framework to capture dynamic customer workflows per tenant and deployment",
-        "Contributed to onboarding workflows that supported successful SOC 2 Type I certification",
-        "Improved observability with CloudWatch and X-Ray for production troubleshooting"
+        "Migrated infrastructure from Serverless Framework to AWS CDK v2, enabling multi-customer deployments from one codebase",
+        "Built a declarative testing framework to capture customer workflows by tenant and deployment",
+        "Contributed to onboarding workflows that supported SOC 2 Type I certification",
+        "Improved observability with CloudWatch and X-Ray"
       ]
     },
     {
@@ -119,14 +119,14 @@
       "position": "Backend Developer - Amsterdam, Netherlands",
       "startDate": "2021-07",
       "endDate": "2022-04",
-      "summary": "Backend developer for the Ostate architectural parametric generation platform. Key technologies: C#, C++, Python, AWS, Docker, Microservices.",
+      "summary": "Built backend services and compute workflows for Ostate, a parametric building-generation platform.",
       "x-layout": {
         "page": "core"
       },
       "highlights": [
-        "Re-architected the platform to enable new generation requirements and algorithms",
-        "Implemented backend services and algorithms in C#, C++, and Python for building generation",
-        "Built AWS and Docker compute pipelines with a focus on performance and scalability"
+        "Re-architected the platform to support new generation requirements and algorithms",
+        "Built backend services and generation algorithms in C#, C++, and Python",
+        "Built AWS and Docker-based compute pipelines for performance and scalability"
       ]
     },
     {
@@ -135,15 +135,14 @@
       "position": "Software Developer (R&D) - Amsterdam, Netherlands",
       "startDate": "2020-09",
       "endDate": "2021-06",
-      "summary": "Developer on Web team modernization efforts. Key technologies: JavaScript, C++, Java, ProcScript, GitLab CI/Jenkins, Linux/Windows.",
+      "summary": "Contributed to modernization of the Uniface Web stack across the web layer and C++ backend.",
       "x-layout": {
         "page": "secondary"
       },
       "highlights": [
-        "Researched and prototyped modern web technologies for Uniface Web solutions",
+        "Prototyped modern web technologies for Uniface Web",
         "Implemented features across the low-code platform and C++ backend",
-        "Maintained cross-platform compatibility for Linux and Windows environments",
-        "Worked with GitLab CI/CD and Jenkins in a mixed Linux/Windows toolchain"
+        "Worked in a mixed Linux and Windows toolchain with GitLab CI and Jenkins"
       ]
     },
     {
@@ -152,14 +151,13 @@
       "position": "Junior Software Developer - Maia, Porto, Portugal",
       "startDate": "2019-10",
       "endDate": "2020-08",
-      "summary": "Full stack developer for Manufacturing Execution System (MES). Key technologies: C#/.NET, SQL Server, Angular, PowerShell, Selenium, Scrum.",
+      "summary": "Built next-generation MES product features for a manufacturing execution platform.",
       "x-layout": {
         "page": "secondary"
       },
       "highlights": [
-        "Developed MES product features using C# .NET, SQL Server, and Angular",
-        "Worked in a Scrum team with requirements discussions and feature demos",
-        "Implemented MES features meeting ISO 9001 requirements, achieving 100% audit pass",
+        "Built product features in C#/.NET, SQL Server, and Angular",
+        "Worked in a Scrum team from requirements discussions through feature demos",
         "Built scripts and automation with PowerShell and Selenium for quality and tooling"
       ]
     },
@@ -169,21 +167,22 @@
       "position": "Software Developer Intern - Porto, Portugal",
       "startDate": "2019-03",
       "endDate": "2019-09",
-      "summary": "Internship developing a .NET SDK for payment terminals. Key technologies: C#/.NET, TCP, TLS/OpenSSL, HTTP, multithreading.",
+      "summary": "Built a .NET SDK for payment terminals during a software engineering internship.",
       "x-layout": {
         "page": "secondary"
       },
       "highlights": [
-        "Built a C# framework for terminal communication over TCP, TLS/OpenSSL, and HTTP",
-        "Implemented multi-threaded, event-oriented processing for payment events",
-        "Developed error handling and protocol support for reliable transactions",
-        "Contributed to SDK documentation and developer guidance"
+        "Built communication layers for payment terminals over TCP, TLS/OpenSSL, and HTTP",
+        "Implemented multithreaded, event-driven processing for payment events",
+        "Added error handling and protocol support for reliable transactions"
       ]
     }
   ],
   "education": [
     {
       "institution": "Instituto Superior de Engenharia do Porto",
+      "studyType": "Bachelor's in",
+      "area": "Computer Engineering (Engenharia Informática)",
       "gpa": "16/20 - Cum laude (8/10 NL Equivalent)",
       "startDate": "2016-09",
       "endDate": "2019-09"
@@ -191,10 +190,10 @@
   ],
   "awards": [
     {
-      "title": "Gamegune 2008 Counter-Strike 1.6 World Tournament",
+      "title": "GameGune 2008 World Tournament (Counter-Strike 1.6)",
       "date": "2008",
-      "awarder": "Gamegune",
-      "summary": "Competed at the world tournament Gamegune in Counter-Strike 1.6."
+      "awarder": "GameGune",
+      "summary": "Competed with Skilledamn! in Group B at the GameGune 2008 world tournament."
     },
     {
       "title": "Competitive gaming rankings",
@@ -204,42 +203,52 @@
   "projects": [
     {
       "name": "Career Wrapped",
-      "description": "Built and shipped over the March 21-22, 2026 AMS GenAI & Video Hackathon weekend: turns a public LinkedIn profile into a shareable career recap page and optional short MP4 using generative text plus image/video pipelines.",
+      "description": "Built during VEED.IO's March 21-22, 2026 AMS GenAI & Video Hackathon: a tool that turns a public LinkedIn profile into a shareable career recap page and optional short MP4 using LLM-driven text generation and multimodal image/video pipelines, including Runware.ai.",
       "keywords": [
         "TypeScript",
         "Bun",
-        "Cloudflare Pages",
+        "Deno",
+        "Cloudflare",
         "Supabase",
-        "GenAI",
+        "Runware.ai",
+        "VEED.IO",
+        "Generative AI",
+        "LLMs",
+        "Multimodal AI",
+        "Prompt Engineering",
         "Video",
         "Hackathon"
       ],
       "startDate": "2026-03",
       "endDate": "2026-03",
-      "url": "https://cw.raulcorreia.dev",
+      "url": "https://cw.raulcorreia.dev/r/raul-correia-t2572sry?jobId=48b1a2d7-479f-41ba-9b47-8896126c3721&view=result",
       "roles": [
         "Hackathon Builder"
       ]
     },
     {
       "name": "theme-browser.nvim",
-      "description": "Built an open source Neovim theme browser with registry-driven preview, install, apply, and persistence flows; reached ~1.7k clones in the first day after launch.",
+      "description": "Built an open source Neovim theme browser with registry-driven preview, install, apply, and persistence flows; added agent-based validation to reduce false positives in theme detection, and reached ~1.7k clones in the first day after launch.",
       "keywords": [
         "Lua",
+        "Bun",
         "Neovim",
         "lazy.nvim",
         "Themes",
         "Plugin",
-        "Registry"
+        "Registry",
+        "AI Agents",
+        "Validation"
       ],
+      "startDate": "2026-02",
       "url": "https://github.com/raulcorreia7/theme-browser.nvim",
       "roles": [
         "Author"
       ]
     },
     {
-      "name": "Movimento tech4COVID19 (Volunteer)",
-      "description": "Built a pharmacy queue module to support medicine ordering for COVID-positive elderly homes during the national emergency, collaborating on GDPR considerations and UI/UX clarity.",
+      "name": "Movimento tech4COVID19 (Pro bono work)",
+      "description": "Built a pharmacy priority-queue module to support medicine ordering for COVID-positive elderly homes during the national emergency, collaborating on GDPR considerations and UI/UX clarity.",
       "keywords": [
         "C#",
         ".NET",
@@ -320,27 +329,37 @@
     {
       "name": "Architecture & Practices",
       "keywords": [
+        "Behavior-Driven Development (BDD)",
+        "Domain-Driven Design (DDD)",
         "Event-Driven Architecture",
-        "Microservices",
         "Infrastructure as Code"
       ]
     }
   ],
   "interests": [
     {
-      "name": "Computer science"
-    },
-    {
-      "name": "Competitive gaming"
-    },
-    {
       "name": "Cycling"
+    },
+    {
+      "name": "Traveling"
+    },
+    {
+      "name": "Coffee"
     },
     {
       "name": "Food"
     },
     {
-      "name": "Traveling"
+      "name": "Open source"
+    },
+    {
+      "name": "Computer science"
+    },
+    {
+      "name": "Reverse engineering"
+    },
+    {
+      "name": "Competitive gaming"
     }
   ],
   "languages": [

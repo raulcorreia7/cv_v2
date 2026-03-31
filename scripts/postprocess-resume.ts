@@ -311,6 +311,34 @@ function normalizeThemeHtml(source: string): string {
   );
 }
 
+function formatSummaryTechLines(source: string): string {
+  return source.replace(
+    /<p class="summary">([\s\S]*?)\s\|\|\s([\s\S]*?)<\/p>(\s*<ul>[\s\S]*?<\/ul>)?/g,
+    (_match, summaryText: string, techText: string, listHtml = "") => {
+      const formattedTechText = techText.trim().replace(/,\s+/g, " · ");
+
+      return `<p class="summary">${summaryText.trim()}</p><p class="summary-tech">${formattedTechText}</p>${listHtml}`;
+    },
+  );
+}
+
+function formatProjectTechLines(source: string): string {
+  return source.replace(
+    /(<\/h4>)\s*<div class="flex-container">([\s\S]*?)<\/div>/g,
+    (_match, headingClose: string, skillsHtml: string) => {
+      const skills = [...skillsHtml.matchAll(/<h6 class="skill">([\s\S]*?)<\/h6>/g)]
+        .map((skillMatch) => skillMatch[1].trim())
+        .filter(Boolean);
+
+      if (skills.length === 0) {
+        return _match;
+      }
+
+      return `${headingClose}\n                    <p class="summary-tech summary-tech--project">${skills.join(" · ")}</p>`;
+    },
+  );
+}
+
 function stripRemoteFontFaces(source: string): string {
   return source.replace(/@font-face\s*\{[\s\S]*?\}\s*/g, "");
 }
@@ -624,6 +652,38 @@ function buildPrintFixStyles(palette: ResumePalette): string {
     gap: 2px 3px;
   }
 
+  #resume.resume-stack .left-column .skills-container .minimal.flex-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    position: relative;
+    column-gap: 10px;
+    row-gap: 3px;
+    margin-top: 0;
+    padding-left: 0;
+  }
+
+  #resume.resume-stack .left-column .skills-container .minimal.flex-container::before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    left: calc(50% - 0.5px);
+    border-left: 1px solid var(--resume-border-soft);
+  }
+
+  #resume.resume-stack .left-column .skills-container .main-skill.skill {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: #31454d;
+    font-size: 7.6px;
+    line-height: 1.16;
+  }
+
   #resume.resume-stack .left-column .languages-container ul,
   #resume.resume-stack .left-column .interests-container {
     margin-top: 0;
@@ -639,6 +699,10 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .left-column .languages-container h6 {
+    display: grid;
+    grid-template-columns: 52px max-content;
+    align-items: baseline;
+    column-gap: 4px;
     font-size: 7.7px;
     line-height: 1.18;
     font-weight: 600;
@@ -646,6 +710,8 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .left-column .languages-container em {
+    margin-left: 0;
+    white-space: nowrap;
     font-style: normal;
     font-weight: 400;
     color: var(--resume-muted);
@@ -655,6 +721,13 @@ function buildPrintFixStyles(palette: ResumePalette): string {
     margin-bottom: 2px;
   }
 
+  #resume.resume-stack .left-column .interests-container h4 {
+    color: #2f4443;
+    font-size: 7.7px;
+    line-height: 1.18;
+    font-weight: 600;
+  }
+
   #resume.resume-stack .container {
     padding-top: 6px;
   }
@@ -662,11 +735,11 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   #resume.resume-stack ul {
     margin-top: 1px;
     margin-bottom: 0;
-    padding-left: 16px;
+    padding-left: 14px;
   }
 
   #resume.resume-stack .item {
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
 
   #resume.resume-stack .summary,
@@ -680,7 +753,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .work-container .section-header {
-    margin-bottom: 1px;
+    margin-bottom: 2px;
   }
 
   #resume.resume-stack .work-container .section-header .pull-left {
@@ -698,12 +771,42 @@ function buildPrintFixStyles(palette: ResumePalette): string {
     line-height: 1.2;
   }
 
+  #resume.resume-stack .work-container .summary-tech,
+  #resume.resume-stack .page--secondary .project-container .summary-tech {
+    margin: 2px 0 0;
+    font-family: var(--resume-font-ui);
+    font-size: 7.8px;
+    font-weight: 400;
+    line-height: 1.14;
+    letter-spacing: 0.08px;
+    color: var(--resume-muted);
+  }
+
+  #resume.resume-stack .work-container .summary-tech {
+    margin-bottom: 2px;
+  }
+
   #resume.resume-stack .work-container ul {
-    padding-left: 15px;
+    margin-top: 2px;
+    padding-left: 12px;
   }
 
   #resume.resume-stack .work-container ul li {
-    padding-left: 6px;
+    padding-left: 3px;
+    margin-bottom: 2px;
+  }
+
+  #resume.resume-stack .work-container .item {
+    margin-bottom: 7px;
+  }
+
+  #resume.resume-stack .work-container .item + .item {
+    border-top: 1px solid var(--resume-border-soft);
+    padding-top: 6px;
+  }
+
+  #resume.resume-stack .work-container .item:last-child {
+    margin-bottom: 0;
   }
 
   #resume.resume-stack .page--secondary .awards-container .item {
@@ -719,33 +822,89 @@ function buildPrintFixStyles(palette: ResumePalette): string {
     letter-spacing: 0.5px;
   }
 
+  #resume.resume-stack .page--secondary .section-header .pull-right {
+    width: 74px;
+  }
+
+  #resume.resume-stack .page--secondary .section-header .pull-left {
+    max-width: calc(100% - 86px);
+  }
+
   #resume.resume-stack .page--secondary .keyline {
     margin: 4px 0 7px;
   }
 
   #resume.resume-stack .page--secondary .project-container .item {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    padding-bottom: 3px;
+  }
+
+  #resume.resume-stack .page--secondary .project-container .item + .item {
+    border-top: 1px solid var(--resume-border-soft);
+    padding-top: 6px;
+  }
+
+  #resume.resume-stack .page--secondary .project-container .item:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  #resume.resume-stack .page--secondary .project-container .section-header {
+    margin-bottom: 2px;
+  }
+
+  #resume.resume-stack .page--secondary .project-container .section-header .pull-left {
+    padding-right: 10px;
   }
 
   #resume.resume-stack .page--secondary .project-container h4 {
     margin-top: 1px;
-    margin-bottom: 3px;
-    line-height: 1.18;
+    margin-bottom: 4px;
+    font-size: 9.45px;
+    font-weight: 500;
+    line-height: 1.24;
+    color: #31454d;
   }
 
-  #resume.resume-stack .page--secondary .project-container .flex-container {
-    gap: 3px 4px;
-    margin-top: 2px;
-  }
-
-  #resume.resume-stack .page--secondary .project-container .skill {
-    font-size: 7.1px;
-    padding: 0.05em 0.26em;
+  #resume.resume-stack .page--secondary .project-container .summary-tech {
+    margin-top: 3px;
   }
 
   #resume.resume-stack .page--secondary .education-container .item,
   #resume.resume-stack .page--secondary .awards-container .item {
     margin-bottom: 7px;
+  }
+
+  #resume.resume-stack .page--secondary .education-container .item {
+    margin-bottom: 0;
+    padding: 2px 0 0;
+    border-left: 0;
+    background: transparent;
+  }
+
+  #resume.resume-stack .page--secondary .education-container .section-header {
+    margin-bottom: 1px;
+  }
+
+  #resume.resume-stack .page--secondary .education-container .section-header h3 {
+    font-size: 10.8px;
+    line-height: 1.1;
+  }
+
+  #resume.resume-stack .page--secondary .education-container h4 {
+    margin-top: 1px;
+    font-size: 9.35px;
+    font-weight: 500;
+    line-height: 1.18;
+    color: #31454d;
+  }
+
+  #resume.resume-stack .page--secondary .education-container h5 {
+    margin-top: 2px;
+    font-size: 8.45px;
+    font-weight: 500;
+    line-height: 1.16;
+    color: var(--resume-muted);
   }
 
   #resume.resume-stack .page--secondary .awards-container .summary,
@@ -798,7 +957,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .page--core .work-container .item {
-    margin-bottom: 5px;
+    margin-bottom: 8px;
   }
 
   #resume.resume-stack .page--core .work-container h4 {
@@ -812,7 +971,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .page--core .work-container ul li {
-    margin-bottom: 1px;
+    margin-bottom: 2px;
   }
 
   #resume.resume-stack .page--core .work-container--all .item--secondary ul {
@@ -847,41 +1006,12 @@ function buildPrintFixStyles(palette: ResumePalette): string {
     #resume.resume-stack .page {
       break-before: page;
       page-break-before: always;
+      box-shadow: none;
     }
 
     #resume.resume-stack .page:first-child {
       break-before: auto;
       page-break-before: auto;
-    }
-
-    .page {
-      width: 202mm;
-      min-height: auto;
-      margin: 0 auto;
-      padding: 5px 3mm 3px;
-      box-shadow: none;
-      border-top-width: 6px;
-      color: #22313a;
-    }
-
-    .page .resume-header,
-    .page .resume-content {
-      padding: 0;
-    }
-
-    .left-column {
-      width: 118px;
-      margin-right: 8px;
-    }
-
-    .left-column .skill {
-      margin: 0 2px 2px 0;
-      padding: 0.04em 0.24em;
-      font-size: 7px;
-      line-height: 1.12;
-      border-radius: 999px;
-      background: var(--resume-accent-soft);
-      border: 1px solid var(--resume-border-soft);
     }
 
     .container {
@@ -912,73 +1042,12 @@ function buildPrintFixStyles(palette: ResumePalette): string {
       margin-bottom: 2px;
     }
 
-    .left-column .languages-container h6 {
-      font-size: 7.8px;
-      line-height: 1.18;
-      font-weight: 600;
-      color: #2f4443;
-    }
-
-    .left-column .languages-container em {
-      font-style: normal;
-      font-weight: 400;
-      color: var(--resume-muted);
-    }
-
-    p,
-    li {
-      font-size: 9.8px;
-      line-height: 1.2;
-      color: var(--resume-text);
-    }
-
-    .title h3 {
-      font-size: 11.6px;
-    }
-
-    h4 {
-      font-size: 10.3px;
-    }
-
-    h6 {
-      font-size: 8px;
-    }
-
     .work-container .item,
     .project-container .item,
     .education-container .item,
     .awards-container .item {
       break-inside: avoid;
       page-break-inside: avoid;
-    }
-
-    .work-container .section-header h3 {
-      font-size: 11.8px;
-      line-height: 1.08;
-    }
-
-    .work-container .section-header h5 {
-      font-size: 8.5px;
-      line-height: 1.14;
-    }
-
-    .work-container--all .item--secondary {
-      margin-bottom: 2px;
-    }
-
-    .work-container--all .item--secondary .section-header {
-      margin-bottom: 0;
-    }
-
-    .work-container--all .item--secondary h4 {
-      margin-bottom: 1px;
-    }
-
-    .work-container--all .item--secondary .summary {
-      max-width: 96%;
-      font-size: 8.7px;
-      line-height: 1.16;
-      margin-top: 1px;
     }
 
     .page--secondary .container {
@@ -1018,6 +1087,8 @@ export async function postprocessResume(config: BuildConfig = resolveConfig()): 
   nextHtml = normalizeThemeHtml(nextHtml);
   nextHtml = nextHtml.replace(/<span class="sublink">[\s\S]*?<\/span>/g, "");
   nextHtml = applyExplicitPageLayout(nextHtml, resume, resume.meta?.["x-layout"]?.pages ?? defaultPages);
+  nextHtml = formatSummaryTechLines(nextHtml);
+  nextHtml = formatProjectTechLines(nextHtml);
 
   await writeFile(config.outputHtml, nextHtml, "utf8");
 }

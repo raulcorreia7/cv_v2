@@ -2,7 +2,7 @@ import { watch } from "node:fs";
 import { mkdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 
-import { buildAll } from "./build";
+import { build } from "./build";
 import { resolveConfig, type BuildConfig } from "./config";
 
 const encoder = new TextEncoder();
@@ -45,7 +45,7 @@ async function removePidFile(config: BuildConfig): Promise<void> {
 }
 
 export async function startDevServer(mode: "serve" | "watch", config: BuildConfig = resolveConfig()): Promise<void> {
-  await buildAll(config);
+  await build(config);
 
   const clients = new Set<ReadableStreamDefaultController<Uint8Array>>();
   let rebuildTimer: ReturnType<typeof setTimeout> | undefined;
@@ -67,7 +67,7 @@ export async function startDevServer(mode: "serve" | "watch", config: BuildConfi
     building = true;
 
     try {
-      await buildAll(config);
+      await build(config);
       broadcastReload();
     } catch (error) {
       console.error(error);

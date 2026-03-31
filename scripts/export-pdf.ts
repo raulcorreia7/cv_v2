@@ -1,20 +1,10 @@
 import { access, mkdir } from "node:fs/promises";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
 import { chromium } from "playwright";
 
 import { resolveConfig, type BuildConfig } from "./config";
-
-function resolveRequestPath(rootDir: string, requestPath: string): string {
-  const relativePath = decodeURIComponent(requestPath).replace(/^\/+/, "");
-  const absolutePath = path.resolve(rootDir, relativePath);
-
-  if (!absolutePath.startsWith(rootDir)) {
-    return path.join(rootDir, "index.html");
-  }
-
-  return absolutePath;
-}
 
 export async function exportPdf(config: BuildConfig = resolveConfig()): Promise<void> {
   await access(config.outputHtml).catch(() => {
@@ -22,26 +12,7 @@ export async function exportPdf(config: BuildConfig = resolveConfig()): Promise<
   });
 
   await mkdir(path.dirname(config.outputPdf), { recursive: true });
-  const outputRoot = path.resolve(config.outputDir);
-  const entryPath = `/${path.relative(outputRoot, path.resolve(config.outputHtml)).split(path.sep).join("/")}`;
-  const server = Bun.serve({
-    port: 0,
-    async fetch(request) {
-      const filePath = resolveRequestPath(outputRoot, new URL(request.url).pathname);
-      const file = Bun.file(filePath);
-
-      if (!(await file.exists())) {
-        return new Response("Not found", { status: 404 });
-      }
-
-      return new Response(file, {
-        headers: {
-          "Cache-Control": "no-cache",
-          "Content-Type": file.type || "application/octet-stream",
-        },
-      });
-    },
-  });
+  const entryUrl = pathToFileURL(path.resolve(config.outputHtml)).href;
 
   const browser = await chromium.launch({
     executablePath: process.env.CHROME_BIN || undefined,
@@ -56,7 +27,7 @@ export async function exportPdf(config: BuildConfig = resolveConfig()): Promise<
       },
     });
 
-    await page.goto(new URL(entryPath, server.url).href, {
+    await page.goto(entryUrl, {
       waitUntil: "networkidle",
     });
 
@@ -85,6 +56,5 @@ export async function exportPdf(config: BuildConfig = resolveConfig()): Promise<
     });
   } finally {
     await browser.close();
-    server.stop(true);
   }
 }

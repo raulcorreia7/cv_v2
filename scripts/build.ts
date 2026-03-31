@@ -5,6 +5,8 @@ import { buildCoverLetterHtml } from "./build-letter";
 import { resolveConfig, type BuildConfig } from "./config";
 import { postprocessResume } from "./postprocess-resume";
 
+const publishDir = path.resolve("output");
+
 async function pathExists(targetPath: string): Promise<boolean> {
   try {
     await stat(targetPath);
@@ -46,6 +48,38 @@ async function copyStaticFiles(config: BuildConfig): Promise<void> {
   }
 }
 
+export async function removeCoverLetterArtifacts(config: BuildConfig = resolveConfig()): Promise<void> {
+  await rm(config.outputLetterHtml, { force: true });
+  await rm(config.outputLetterPdf, { force: true });
+}
+
+function shouldSyncOutput(config: BuildConfig): boolean {
+  return path.resolve(config.outputDir) === path.resolve("tmp");
+}
+
+export async function sync(config: BuildConfig = resolveConfig()): Promise<void> {
+  if (!shouldSyncOutput(config)) {
+    return;
+  }
+
+  await rm(publishDir, { force: true, recursive: true });
+  await mkdir(publishDir, { recursive: true });
+
+  const entries = await readdir(config.outputDir).catch(() => []);
+  const ignoredEntries = new Set([path.basename(config.serverPidPath)]);
+
+  await Promise.all(
+    entries
+      .filter((entry) => !ignoredEntries.has(entry))
+      .map((entry) =>
+        cp(path.join(config.outputDir, entry), path.join(publishDir, entry), {
+          force: true,
+          recursive: true,
+        }),
+      ),
+  );
+}
+
 export async function buildResume(config: BuildConfig = resolveConfig()): Promise<void> {
   await copyStaticFiles(config);
   await rm(path.join(config.outputDir, "_redirects"), { force: true });
@@ -65,7 +99,7 @@ export async function buildCoverLetter(config: BuildConfig = resolveConfig()): P
   await buildCoverLetterHtml(config);
 }
 
-export async function buildAll(config: BuildConfig = resolveConfig()): Promise<void> {
+export async function build(config: BuildConfig = resolveConfig()): Promise<void> {
+  await removeCoverLetterArtifacts(config);
   await buildResume(config);
-  await buildCoverLetter(config);
 }

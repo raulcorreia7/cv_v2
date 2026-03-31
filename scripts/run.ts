@@ -1,6 +1,6 @@
 import { readFile, rm } from "node:fs/promises";
 
-import { buildAll, buildCoverLetter, buildResume } from "./build";
+import { build, buildCoverLetter, buildResume, removeCoverLetterArtifacts, sync } from "./build";
 import { resolveConfig } from "./config";
 import { startDevServer } from "./dev-server";
 import { exportPdf } from "./export-pdf";
@@ -66,19 +66,24 @@ function coverLetterPdfConfig(config: ReturnType<typeof resolveConfig>) {
 
 async function run(action: Action, config: ReturnType<typeof resolveConfig> = resolveConfig()): Promise<void> {
   const actions: Record<Action, () => Promise<void>> = {
-    build: () => buildAll(config),
+    build: async () => {
+      await build(config);
+      await sync(config);
+    },
     "build:cover-letter": () => buildCoverLetter(config),
     "build:resume": () => buildResume(config),
     ci: async () => {
       await buildResume(config);
       await exportPdf(config);
-      await buildCoverLetter(config);
-      await exportPdf(coverLetterPdfConfig(config));
+      await removeCoverLetterArtifacts(config);
+      await sync(config);
     },
     dev: () => startDevServer("watch", config),
     pdf: async () => {
       await buildResume(config);
       await exportPdf(config);
+      await removeCoverLetterArtifacts(config);
+      await sync(config);
     },
     "pdf:cover-letter": async () => {
       await buildCoverLetter(config);

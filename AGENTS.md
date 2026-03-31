@@ -8,8 +8,9 @@ Purpose
 Repository snapshot (observed)
 - Primary artifact: `src/template/resume.json` (FRESH format data).
 - Default local outputs live in `./tmp/` (HTML/PDF/JSON).
-- Release artifacts live in `output/` when `make release` is used.
-- Build tooling: `Makefile`, `pnpm`, `hackmyresume`, `resumed`.
+- `output/` holds the publishable bundle.
+- Build tooling: `Makefile`, `Bun`, `resumed`, `Playwright`.
+- `Dockerfile` exposes `build`, `release`, `dev`, and `runtime` stages aligned with the local Make targets.
 - Theme patches live in `patches/` and apply to `node_modules`.
 - Runtime: Node.js v24.12.0 (`.nvmrc`).
 
@@ -25,16 +26,13 @@ Key paths
 
 Commands (from README + Makefile)
 - Install dependencies: `make install`
-- Build HTML resume: `make build`
-- Export PDF: `make pdf`
-- Build HTML + PDF: `make all`
+- Build the resume HTML: `make build`
+- Export the resume PDF: `make pdf`
+- Build HTML + PDF for the primary resume bundle: `make all`
 - Build release bundle to `output/`: `make release`
 - Start local server: `make serve`
 - Watch for changes: `make dev`
 - Clean generated files: `make clean`
-- Docker build: `make docker-build`
-- Docker run: `make docker-run`
-- Docker build + run: `make docker-all`
 - List targets: `make help`
 
 Single-task “test” guidance
@@ -99,8 +97,9 @@ Security and secrets
 - Avoid embedding private info in `./tmp/` artifacts.
 
 Agent workflow note
-- Write generated HTML, PDF, and JSON artifacts only to `./tmp/` unless the user explicitly requests a different `OUTPUT_DIR`.
-- Prefer `make release` when the user explicitly wants publishable artifacts in `output/`.
+- Local builds still render HTML/PDF artifacts in `./tmp/` first.
+- Cover-letter generation is manual-only via `make cover-letter` or `make cover-letter-pdf`.
+- Prefer `make release` when the user explicitly wants to build directly into `output/`.
 
 Documentation hygiene
 - Update `README.md` or this file when commands or workflows change.
