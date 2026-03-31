@@ -12,7 +12,7 @@ Repository snapshot (observed)
 - Build tooling: `Makefile`, `Bun`, `resumed`, `Playwright`.
 - `Dockerfile` exposes `build`, `release`, `dev`, and `runtime` stages aligned with the local Make targets.
 - Theme patches live in `patches/` and apply to `node_modules`.
-- Runtime: Node.js v24.12.0 (`.nvmrc`).
+- Runtime: Node.js v24.14.0 (`.nvmrc`).
 
 Cursor/Copilot rules
 - No `.cursor/rules/`, `.cursorrules`, or `.github/copilot-instructions.md` found.
@@ -65,7 +65,7 @@ Code style — general guidance (Unverified)
 JavaScript/Node guidance (project-wide)
 - The repo is ESM (`"type": "module"` in `package.json`).
 - Use `import`/`export` syntax if adding JS files.
-- Keep Node compatibility aligned to `.nvmrc` (v24.12.0).
+- Keep Node compatibility aligned to `.nvmrc` (v24.14.0).
 
 Shell scripts
 - Use POSIX sh (`#!/bin/sh`) and keep `set -eu` at top.
