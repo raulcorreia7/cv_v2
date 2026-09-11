@@ -66,7 +66,8 @@ Data and content rules
 - Replacing the photo means rebuilding its data URI from `src/assets/`.
 
 Security and secrets
-- Do not commit secrets or private data. `src/cover-letter.html` and the `src/motivation-letter-*.txt` files are private documents and are not published.
+- This repository is public. `src/cover-letter.html` and the `src/motivation-letter-*.txt` files are personal documents that the site does not deploy, but they are readable in the repository.
+- Do not add credentials, tokens, or anything you would not put on the live site.
 
 Change discipline
 - Keep diffs small and scoped to the requested change.
