@@ -814,7 +814,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .page--secondary .container {
-    padding-top: 16px;
+    padding-top: 22px;
   }
 
   #resume.resume-stack .page--secondary .title h3 {
@@ -831,7 +831,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .page--secondary .keyline {
-    margin: 5px 0 8px;
+    margin: 6px 0 9px;
   }
 
   #resume.resume-stack .page--secondary .project-container .item {
@@ -858,8 +858,8 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .page--secondary .project-container h4 {
-    margin-top: 1px;
-    margin-bottom: 5px;
+    margin-top: 2px;
+    margin-bottom: 6px;
     font-size: 10px;
     font-weight: 500;
     line-height: 1.26;
@@ -872,7 +872,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
 
   #resume.resume-stack .page--secondary .education-container .item,
   #resume.resume-stack .page--secondary .awards-container .item {
-    margin-bottom: 10px;
+    margin-bottom: 14px;
   }
 
   #resume.resume-stack .page--secondary .education-container .item {
@@ -909,7 +909,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
 
   #resume.resume-stack .page--secondary .awards-container .summary,
   #resume.resume-stack .page--secondary .awards-container .awarder {
-    margin: 2px 0 0;
+    margin: 3px 0 0;
   }
 
   #resume.resume-stack .page--secondary .interests-container {
@@ -919,7 +919,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   #resume.resume-stack .page--secondary .interests-container .item {
     display: inline-block;
     width: calc(50% - 8px);
-    margin-bottom: 4px;
+    margin-bottom: 5px;
     vertical-align: top;
   }
 
@@ -989,8 +989,8 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   #resume.resume-stack .page--secondary .project-container {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    column-gap: 28px;
-    row-gap: 14px;
+    column-gap: 32px;
+    row-gap: 20px;
   }
 
   #resume.resume-stack .page--secondary .work-container--secondary .title,
