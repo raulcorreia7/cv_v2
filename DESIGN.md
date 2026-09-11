@@ -31,79 +31,79 @@ typography:
     letterSpacing: 0.2px
   role-label:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 15.1px
+    fontSize: 15.4px
     fontWeight: 500
     lineHeight: 1.1
   section-title:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 11.8px
+    fontSize: 12.2px
     fontWeight: 700
     lineHeight: 1.05
     letterSpacing: 0.45px
   section-title-secondary:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 11.9px
+    fontSize: 12.3px
     fontWeight: 700
     lineHeight: 1.05
     letterSpacing: 0.5px
   left-section-title:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 10.2px
+    fontSize: 10.6px
     fontWeight: 700
     lineHeight: 1.08
     letterSpacing: 0.38px
   entry-company:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 12px
+    fontSize: 12.4px
     fontWeight: 700
     lineHeight: 1.08
     letterSpacing: 0.4px
   entry-role:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 9.9px
+    fontSize: 10.9px
     fontWeight: 600
     lineHeight: 1.16
   entry-dates:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 8.7px
+    fontSize: 9.3px
     fontWeight: 500
     lineHeight: 1.08
   body:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 10px
+    fontSize: 10.7px
     fontWeight: 400
-    lineHeight: 1.21
+    lineHeight: 1.28
   entry-summary:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 9.5px
+    fontSize: 10.3px
     fontWeight: 400
-    lineHeight: 1.22
+    lineHeight: 1.28
   tech-line:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 7.8px
+    fontSize: 8.6px
     fontWeight: 400
-    lineHeight: 1.14
-    letterSpacing: 0.08px
+    lineHeight: 1.2
+    letterSpacing: 0.1px
   left-body:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 8px
+    fontSize: 8.7px
     fontWeight: 400
-    lineHeight: 1.18
+    lineHeight: 1.24
   skill-chip:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 7.2px
+    fontSize: 7.8px
     fontWeight: 500
-    lineHeight: 1.12
+    lineHeight: 1.2
   project-title:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 9.45px
+    fontSize: 10px
     fontWeight: 500
-    lineHeight: 1.24
+    lineHeight: 1.26
   education-program:
     fontFamily: "Aptos, Segoe UI, Noto Sans, Liberation Sans, Arial, sans-serif"
-    fontSize: 9.35px
+    fontSize: 9.9px
     fontWeight: 500
-    lineHeight: 1.18
+    lineHeight: 1.2
 spacing:
   a4-sheet-height: 1122.5px
   page-width: 763.45px
@@ -114,13 +114,14 @@ spacing:
   page-gap: 24px
   left-column-width: 118px
   left-column-gap: 8px
-  section-gap: 10px
-  container-gap: 6px
-  entry-gap: 8px
-  entry-separator-gap: 6px
-  entry-line-gap: 2px
+  section-gap: 12px
+  container-gap: 8px
+  item-gap: 5px
+  entry-gap: 11px
+  entry-separator-gap: 8px
+  entry-line-gap: 3px
   keyline-width: 42px
-  keyline-margin: 4px
+  keyline-margin: 5px
   left-keyline-width: 32px
 rounded:
   none: 0px
@@ -174,14 +175,15 @@ components:
 
 A single-person CV rendered as two A4 sheets from one JSON source. The voice is
 institutional and quiet: a serif nameplate for personality, everything else in a
-compact system-sans at very small sizes so a full career history fits A4 without
-looking cramped. Hierarchy comes from weight, letter-spacing, and one accent
-colour — never from boxes, shadows, or fills. Screen rendering is a preview; the
-PDF is the artefact, and every layout decision is bound to A4 geometry rather
-than to a viewport.
+compact system-sans scaled so a full career history fits A4 while still staying
+legible at print size. Hierarchy comes from weight, letter-spacing, and one
+accent colour — never from boxes, shadows, or fills. Screen rendering is a
+preview; the PDF is the artefact, and every layout decision is bound to A4
+geometry rather than to a viewport.
 
 Reference output: `tmp/resume.html` (screen) and `tmp/resume.pdf` (2 sheets).
-Current fit: sheet 1 content = 1004px, sheet 2 = 868px against a 1122.5px sheet.
+Current fit: sheet 1 = 1025px, sheet 2 = 1080px against a 1122.5px sheet, so
+sheet 2 has 42px of headroom and is the one to watch when content is added.
 
 ## Colors
 
@@ -226,16 +228,18 @@ pipeline strips them, so a rebuild must not depend on network fonts).
   Liberation Serif / Georgia. The name only, 35px, weight 700, line-height 0.96 —
   tight enough that ascenders nearly touch the label beneath.
 - **UI:** Aptos / Segoe UI / Noto Sans / Liberation Sans / Arial. Everything else,
-  from the 15.1px role label down to the 7.2px chip.
+  from the 15.4px role label down to the 7.8px chip.
 - **Section titles** are uppercase, 700, and letter-spaced (0.45px), coloured with
-  the accent. This letter-spacing is what makes an 11.8px title read as a heading,
+  the accent. This letter-spacing is what makes a 12.2px title read as a heading,
   so a reimplementation must keep it.
-- **Body copy runs at 10px / 1.21**, entry summaries at 9.5px, the technology line
-  at 7.8px, left-column values at 8px. Sizes under 10px are deliberate: they buy
-  the sheet its capacity. Sub-10px text is only acceptable because the PDF is
-  printed and zoomed, never read at 100% on a low-DPI screen.
+- **Body copy runs at 10.7px / 1.28**, entry summaries at 10.3px, the technology
+  line at 8.6px, left-column values at 8.7px. Everything below 10px is small by
+  screen standards and exists only to buy the sheet capacity; it reads correctly
+  in print and at zoom. Nothing in the document is smaller than 7.8px, and the
+  information-carrying small text (dates, technology lines, left column) sits at
+  8.6px or above.
 
-Sheet 2 runs slightly larger titles (11.9px, 0.5px tracking) because it carries
+Sheet 2 runs slightly larger titles (12.3px, 0.5px tracking) because it carries
 fewer, denser blocks.
 
 ## Layout
@@ -253,10 +257,10 @@ Fixed A4 geometry, not a responsive grid.
   single-column at full width.
 - **Hero:** name and role label on the left of the header, a 44px circular photo
   with a 2px accent border on the right.
-- **Sections** are separated by 6px of top padding plus a title with a 4px keyline
+- **Sections** are separated by 8px of top padding plus a title with a 5px keyline
   under it (42px wide, 1px accent hairline; 32px in the left column).
-- **Entries** stack with an 8px margin and a 1px `border-soft` separator plus 6px
-  of top padding between consecutive entries. Bullet lines are 2px apart.
+- **Entries** stack with an 11px margin and a 1px `border-soft` separator plus 8px
+  of top padding between consecutive entries. Bullet lines are 3px apart.
 
 ### Page model
 
@@ -269,11 +273,11 @@ selects a bucket of entries:
 - `work:core`, `work:secondary` — entries whose `x-layout.page` matches. An entry
   without a marker is treated as `secondary`.
 - `work:all` — every entry on one sheet. Also enables a condensed treatment for
-  `secondary` entries: bullets trimmed to two, 2px margins, an 8.95px summary.
+  `secondary` entries: bullets trimmed to two, 2px margins, a 9.6px summary.
 
-Current assignment: sheet 1 = `summary` + `work:core` (5 recent roles, 1004px);
-sheet 2 = `work:secondary` (3 older roles) + projects + education + awards
-(868px). Moving history between sheets is a JSON change only.
+Current assignment: sheets carry four roles each. Sheet 1 = `summary` +
+`work:core` (1025px); sheet 2 = `work:secondary` + projects + education + awards
+(1080px). Moving history between sheets is a JSON change only.
 
 ## Elevation & Depth
 
@@ -286,7 +290,7 @@ itself is done with the 1px `border-soft` hairline and whitespace.
 Square throughout — no corner radius on sheets, sections, or hairlines. The only
 exception is the skill chip, a full pill (`9999px`) used for project technology
 tags; the resume's rendered output converts project skills into a plain text line
-(7.8px, `·`-separated) instead, and overrides chips in the left column to
+(8.6px, `·`-separated) instead, and overrides chips in the left column to
 transparent with no border. Treat the pill as an available token, not as a
 pattern in current use.
 
@@ -295,28 +299,30 @@ pattern in current use.
 - **Sheet** — white block, 763.45px wide, 10px accent top rule, 8/11.34/6px
   padding, 24px stack gap on screen, shadow on screen only.
 - **Nameplate** — serif 35px/700, `ink-strong`, 0.2px tracking; label beneath is
-  15.1px/500 in `muted`.
-- **Contact row** — small accent icon in a fixed 9px column, then an 8px text
-  value in `body-alt`; rows are 2px apart.
-- **Section title** — uppercase 700 accent title plus a 4px-separated keyline.
+  15.4px/500 in `muted`.
+- **Contact row** — small accent icon in a fixed 9px column, then an 8.7px text
+  value in `body-alt`; rows are 3px apart.
+- **Section title** — uppercase 700 accent title plus a 5px-separated keyline.
 - **Skill column** — two-column grid (equal halves, 10px column gap, 3px row gap)
   with a 1px `border-soft` divider drawn between the halves; labels render as
-  7.6px text, not pills.
-- **Work entry** — company (12px/700 `heading`, linked), dates (8.7px/500 `muted`,
-  right-aligned), role (9.9px/600 `muted`), summary (9.5px `body-alt`), technology
-  line (7.8px `muted`, `·`-separated), then bullets (10px, 12px indent, 2px
-  spacing).
-- **Project entry** — company/title line as above, 9.45px/500 description in
+  8.3px text, not pills.
+- **Work entry** — company (12.4px/700 `heading`, linked), dates (9.3px/500
+  `muted`, right-aligned), role (10.9px/600 `muted`), summary (10.3px `body-alt`),
+  technology line (8.6px `muted`, `·`-separated), then bullets (10.7px, 13px
+  indent, 3px spacing).
+- **Project entry** — company/title line as above, 10px/500 description in
   `body-alt`, technology line beneath.
-- **Education entry** — institution 10.8px, programme 9.35px/500 `body-alt`, dates
-  and meta 8.45px/500 `muted`.
-- **Award entry** — title, awarder and summary at 10px `muted`, 6px apart.
+- **Education entry** — institution 11.2px, programme 9.9px/500 `body-alt`, dates
+  and meta 9px/500 `muted`.
+- **Award entry** — title, awarder and summary at 10.7px `muted`, 8px apart.
 
 ## Do's and Don'ts
 
 - Do keep each sheet's rendered height at or under 1122.5px. The sheet has no
   clipping: overflow silently adds a PDF sheet. This is how 8 roles on one sheet
   produced a 3-sheet PDF.
+- Do treat sheet 2 as the binding constraint — it runs within ~40px of the limit,
+  so re-measure both sheets after any content or type change.
 - Do move history between sheets through `work:core` / `work:secondary` rather
   than by deleting content; `work:all` is only safe for short histories.
 - Do keep the accent for the top rule, section titles, keylines, and icons only —
@@ -326,6 +332,7 @@ pattern in current use.
   entry is the one failure mode readers notice.
 - Don't add webfonts or remote `@font-face`; the pipeline strips them and the
   metric stability of the sheet depends on system stacks.
-- Don't render text below 7.2px — the chip is the floor.
+- Don't render text below 7.8px, and don't shrink information-carrying text below
+  8.6px to gain space — move content to the next sheet instead.
 - Don't mix serif into body copy; the serif is the nameplate's alone.
 - Don't introduce boxes, cards, or shadows in print.
