@@ -33,7 +33,7 @@ jobs:
         run: bunx playwright install --with-deps chromium
 
       - name: Build primary bundle
-        run: make ci
+        run: bun scripts/run.ts ci
 
       - name: Verify expected artifacts
         run: |

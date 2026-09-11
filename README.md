@@ -12,24 +12,21 @@ Static resume site with:
 - `scripts/postprocess-resume.ts` applies minimal HTML and print fixes
 - `scripts/export-pdf.ts` exports the same HTML to PDF with Playwright
 - `src/assets/` provides static files copied into the generated output
-- `Dockerfile` exposes `build`, `release`, `dev`, and `runtime` stages aligned with the local Make targets
+- `Dockerfile` exposes `base`, `build`, `release`, `dev`, and `runtime` stages; `just` runs every task in the `base` image so the host needs no toolchain
 - `tmp/` is the working build directory
 - `output/` is the publishable bundle
 
 ## Quick Start
 
 ```bash
-make install
-make build
-make pdf
-make dev
+just build
+just pdf
+just dev
 ```
 
 Local requirements:
 
-- Bun `1.3.11`
-
-`make install` also installs the Chromium browser Playwright uses for PDF export.
+- `just` + Docker (everything else — Bun, Chromium — lives in the image)
 
 ## Repository Layout
 
@@ -45,25 +42,26 @@ scripts/
   export-pdf.ts            Playwright PDF export
 ./tmp/                     Generated site artifacts
 output/                    Publishable bundle
+DESIGN.md                  Reverse-engineered design spec of the rendered resume
 .github/workflows/ci.yml
 .github/workflows/release.yml
 ```
 
 ## Commands
 
-- `make build` builds the resume HTML
-- `make resume` builds only `./tmp/resume.html`
-- `make cover-letter` builds only `./tmp/cover-letter.html` as a manual step
-- `make pdf` builds and exports `./tmp/resume.pdf`
-- `make cover-letter-pdf` builds and exports `./tmp/cover-letter.pdf` as a manual step
-- `make all` builds the primary resume bundle
-- `make ci` runs the local smoke-check used by CI
-- `make release` builds the release bundle into `output/`
-- `make serve` serves the generated output locally
-- `make stop` stops the local Bun server
-- `make dev` rebuilds on template, asset, or script changes
-- `make clean` removes generated artifacts
-- `RESUME_COLOR_VARIANT=<name> make build` selects a palette variant for the resume output
+- `just build` builds the resume HTML
+- `just resume` builds only `./tmp/resume.html`
+- `just cover-letter` builds only `./tmp/cover-letter.html` as a manual step
+- `just pdf` builds and exports `./tmp/resume.pdf`
+- `just cover-letter-pdf` builds and exports `./tmp/cover-letter.pdf` as a manual step
+- `just all` builds the primary resume bundle
+- `just ci` runs the local smoke-check used by CI
+- `just release` builds the release bundle into `output/`
+- `just serve` serves the generated output locally
+- `just stop` stops the serve/dev container
+- `just dev` rebuilds on template, asset, or script changes
+- `just clean` removes generated artifacts
+- `RESUME_COLOR_VARIANT=<name> just build` selects a palette variant for the resume output
 
 Available `RESUME_COLOR_VARIANT` values:
 - `slate-green` (default)
@@ -77,17 +75,17 @@ Available `RESUME_COLOR_VARIANT` values:
 - `steel-teal`
 - `charcoal-blue`
 
-There is no dedicated automated test suite in this repo yet. `make ci` is the relevant smoke check.
+There is no dedicated automated test suite in this repo yet. `just ci` is the relevant smoke check.
 
 ## Recommended Flow
 
-- Use `make build`, `make pdf`, and `make dev` while iterating locally.
-- Use `make all` or `make ci` when you want the full primary bundle.
-- Use `make release` when you want the publishable bundle in `output/`.
-- Treat cover-letter generation as manual: use `make cover-letter` or `make cover-letter-pdf` only when you explicitly want those artifacts.
+- Use `just build`, `just pdf`, and `just dev` while iterating locally.
+- Use `just all` or `just ci` when you want the full primary bundle.
+- Use `just release` when you want the publishable bundle in `output/`.
+- Treat cover-letter generation as manual: use `just cover-letter` or `just cover-letter-pdf` only when you explicitly want those artifacts.
 - GitHub Actions runs a build-only CI workflow and a separate manual GitHub Pages release workflow.
-- If you want a custom destination, override it explicitly, for example `make OUTPUT_DIR=dist ci`.
-- If you want a different color language, set `RESUME_COLOR_VARIANT`, for example `make RESUME_COLOR_VARIANT=graphite-navy build`.
+- If you want a custom destination, override it explicitly, for example `just release` with `OUTPUT_DIR=dist` in `.env`.
+- If you want a different color language, set `RESUME_COLOR_VARIANT`, for example `RESUME_COLOR_VARIANT=graphite-navy just build`.
 
 ## Build Flow
 

@@ -38,7 +38,7 @@ jobs:
         run: bunx playwright install --with-deps chromium
 
       - name: Build release bundle
-        run: make release
+        run: OUTPUT_DIR=output bun scripts/run.ts ci
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

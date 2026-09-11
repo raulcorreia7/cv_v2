@@ -17,6 +17,8 @@ export async function exportPdf(config: BuildConfig = resolveConfig()): Promise<
   const browser = await chromium.launch({
     executablePath: process.env.CHROME_BIN || undefined,
     headless: true,
+    // ponytail: --no-sandbox only as root (stock `docker run`); drop if the image gains a non-root user + SYS_ADMIN caps
+    args: typeof process.getuid === "function" && process.getuid() === 0 ? ["--no-sandbox"] : [],
   });
 
   try {

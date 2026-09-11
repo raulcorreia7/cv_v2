@@ -2,7 +2,7 @@ FROM oven/bun:1.3.11 AS base
 
 WORKDIR /app
 
-COPY package.json bun.lock Makefile ./
+COPY package.json bun.lock ./
 COPY scripts ./scripts
 COPY src ./src
 
@@ -11,17 +11,17 @@ RUN bun install --frozen-lockfile \
 
 FROM base AS build
 
-RUN make all
+RUN bun scripts/run.ts ci
 
 FROM base AS release
 
-RUN make release
+RUN OUTPUT_DIR=output bun scripts/run.ts ci
 
 FROM base AS dev
 
 EXPOSE 8080
 
-CMD ["make", "dev"]
+CMD ["bun", "scripts/run.ts", "dev"]
 
 FROM nginx:alpine AS runtime
 

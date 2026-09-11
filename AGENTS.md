@@ -9,8 +9,8 @@ Repository snapshot (observed)
 - Primary artifact: `src/template/resume.json` (FRESH format data).
 - Default local outputs live in `./tmp/` (HTML/PDF/JSON).
 - `output/` holds the publishable bundle.
-- Build tooling: `Makefile`, `Bun`, `resumed`, `Playwright`.
-- `Dockerfile` exposes `build`, `release`, `dev`, and `runtime` stages aligned with the local Make targets.
+- Build tooling: `justfile` (Docker; host needs only `just` + Docker), `Bun`, `resumed`, `Playwright` inside the image.
+- `Dockerfile` exposes `base`, `build`, `release`, `dev`, and `runtime` stages; `just` runs every task in the `base` image.
 - Theme patches live in `patches/` and apply to `node_modules`.
 - Runtime: Node.js v24.14.0 (`.nvmrc`).
 
@@ -24,21 +24,22 @@ Key paths
 - `patches/` — pnpm patches for theme/tooling.
 - `./tmp/` — generated artifacts (do not edit by hand).
 
-Commands (from README + Makefile)
-- Install dependencies: `make install`
-- Build the resume HTML: `make build`
-- Export the resume PDF: `make pdf`
-- Build HTML + PDF for the primary resume bundle: `make all`
-- Build release bundle to `output/`: `make release`
-- Start local server: `make serve`
-- Watch for changes: `make dev`
-- Clean generated files: `make clean`
-- List targets: `make help`
+Commands (from README + justfile; all run in the container)
+- Build the dev image: `just build-image` (`just install` alias)
+- Build the resume HTML: `just build`
+- Export the resume PDF: `just pdf`
+- Build HTML + PDF for the primary resume bundle: `just all` (`just ci`)
+- Build release bundle to `output/`: `just release`
+- Start local server: `just serve`
+- Watch for changes: `just dev`
+- Stop the serve/dev container: `just stop`
+- Clean generated files: `just clean`
+- List recipes: `just --list`
 
 Single-task “test” guidance
 - There is no automated test runner configured.
-- Treat `make build` as a smoke check after data or theme changes.
-- If PDFs are affected, run `make pdf`.
+- Treat `just build` as a smoke check after data or theme changes.
+- If PDFs are affected, run `just pdf`.
 - If you add tests in the future, document the single-test command here.
 
 Linting/formatting
@@ -46,9 +47,9 @@ Linting/formatting
 - Formatting conventions are inferred from existing files (see below).
 
 Configuration and environment
-- Default paths are defined in `Makefile` and can be overridden via env vars:
+- Default paths are defined in `scripts/config.ts` and can be overridden via env vars / `.env` (`just` loads `.env` via `dotenv-load` and forwards them into the container):
   - `RESUME_FILE`, `ASSETS_DIR`, `OUTPUT_DIR`, `TEMPLATE_DIR`, `THEME`.
-- Example override: `OUTPUT_DIR=dist make build`.
+- Example override: `OUTPUT_DIR=dist just build`.
 
 Code style — observed conventions
 - JSON uses 2-space indentation and double quotes.
@@ -72,10 +73,10 @@ Shell scripts
 - Quote variables and check required commands/files explicitly.
 - Fail fast with clear error messages.
 
-Makefile conventions
-- Targets are small and explicit; prefer wiring via env vars.
-- Avoid adding complex shell logic inside targets.
-- Keep targets idempotent and safe to rerun.
+justfile conventions
+- Recipes are small and explicit; prefer env-var wiring forwarded into the container.
+- Avoid adding complex shell logic inside recipes.
+- Keep recipes idempotent and safe to rerun.
 
 Theme and patch workflow
 - Do not edit `node_modules` directly without creating a patch.
@@ -84,7 +85,7 @@ Theme and patch workflow
 
 Data and content rules
 - `./tmp/` is generated and should not be hand-edited or committed.
-- Add new images to `src/assets/` and run `make build`.
+- Add new images to `src/assets/` and run `just build`.
 - Keep skill, employment, and project entries consistent in structure.
 
 Error handling and resilience
@@ -93,13 +94,13 @@ Error handling and resilience
 - Log actionable errors (file missing, command missing, invalid path).
 
 Security and secrets
-- `.env` is present; do not commit secrets or add sensitive data.
+- `.env` is optional and gitignored; `.env.example` lists the supported keys. `just` loads `.env` via `dotenv-load` and forwards those keys into the container.
 - Avoid embedding private info in `./tmp/` artifacts.
 
 Agent workflow note
 - Local builds still render HTML/PDF artifacts in `./tmp/` first.
-- Cover-letter generation is manual-only via `make cover-letter` or `make cover-letter-pdf`.
-- Prefer `make release` when the user explicitly wants to build directly into `output/`.
+- Cover-letter generation is manual-only via `just cover-letter` or `just cover-letter-pdf`.
+- Prefer `just release` when the user explicitly wants to build directly into `output/`.
 
 Documentation hygiene
 - Update `README.md` or this file when commands or workflows change.
@@ -112,10 +113,10 @@ Change discipline
 
 Quick examples
 - Build with a different output directory:
-  - `OUTPUT_DIR=dist make build`
+  - `OUTPUT_DIR=dist just build`
 - Rebuild after changing `resume.json`:
-  - `make build`
+  - `just build`
 - Generate a PDF after theme tweaks:
-  - `make pdf`
+  - `just pdf`
 
 End of file

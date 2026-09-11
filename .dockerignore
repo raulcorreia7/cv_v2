@@ -20,4 +20,6 @@ Thumbs.db
 
 # Docker
 Dockerfile
+# Task runner (not COPY'd; container calls bun directly)
+justfile
 .dockerignore
