@@ -72,19 +72,25 @@ area of the whole note.
   [Lever](https://hire.lever.co/developer/documentation)). Image-based PDFs are the only
   format that genuinely fails.
 
-**Measured on this CV.** The exported PDF is a two-column layout, and the text layer
-interleaves the rail with the main column. Extraction order begins
-`EXPERIENCE`, `CLOUD & DEVOPS`, `Forbion`, `AWS`, `AWS Lambda`, `Senior Software Engineer`,
-`DynamoDB`, `SST` and so on, mixing the skills list into an experience entry. This is
-the documented parse hazard, present in the current build:
+**Measured on this CV.** The visual PDF keeps the two-column layout, and its text layer
+interleaves the rail with the main column. Extraction mixes the skills list into an
+experience entry: `EXPERIENCE`, `CLOUD & DEVOPS`, `Forbion`, `AWS`, `AWS Lambda`,
+`Senior Software Engineer` and so on.
+
+Reordering the DOM does not fix this. The first attempt moved the main column ahead of the
+rail and placed the rail with CSS grid; the rendered sheets were identical, and the
+extracted order did not change, because the PDF writer places text by position on the page
+rather than by source order. The measurement is what settled it:
 
 ```
-$ pdftotext tmp/resume.pdf - | sed -n '1,28p'
+$ pdftotext tmp/resume.pdf - | sed -n '1,24p'    # visual export: interleaved
+$ just pdf-ats && pdftotext tmp/resume-ats.pdf - # single column: reads in order
 ```
 
-The fix costs nothing visually: put the main column first in the DOM and place the rail
-with CSS grid. The rendered sheet stays identical, and the extracted text reads header,
-summary, experience, then skills and languages.
+The fix that works is a second export. `just pdf-ats` collapses the sheet body to one
+column, lays the rail blocks side by side, and drops the forced sheet break, so the text
+reads summary, experience, then skills, languages and interests, in two pages. The visual
+PDF stays for humans and for direct sharing; the single-column PDF goes to portals.
 
 ## 4. Content that changes outcomes
 
@@ -158,7 +164,7 @@ Measured on the current build (2026-09-11):
 | Opening verb | Start with an action verb, no "responsible for" | 97% start with a past-tense verb; "Built" opens 9 of 37 | pass, repetitive verb |
 | Photo, date of birth, marital status | Omit in the Netherlands | none present | pass |
 | File format | Text-based PDF | selectable text, no rasterisation | pass |
-| PDF text order | Single column reads cleanly | rail and main column interleave | fail, see section 3 |
+| PDF text order | Single column reads cleanly | visual PDF interleaves; `resume-ats.pdf` reads in order | handled by the ATS export, see section 3 |
 | Typo risk | Largest measured penalty | not yet checked mechanically | untested |
 
 ## 8. Follow-up, in priority order
@@ -166,14 +172,10 @@ Measured on the current build (2026-09-11):
 Each item states what it costs and how to tell it worked. Items 1 to 3 are local edits;
 4 to 6 are small tooling; 7 is a decision for the author.
 
-1. **Fix the PDF text order.** Move the main column before the rail in the DOM and place
-   both with CSS grid. Cost: one edit in `src/resume.html`. Acceptance: the rendered
-   sheets are pixel-identical in height, and `pdftotext` reads summary and experience
-   before the skills list, with no interleaving.
-2. **Trim the three over-long roles to 5 bullets.** Shell Recharge Lead and Backend hold
-   7 each and TM-Pro holds 6, against the 3 to 5 guidance. Cost: keep the strongest
-   five in each, move nothing else. Acceptance: sheet heights stay under 1122.5px and the
-   dropped lines are duties, not outcomes.
+1. ~~Fix the PDF text order.~~ **Done.** `just pdf-ats` writes a single-column export
+   that reads summary, experience, skills; the visual PDF is unchanged. See section 3.
+2. ~~Trim the three over-long roles to 5 bullets.~~ **Done.** Every role now holds 3 to 5
+   bullets; the stack detail the dropped lines carried survives in the technology lines.
 3. **Raise the quantified-bullet share.** Target 12 of 37 bullets carrying a number,
    scale, or frequency. Sources for honest ones: team size, services owned, request or
    data volume, release cadence, incident counts, review time. Cost: a pass over the

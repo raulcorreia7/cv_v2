@@ -18,7 +18,11 @@ print it to PDF from the print dialog.
 
 | Command | Result |
 |---|---|
-| `just pdf` | `tmp/resume.pdf` (2 pages, A4) |
+| `just pdf` | `tmp/resume.pdf` (2 pages, A4); runs the copy check first |
+| `just pdf-ats` | `tmp/resume-ats.pdf`, single column for portals that parse the CV |
+| `just check` | copy check on both documents: doubled words, dashes, duty phrasing, date formats, tag balance |
+| `just coverage <posting>` | posting terms the CV does not carry yet, for tailoring |
+| `just tailor <slug>` | working copy of both documents in `tmp/applications/<slug>/` |
 | `just cover-letter-pdf` | `tmp/cover-letter.pdf` (1 page, A4) |
 | `just pdf-file <input> <output>` | PDF from any HTML file or `http://` URL |
 | `just site` | publishable site in `output/` (`just ci` is an alias) |

@@ -260,7 +260,11 @@ Fixed A4 geometry, not a responsive grid.
 - **Two columns on sheet 1:** a 164px rail (profile, skills, languages, interests)
   and a fluid main column (summary, experience) with a 12px gutter. The rail is
   roughly a fifth of the sheet, which holds the main column's measure near 90
-  characters.
+  characters. The main column comes first in the DOM and CSS grid places the rail
+  to its left, so the source reads in order for anything that reads the HTML.
+  A column layout is the one formatting choice ATS vendors warn about, so PDF
+  export has a single-column mode (`just pdf-ats`) for portals; it lays the rail
+  blocks side by side and drops the sheet break, and both variants stay two pages.
 - **Sheet 2 is two columns too, as blocks:** earlier experience and projects each
   render as a two-column grid (28px column gap, 14px row gap, section title
   spanning both). Education and awards stay full width. This keeps sheet 2's

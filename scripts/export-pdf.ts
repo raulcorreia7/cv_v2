@@ -13,6 +13,7 @@ const isRemote = (value: string): boolean => /^https?:\/\//i.test(value);
 export async function exportPdf(
   input: string = process.env.PDF_INPUT ?? "src/resume.html",
   output: string = process.env.PDF_OUTPUT ?? "tmp/resume.pdf",
+  atsMode: boolean = process.env.PDF_ATS === "1",
 ): Promise<void> {
   if (!isRemote(input)) {
     await access(input).catch(() => {
@@ -45,6 +46,24 @@ export async function exportPdf(
     await page.emulateMedia({
       media: "print",
     });
+
+    // ATS mode: collapse the two-column sheet into one column. The rail sits after the
+    // main column in the DOM, so the exported text reads summary, experience, then
+    // skills, with no interleaving. The rail blocks go side by side and the sheet break
+    // is dropped so the same content still fits two pages.
+    if (atsMode) {
+      await page.addStyleTag({
+        content: `
+          .sheet__body { display: block !important; }
+          .rail { display: flex !important; flex-flow: row wrap !important; gap: 8px 20px; margin-top: 8px; }
+          .rail .block { flex: 1 1 200px; align-self: flex-start; }
+          .skills { column-count: 3; }
+          .interests { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+          .sheet { break-after: auto !important; page-break-after: auto !important; }
+          .sheet--more { margin-top: 12px; }
+        `,
+      });
+    }
 
     await page.evaluate(async () => {
       if (document.fonts?.ready) {

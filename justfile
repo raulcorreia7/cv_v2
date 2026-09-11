@@ -19,8 +19,24 @@ alias install := build-image
 run cmd: build-image
     docker run --rm {{ common }} {{ image }} sh -c "{{ cmd }}"
 
-# Export src/resume.html to tmp/resume.pdf
-pdf: (run "bun scripts/export-pdf.ts")
+# Export src/resume.html to tmp/resume.pdf (runs the copy check first)
+pdf: (run "bun scripts/check-copy.ts && bun scripts/export-pdf.ts")
+
+# Run the copy check on both documents
+check: (run "bun scripts/check-copy.ts")
+
+# Single-column PDF for portals that parse the CV (no interleaved columns)
+pdf-ats: (run "PDF_ATS=1 PDF_OUTPUT=tmp/resume-ats.pdf bun scripts/export-pdf.ts")
+
+# Report which of a posting's terms are missing from the CV
+coverage file: build-image
+    docker run --rm {{ common }} -v "{{ file }}:/posting:ro" {{ image }} bun scripts/check-coverage.ts /posting
+
+# Copy both documents into tmp/applications/<slug>/ for one tailored application
+tailor slug: build-image
+    docker run --rm {{ common }} {{ image }} sh -c "mkdir -p tmp/applications/{{ slug }} && cp src/resume.html src/cover-letter.html tmp/applications/{{ slug }}/ && ls -1 tmp/applications/{{ slug }}/"
+    @echo "Edit tmp/applications/{{ slug }}/ with the posting's wording, then:"
+    @echo "  just pdf-file tmp/applications/{{ slug }}/resume.html tmp/applications/{{ slug }}/resume.pdf"
 
 # Export src/cover-letter.html to tmp/cover-letter.pdf
 cover-letter-pdf: (run "PDF_INPUT=src/cover-letter.html PDF_OUTPUT=tmp/cover-letter.pdf bun scripts/export-pdf.ts")
