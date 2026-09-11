@@ -441,11 +441,11 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .container {
-    padding-top: 6px;
+    padding-top: 8px;
   }
 
   #resume.resume-stack .item {
-    margin-bottom: 4px;
+    margin-bottom: 5px;
   }
 
   .profile-pic {
@@ -511,7 +511,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   #resume.resume-stack .title h3 {
     font-family: var(--resume-font-ui);
     font-weight: 700;
-    font-size: 11.8px;
+    font-size: 12.2px;
     line-height: 1.05;
     letter-spacing: 0.45px;
     text-transform: uppercase;
@@ -520,7 +520,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
 
   #resume.resume-stack .keyline {
     width: 42px;
-    margin: 4px 0 6px;
+    margin: 5px 0 7px;
     border-top-color: var(--resume-accent);
   }
 
@@ -532,7 +532,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   #resume.resume-stack .section-header h3 a {
     font-family: var(--resume-font-ui);
     font-weight: 700;
-    font-size: 12px;
+    font-size: 12.4px;
     line-height: 1.08;
     color: #24353d;
   }
@@ -540,7 +540,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   #resume.resume-stack h4 {
     font-family: var(--resume-font-ui);
     font-weight: 600;
-    font-size: 10.5px;
+    font-size: 11px;
     line-height: 1.14;
     color: var(--resume-muted);
   }
@@ -548,7 +548,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   #resume.resume-stack h5 {
     font-family: var(--resume-font-ui);
     font-weight: 500;
-    font-size: 8.7px;
+    font-size: 9.3px;
     line-height: 1.08;
     color: var(--resume-muted);
   }
@@ -556,12 +556,12 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   #resume.resume-stack h6,
   #resume.resume-stack p,
   #resume.resume-stack li {
-    font-size: 10px;
-    line-height: 1.21;
+    font-size: 10.7px;
+    line-height: 1.28;
   }
 
   #resume.resume-stack .summary {
-    line-height: 1.26;
+    line-height: 1.3;
     color: #31454d;
   }
 
@@ -578,7 +578,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
     border-radius: 999px;
     background: var(--resume-accent-soft);
     color: #2f4443;
-    font-size: 7.2px;
+    font-size: 7.8px;
     font-weight: 500;
     line-height: 1.12;
   }
@@ -602,16 +602,16 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   #resume.resume-stack .work-container--all .item--secondary .summary {
     margin-top: 1px;
     max-width: 96%;
-    font-size: 8.95px;
-    line-height: 1.18;
+    font-size: 9.6px;
+    line-height: 1.2;
   }
 
   #resume.resume-stack .left-column .container {
-    padding-top: 6px;
+    padding-top: 8px;
   }
 
   #resume.resume-stack .left-column .title h3 {
-    font-size: 10px;
+    font-size: 10.3px;
     line-height: 1.08;
     letter-spacing: 0.38px;
   }
@@ -625,7 +625,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
     display: flex;
     align-items: flex-start;
     gap: 4px;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
   }
 
   #resume.resume-stack .left-column .info-tag-container .fa {
@@ -644,8 +644,8 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   #resume.resume-stack .left-column h6,
   #resume.resume-stack .left-column li,
   #resume.resume-stack .left-column .info-text {
-    font-size: 7.8px;
-    line-height: 1.16;
+    font-size: 8.7px;
+    line-height: 1.24;
   }
 
   #resume.resume-stack .left-column .flex-container {
@@ -680,8 +680,8 @@ function buildPrintFixStyles(palette: ResumePalette): string {
     border-radius: 0;
     background: transparent;
     color: #31454d;
-    font-size: 7.6px;
-    line-height: 1.16;
+    font-size: 8.3px;
+    line-height: 1.2;
   }
 
   #resume.resume-stack .left-column .languages-container ul,
@@ -703,8 +703,8 @@ function buildPrintFixStyles(palette: ResumePalette): string {
     grid-template-columns: 52px max-content;
     align-items: baseline;
     column-gap: 4px;
-    font-size: 7.7px;
-    line-height: 1.18;
+    font-size: 8.4px;
+    line-height: 1.24;
     font-weight: 600;
     color: #2f4443;
   }
@@ -723,8 +723,8 @@ function buildPrintFixStyles(palette: ResumePalette): string {
 
   #resume.resume-stack .left-column .interests-container h4 {
     color: #2f4443;
-    font-size: 7.7px;
-    line-height: 1.18;
+    font-size: 8.4px;
+    line-height: 1.24;
     font-weight: 600;
   }
 
@@ -733,7 +733,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack ul {
-    margin-top: 1px;
+    margin-top: 3px;
     margin-bottom: 0;
     padding-left: 14px;
   }
@@ -753,7 +753,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .work-container .section-header {
-    margin-bottom: 2px;
+    margin-bottom: 3px;
   }
 
   #resume.resume-stack .work-container .section-header .pull-left {
@@ -761,24 +761,24 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .work-container h4 {
-    font-size: 9.7px;
+    font-size: 10.6px;
     line-height: 1.16;
     margin-bottom: 2px;
   }
 
   #resume.resume-stack .work-container .summary {
-    font-size: 9.3px;
-    line-height: 1.2;
+    font-size: 10.2px;
+    line-height: 1.28;
   }
 
   #resume.resume-stack .work-container .summary-tech,
   #resume.resume-stack .page--secondary .project-container .summary-tech {
     margin: 2px 0 0;
     font-family: var(--resume-font-ui);
-    font-size: 7.8px;
+    font-size: 8.6px;
     font-weight: 400;
-    line-height: 1.14;
-    letter-spacing: 0.08px;
+    line-height: 1.2;
+    letter-spacing: 0.1px;
     color: var(--resume-muted);
   }
 
@@ -787,22 +787,22 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .work-container ul {
-    margin-top: 2px;
+    margin-top: 3px;
     padding-left: 12px;
   }
 
   #resume.resume-stack .work-container ul li {
     padding-left: 3px;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
   }
 
   #resume.resume-stack .work-container .item {
-    margin-bottom: 7px;
+    margin-bottom: 9px;
   }
 
   #resume.resume-stack .work-container .item + .item {
     border-top: 1px solid var(--resume-border-soft);
-    padding-top: 6px;
+    padding-top: 8px;
   }
 
   #resume.resume-stack .work-container .item:last-child {
@@ -814,11 +814,11 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .page--secondary .container {
-    padding-top: 10px;
+    padding-top: 12px;
   }
 
   #resume.resume-stack .page--secondary .title h3 {
-    font-size: 11.9px;
+    font-size: 12.3px;
     letter-spacing: 0.5px;
   }
 
@@ -831,17 +831,17 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .page--secondary .keyline {
-    margin: 4px 0 7px;
+    margin: 5px 0 8px;
   }
 
   #resume.resume-stack .page--secondary .project-container .item {
-    margin-bottom: 10px;
+    margin-bottom: 11px;
     padding-bottom: 3px;
   }
 
   #resume.resume-stack .page--secondary .project-container .item + .item {
     border-top: 1px solid var(--resume-border-soft);
-    padding-top: 6px;
+    padding-top: 8px;
   }
 
   #resume.resume-stack .page--secondary .project-container .item:last-child {
@@ -860,9 +860,9 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   #resume.resume-stack .page--secondary .project-container h4 {
     margin-top: 1px;
     margin-bottom: 4px;
-    font-size: 9.45px;
+    font-size: 10px;
     font-weight: 500;
-    line-height: 1.24;
+    line-height: 1.26;
     color: #31454d;
   }
 
@@ -872,7 +872,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
 
   #resume.resume-stack .page--secondary .education-container .item,
   #resume.resume-stack .page--secondary .awards-container .item {
-    margin-bottom: 7px;
+    margin-bottom: 8px;
   }
 
   #resume.resume-stack .page--secondary .education-container .item {
@@ -887,23 +887,23 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .page--secondary .education-container .section-header h3 {
-    font-size: 10.8px;
+    font-size: 11.2px;
     line-height: 1.1;
   }
 
   #resume.resume-stack .page--secondary .education-container h4 {
     margin-top: 1px;
-    font-size: 9.35px;
+    font-size: 9.9px;
     font-weight: 500;
-    line-height: 1.18;
+    line-height: 1.2;
     color: #31454d;
   }
 
   #resume.resume-stack .page--secondary .education-container h5 {
     margin-top: 2px;
-    font-size: 8.45px;
+    font-size: 9px;
     font-weight: 500;
-    line-height: 1.16;
+    line-height: 1.2;
     color: var(--resume-muted);
   }
 
@@ -932,7 +932,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .page--core h2 {
-    font-size: 15.1px;
+    font-size: 15.4px;
   }
 
   #resume.resume-stack .page--core .left-column .container {
@@ -940,34 +940,34 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .page--core .left-column .title h3 {
-    font-size: 10.2px;
+    font-size: 10.6px;
   }
 
   #resume.resume-stack .page--core .left-column h6,
   #resume.resume-stack .page--core .left-column li,
   #resume.resume-stack .page--core .left-column .info-text {
-    font-size: 8px;
-    line-height: 1.18;
+    font-size: 8.7px;
+    line-height: 1.24;
   }
 
   #resume.resume-stack .page--core .summary {
-    font-size: 10.2px;
-    line-height: 1.24;
+    font-size: 10.8px;
+    line-height: 1.28;
     margin-top: 2px;
   }
 
   #resume.resume-stack .page--core .work-container .item {
-    margin-bottom: 8px;
+    margin-bottom: 11px;
   }
 
   #resume.resume-stack .page--core .work-container h4 {
-    font-size: 9.9px;
+    font-size: 10.9px;
     margin-bottom: 3px;
   }
 
   #resume.resume-stack .page--core .work-container .summary {
-    font-size: 9.5px;
-    line-height: 1.22;
+    font-size: 10.3px;
+    line-height: 1.28;
   }
 
   #resume.resume-stack .page--core .work-container ul li {
@@ -979,8 +979,8 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .page--core .work-container--all .item--secondary ul li {
-    font-size: 8.9px;
-    line-height: 1.16;
+    font-size: 9.5px;
+    line-height: 1.18;
     margin-bottom: 0;
   }
 

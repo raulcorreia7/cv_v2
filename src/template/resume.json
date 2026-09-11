@@ -142,7 +142,7 @@
       "endDate": "2022-04",
       "summary": "Built backend services and compute workflows for Ostate, a parametric building-generation platform.",
       "x-layout": {
-        "page": "core"
+        "page": "secondary"
       },
       "highlights": [
         "Re-architected the platform to support new generation requirements and algorithms",
