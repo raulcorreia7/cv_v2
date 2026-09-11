@@ -112,9 +112,11 @@ spacing:
   page-padding-bottom: 6px
   page-rule: 10px
   page-gap: 24px
-  left-column-width: 118px
-  left-column-gap: 8px
-  section-gap: 12px
+  left-column-width: 164px
+  left-column-gap: 12px
+  section-gap: 16px
+  grid-column-gap: 28px
+  grid-row-gap: 14px
   container-gap: 8px
   item-gap: 5px
   entry-gap: 11px
@@ -182,8 +184,8 @@ preview; the PDF is the artefact, and every layout decision is bound to A4
 geometry rather than to a viewport.
 
 Reference output: `tmp/resume.html` (screen) and `tmp/resume.pdf` (2 sheets).
-Current fit: sheet 1 = 1025px, sheet 2 = 1080px against a 1122.5px sheet, so
-sheet 2 has 42px of headroom and is the one to watch when content is added.
+Current fit: sheet 1 = 1066px, sheet 2 = 927px against a 1122.5px sheet, so
+sheet 1 has 56px of headroom and is the one to watch when content is added.
 
 ## Colors
 
@@ -252,15 +254,28 @@ Fixed A4 geometry, not a responsive grid.
 - **Print margin:** `@page { size: A4; margin: 3mm 0 }` — the inline mm is supplied
   by the printer margin, not by page padding, which is why padding declares the
   same 11.34px explicitly.
-- **Two columns on sheet 1:** left 118px (profile, skills, languages, interests),
-  right fluid (summary, experience) — 8px gutter between them. Sheet 2 is
-  single-column at full width.
+- **Two columns on sheet 1:** a 164px rail (profile, skills, languages, interests)
+  and a fluid main column (summary, experience) with a 12px gutter. The rail is
+  roughly a fifth of the sheet, which holds the main column's measure near 90
+  characters.
+- **Sheet 2 is two columns too, as blocks:** earlier experience and projects each
+  render as a two-column grid (28px column gap, 14px row gap, section title
+  spanning both). Education and awards stay full width. This keeps sheet 2's
+  measure at roughly 55 characters instead of stretching a single column across
+  the sheet.
 - **Hero:** name and role label on the left of the header, a 44px circular photo
   with a 2px accent border on the right.
 - **Sections** are separated by 8px of top padding plus a title with a 5px keyline
   under it (42px wide, 1px accent hairline; 32px in the left column).
 - **Entries** stack with an 11px margin and a 1px `border-soft` separator plus 8px
-  of top padding between consecutive entries. Bullet lines are 3px apart.
+  of top padding between consecutive entries. Bullet lines are 3px apart. Inside
+  the sheet 2 grids the separator and its padding are dropped — the row and
+  column gaps do that work instead, so the grid does not draw half a rule on one
+  side of a row.
+- **Line breaking:** list items and short entry summaries use `text-wrap: balance`
+  so a two- or three-line bullet does not end in a one-word stub; longer prose
+  uses `text-wrap: pretty`. Both are Chromium features — a reimplementation on
+  another engine needs its own widow control.
 
 ### Page model
 
@@ -306,6 +321,8 @@ pattern in current use.
 - **Skill column** — two-column grid (equal halves, 10px column gap, 3px row gap)
   with a 1px `border-soft` divider drawn between the halves; labels render as
   8.3px text, not pills.
+- **Sheet 2 grid block** — two equal columns, section title spanning both, items
+  with no separator rule; used for earlier experience and projects.
 - **Work entry** — company (12.4px/700 `heading`, linked), dates (9.3px/500
   `muted`, right-aligned), role (10.9px/600 `muted`), summary (10.3px `body-alt`),
   technology line (8.6px `muted`, `·`-separated), then bullets (10.7px, 13px
@@ -334,5 +351,8 @@ pattern in current use.
   metric stability of the sheet depends on system stacks.
 - Don't render text below 7.8px, and don't shrink information-carrying text below
   8.6px to gain space — move content to the next sheet instead.
+- Don't put more than four entries in a sheet 2 grid row pair without re-measuring;
+  an odd item count leaves a gap in the last row, which is fine above a following
+  section but should not be the end of the document.
 - Don't mix serif into body copy; the serif is the nameplate's alone.
 - Don't introduce boxes, cards, or shadows in print.
