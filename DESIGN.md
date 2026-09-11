@@ -106,7 +106,8 @@ typography:
     lineHeight: 1.2
 spacing:
   a4-sheet-height: 1122.5px
-  page-width: 763.45px
+  page-width: 786px
+  page-content-width: 763.45px
   page-padding-top: 8px
   page-padding-inline: 11.34px
   page-padding-bottom: 6px
@@ -248,9 +249,10 @@ fewer, denser blocks.
 
 Fixed A4 geometry, not a responsive grid.
 
-- **Sheet:** 202mm wide (= 763.45px) with a 10px accent rule along the top edge,
-  padding 8px top / 3mm (11.34px) inline / 6px bottom. Screens stack sheets with a
-  24px gap; print repaginates them.
+- **Sheet:** 786px border-box (208mm) — 202mm of content plus 3mm of inline
+  padding each side — with a 10px accent rule along the top edge and 8px top /
+  6px bottom padding. Screens stack sheets with a 24px gap; print repaginates
+  them.
 - **Print margin:** `@page { size: A4; margin: 3mm 0 }` — the inline mm is supplied
   by the printer margin, not by page padding, which is why padding declares the
   same 11.34px explicitly.
@@ -311,7 +313,7 @@ pattern in current use.
 
 ## Components
 
-- **Sheet** — white block, 763.45px wide, 10px accent top rule, 8/11.34/6px
+- **Sheet** — white block, 786px wide, 10px accent top rule, 8/11.34/6px
   padding, 24px stack gap on screen, shadow on screen only.
 - **Nameplate** — serif 35px/700, `ink-strong`, 0.2px tracking; label beneath is
   15.4px/500 in `muted`.
@@ -356,3 +358,18 @@ pattern in current use.
   section but should not be the end of the document.
 - Don't mix serif into body copy; the serif is the nameplate's alone.
 - Don't introduce boxes, cards, or shadows in print.
+
+## Reference implementation
+
+`src/resume.html` is the standalone build of this spec: one self-contained file
+with no framework, no build step, and no network fonts. It carries the content,
+the tokens above, the two-sheet structure, and the profile photo as a data URI,
+so it can be edited directly, opened in a browser, and printed to PDF from the
+print dialog. It reproduces the framework build within 4px of sheet height with
+identical type metrics, and fixes two inconsistencies there: language rows fall
+back to a different font stack, and interests render a size smaller than the rest
+of the rail.
+
+PDF export takes a local file or a served URL (`just pdf-file`, or `PDF_INPUT` /
+`PDF_OUTPUT`). Both routes yield identical PDF text; the served route only adds a
+server and a network hop, so the local file is the default.
