@@ -60,7 +60,7 @@ Editing rules
 
 Data and content rules
 - Dates in entries are `MM/YYYY` ranges rendered by hand; keep the existing format.
-- Each work entry carries a duration under its dates, counted inclusively (`6 mos`, `1 yr 7 mos`).
+- Each work entry carries a duration under its dates, counted inclusively (`6 mos`, `1 yr 7 mos`), and to the present as of the last edit for a role that is still open.
 - Consecutive roles at one employer state the combined tenure once, on the most recent entry, labelled `at <employer>`; the earlier entry carries no duration line so the same months are not counted twice.
 - Keep the tech line format `<tech> · <tech> · ...` on one trailing line per entry.
 - Replacing the photo means rebuilding its data URI from `src/assets/`.
