@@ -1,189 +1,83 @@
-# cv_2.0
+# cv.raulcorreia.dev
 
-Static resume site with:
+Two self-contained HTML documents and a PDF export:
 
-- HTML resume output
-- PDF export from the same HTML via Playwright/Chromium
-- GitHub Actions for CI and manual GitHub Pages release
+- `src/resume.html` — the CV, published to `cv.raulcorreia.dev`
+- `src/cover-letter.html` — the cover letter, kept out of the published site
+- `tmp/resume.pdf` — PDF export of the CV for sharing
 
-## Stack
+Each document holds its own content, CSS, and embedded photo. There is no
+framework, no template, and no build step: edit the HTML, open it in a browser,
+print it to PDF from the print dialog.
 
-- `resumed` renders `src/template/resume.json` into `./tmp/resume.html`
-- `scripts/postprocess-resume.ts` applies minimal HTML and print fixes
-- `scripts/export-pdf.ts` exports the same HTML to PDF with Playwright
-- `src/assets/` provides static files copied into the generated output
-- `Dockerfile` exposes `base`, `build`, `release`, `dev`, and `runtime` stages; `just` runs every task in the `base` image so the host needs no toolchain
-- `tmp/` is the working build directory
-- `output/` is the publishable bundle
+## Requirements
 
-## Quick Start
-
-```bash
-just build
-just pdf
-just dev
-```
-
-Local requirements:
-
-- `just` + Docker (everything else — Bun, Chromium — lives in the image)
-
-## Repository Layout
-
-```text
-src/
-  assets/                  Static files copied into tmp during builds
-  resume.html              Standalone self-contained resume document (no build step)
-  template/resume.json     Primary resume source
-  template/cover-letter.json
-scripts/
-  run.ts                   Shared task entrypoint
-  build.ts                 HTML build orchestration
-  postprocess-resume.ts    Minimal HTML and print fixes
-  export-pdf.ts            Playwright PDF export
-./tmp/                     Generated site artifacts
-output/                    Publishable bundle
-DESIGN.md                  Reverse-engineered design spec of the rendered resume
-.github/workflows/ci.yml
-.github/workflows/release.yml
-```
+`just` and Docker. Bun, Playwright, and Chromium live in the image.
 
 ## Commands
 
-- `just build` builds the resume HTML
-- `just resume` builds only `./tmp/resume.html`
-- `just cover-letter` builds only `./tmp/cover-letter.html` as a manual step
-- `just pdf` builds and exports `./tmp/resume.pdf`
-- `just pdf-file src/resume.html tmp/out.pdf` exports any HTML file, or a served URL, to PDF
-- `just cover-letter-pdf` builds and exports `./tmp/cover-letter.pdf` as a manual step
-- `just all` builds the primary resume bundle
-- `just ci` runs the local smoke-check used by CI
-- `just release` builds the release bundle into `output/`
-- `just serve` serves the generated output locally
-- `just stop` stops the serve/dev container
-- `just dev` rebuilds on template, asset, or script changes
-- `just clean` removes generated artifacts
-- `RESUME_COLOR_VARIANT=<name> just build` selects a palette variant for the resume output
+| Command | Result |
+|---|---|
+| `just pdf` | `tmp/resume.pdf` (2 pages, A4) |
+| `just cover-letter-pdf` | `tmp/cover-letter.pdf` (1 page, A4) |
+| `just pdf-file <input> <output>` | PDF from any HTML file or `http://` URL |
+| `just site` | publishable site in `output/` (`just ci` is an alias) |
+| `just serve` | preview on `http://localhost:8080` |
+| `just stop` | stop the preview container |
+| `just clean` | remove `tmp/` and `output/` |
+| `just install` | build the image (`just build-image`) |
+| `just shell` | shell inside the image |
 
-Available `RESUME_COLOR_VARIANT` values:
-- `slate-green` (default)
-- `original`
-- `slate-blue`
-- `deep-ink`
-- `aubergine-grey`
-- `bronze-taupe`
-- `graphite-navy`
-- `oxford-burgundy`
-- `steel-teal`
-- `charcoal-blue`
+`just serve` serves the repository root, so `src/resume.html` and
+`src/cover-letter.html` are live while you edit them, and `/output/` shows the
+assembled site.
 
-There is no dedicated automated test suite in this repo yet. `just ci` is the relevant smoke check.
+## Editing
 
-## Recommended Flow
+- Text, sections, and entries are plain markup in the document itself. Copy an
+  existing `<article class="entry">` or `<section class="block">` to add one.
+- Sheet assignment is explicit: page 1 holds the summary and the recent roles
+  (`sheet--main`), page 2 holds the earlier roles, projects, education, and
+  awards (`sheet--more`). Move an entry between the two containers to rebalance.
+- Keep each sheet under 1122.5px tall (A4 at 96dpi). A taller sheet silently
+  becomes an extra PDF page instead of clipping.
+- The photo is a data URI inside `resume.html`. To replace it, overwrite
+  `src/assets/` with the new image and rebuild the attribute:
+  `printf 'data:image/jpeg;base64,%s' "$(base64 -w0 src/assets/raul-circle-ai.jpg)"`.
+- `DESIGN.md` specifies the design: tokens, type scale, spacing, components, and
+  print rules. Change a value in both documents and in `DESIGN.md` so the two
+  stay equal.
 
-- Use `just build`, `just pdf`, and `just dev` while iterating locally.
-- Use `just all` or `just ci` when you want the full primary bundle.
-- Use `just release` when you want the publishable bundle in `output/`.
-- Treat cover-letter generation as manual: use `just cover-letter` or `just cover-letter-pdf` only when you explicitly want those artifacts.
-- GitHub Actions runs a build-only CI workflow and a separate manual GitHub Pages release workflow.
-- If you want a custom destination, override it explicitly, for example `just release` with `OUTPUT_DIR=dist` in `.env`.
-- If you want a different color language, set `RESUME_COLOR_VARIANT`, for example `RESUME_COLOR_VARIANT=graphite-navy just build`.
+## Site
 
-## Build Flow
+`just site` writes `output/`: `index.html`, `resume.html`, and `resume.pdf`. The
+CV is copied to both HTML names so `/` serves it directly; the cover letter is
+never published.
+
+GitHub Actions runs `bun scripts/build-site.ts` on push and uploads `output/` as
+an artifact. The manual `Release to GitHub Pages` workflow deploys the same
+directory to Pages. For the custom domain, keep the Pages source set to GitHub
+Actions, the custom domain set to `cv.raulcorreia.dev`, and the Cloudflare
+`CNAME` for `cv` pointing at `raulcorreia7.github.io`.
+
+## Layout
 
 ```text
-src/template/resume.json
-        |
-        v
-./tmp/resume.json
-        |
-        v
-resumed
-        |
-        v
-./tmp/resume.html
-        |
-        +--> postprocess-resume.ts
-        |         |
-        |         v
-        |   polished HTML
-        |
-        +--> export-pdf.ts
-                  |
-                  v
-            ./tmp/resume.pdf
+src/
+  assets/          Source images (the documents embed a copy)
+  cover-letter.html
+  resume.html
+scripts/
+  export-pdf.ts    HTML to PDF via Playwright
+  build-site.ts    PDF export plus site assembly
+  serve.ts         static preview server
+DESIGN.md          design specification
+Dockerfile         base (bun + chromium), site, runtime stages
+output/            generated, not published from the repo
+tmp/               generated scratch
 ```
-
-## Layout Markers
-
-The resume uses one canonical source file: [src/template/resume.json](./src/template/resume.json).
-
-Page layout is controlled with a namespaced extension under `meta.x-layout.pages`. This keeps the data in the same JSON file without introducing a second schema or conversion step.
-
-Current intent:
-
-- page 1 contains the header, left-side profile/skills, summary, and recent experience
-- page 2 contains earlier experience, projects, education, and awards
-
-Example shape:
-
-```json
-"meta": {
-  "x-layout": {
-    "pages": [
-      {
-        "id": "experience",
-        "header": true,
-        "left": [],
-        "right": ["about", "summary", "work:core"]
-      },
-      {
-        "id": "extra",
-        "header": false,
-        "left": ["skills", "languages", "interests"],
-        "right": ["work:secondary", "projects", "education", "awards"]
-      }
-    ]
-  }
-}
-```
-
-Supported section names:
-
-- `about`
-- `summary`
-- `work`
-- `skills`
-- `languages`
-- `interests`
-- `projects`
-- `education`
-- `awards`
-- `volunteer`
-- `references`
-
-## Deployment
-
-### One-time setup
-
-1. CI builds the site and uploads `output/` as an artifact.
-2. The `Release to GitHub Pages` workflow deploys `output/` manually.
-3. In GitHub Pages settings, set the source to `GitHub Actions`.
-4. In GitHub Pages settings, set the custom domain to `cv.raulcorreia.dev`.
-5. In Cloudflare DNS, create a `CNAME` for `cv` pointing to `raulcorreia7.github.io`.
-
-The primary published bundle currently contains:
-
-- `/` via `output/index.html`, generated from `resume.html`
-- `/resume.html`
-- `/resume.pdf`
 
 ## Notes
 
-- `./tmp/` is generated and should not be edited by hand.
-- `output/` is generated and should not be edited by hand.
-- Theme changes are handled in `scripts/postprocess-resume.ts` to keep the upstream theme dependency untouched.
-- `./tmp/index.html` is generated from `./tmp/resume.html` during the resume build.
-- The resume uses explicit page grouping and currently validates as a 2-page PDF with Chromium export.
-- `src/resume.html` is a standalone document: content, CSS, and the photo in one file, with no framework or build step. Edit it directly, print it from the browser, or run `just pdf-file`. `DESIGN.md` is its specification.
-- Both routes render the same design but are separate sources. Pick one to maintain: the JSON pipeline keeps `resume.json` authoritative, the standalone document keeps `resume.html` authoritative. Editing both drifts.
+- No webfonts and no external requests: both documents render offline.
+- `tmp/` and `output/` are generated and should not be edited by hand.

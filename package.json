@@ -3,21 +3,12 @@
   "type": "module",
   "packageManager": "bun@1.3.11",
   "devDependencies": {
-    "jsonresume-theme-macchiato": "^1.1.0",
-    "playwright": "^1.53.2",
-    "resumed": "5.0.0"
+    "playwright": "^1.53.2"
   },
   "scripts": {
-    "build": "bun scripts/run.ts build",
-    "build:cover-letter": "bun scripts/run.ts build:cover-letter",
-    "build:resume": "bun scripts/run.ts build:resume",
-    "ci": "bun scripts/run.ts ci",
-    "cover-letter": "bun scripts/run.ts build:cover-letter",
-    "dev": "bun scripts/run.ts dev",
-    "pdf": "bun scripts/run.ts pdf",
-    "pdf:cover-letter": "bun scripts/run.ts pdf:cover-letter",
-    "resume": "bun scripts/run.ts build:resume",
-    "serve": "bun scripts/run.ts serve",
-    "stop": "bun scripts/run.ts stop"
+    "pdf": "bun scripts/export-pdf.ts",
+    "pdf:cover-letter": "PDF_INPUT=src/cover-letter.html PDF_OUTPUT=tmp/cover-letter.pdf bun scripts/export-pdf.ts",
+    "site": "bun scripts/build-site.ts",
+    "serve": "bun scripts/serve.ts"
   }
 }

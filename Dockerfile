@@ -9,22 +9,13 @@ COPY src ./src
 RUN bun install --frozen-lockfile \
   && bunx playwright install --with-deps chromium
 
-FROM base AS build
+# Assemble the publishable site from the source documents
+FROM base AS site
 
-RUN bun scripts/run.ts ci
-
-FROM base AS release
-
-RUN OUTPUT_DIR=output bun scripts/run.ts ci
-
-FROM base AS dev
-
-EXPOSE 8080
-
-CMD ["bun", "scripts/run.ts", "dev"]
+RUN bun scripts/build-site.ts
 
 FROM nginx:alpine AS runtime
 
-COPY --from=release /app/output/ /usr/share/nginx/html/
+COPY --from=site /app/output/ /usr/share/nginx/html/
 
 EXPOSE 80

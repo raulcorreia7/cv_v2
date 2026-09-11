@@ -185,8 +185,9 @@ preview; the PDF is the artefact, and every layout decision is bound to A4
 geometry rather than to a viewport.
 
 Reference output: `tmp/resume.html` (screen) and `tmp/resume.pdf` (2 sheets).
-Current fit: sheet 1 = 1066px, sheet 2 = 927px against a 1122.5px sheet, so
-sheet 1 has 56px of headroom and is the one to watch when content is added.
+Current fit: sheet 1 = 1002px and sheet 2 = 976px against a 1122.5px sheet, so
+both carry about 120px of headroom. Re-measure after adding content; a taller
+sheet becomes an extra PDF page rather than clipping.
 
 ## Colors
 
@@ -281,20 +282,16 @@ Fixed A4 geometry, not a responsive grid.
 
 ### Page model
 
-Content is assigned to sheets by an explicit token list, not by content
-measurement. Each sheet declares ordered `left`/`right` tokens; a work token
-selects a bucket of entries:
+Sheets are explicit containers in the document, not a measured flow:
 
-- `summary`, `about`, `skills`, `languages`, `interests`, `projects`,
-  `education`, `awards`, `volunteer`, `references` — whole sections.
-- `work:core`, `work:secondary` — entries whose `x-layout.page` matches. An entry
-  without a marker is treated as `secondary`.
-- `work:all` — every entry on one sheet. Also enables a condensed treatment for
-  `secondary` entries: bullets trimmed to two, 2px margins, a 9.6px summary.
+- Sheet 1 (`sheet--main`) is the two-column layout: a rail (about, skills,
+  languages, interests) and a main column (summary, experience).
+- Sheet 2 (`sheet--more`) is single-column and holds the earlier roles and
+  projects as two-column grids, then education and awards at full width.
 
-Current assignment: sheets carry four roles each. Sheet 1 = `summary` +
-`work:core` (1025px); sheet 2 = `work:secondary` + projects + education + awards
-(1080px). Moving history between sheets is a JSON change only.
+An entry moves between sheets by moving its markup between the two containers.
+Four roles sit on each sheet. Sheets do not reflow into each other, so balance
+them by hand after a content change.
 
 ## Elevation & Depth
 
@@ -342,8 +339,8 @@ pattern in current use.
   produced a 3-sheet PDF.
 - Do treat sheet 2 as the binding constraint — it runs within ~40px of the limit,
   so re-measure both sheets after any content or type change.
-- Do move history between sheets through `work:core` / `work:secondary` rather
-  than by deleting content; `work:all` is only safe for short histories.
+- Do move history between sheets by moving markup between `sheet--main` and
+  `sheet--more` rather than by deleting content.
 - Do keep the accent for the top rule, section titles, keylines, and icons only —
   no accent fills, no accent body text.
 - Do preserve `break-inside: avoid` on entries, projects, education, and awards,
@@ -353,22 +350,19 @@ pattern in current use.
   metric stability of the sheet depends on system stacks.
 - Don't render text below 7.8px, and don't shrink information-carrying text below
   8.6px to gain space — move content to the next sheet instead.
-- Don't put more than four entries in a sheet 2 grid row pair without re-measuring;
-  an odd item count leaves a gap in the last row, which is fine above a following
-  section but should not be the end of the document.
+- Don't put more than four entries in a sheet 2 grid row pair without
+  re-measuring; an odd item count leaves a gap in the last row, which is fine
+  above a following section but should not be the end of the document.
 - Don't mix serif into body copy; the serif is the nameplate's alone.
 - Don't introduce boxes, cards, or shadows in print.
 
 ## Reference implementation
 
-`src/resume.html` is the standalone build of this spec: one self-contained file
-with no framework, no build step, and no network fonts. It carries the content,
-the tokens above, the two-sheet structure, and the profile photo as a data URI,
-so it can be edited directly, opened in a browser, and printed to PDF from the
-print dialog. It reproduces the framework build within 4px of sheet height with
-identical type metrics, and fixes two inconsistencies there: language rows fall
-back to a different font stack, and interests render a size smaller than the rest
-of the rail.
+`src/resume.html` is the implementation of this spec: one self-contained file with
+no framework, no build step, and no network fonts. It carries the content, the
+tokens above, the two-sheet structure, and the profile photo as a data URI, so it
+can be edited directly, opened in a browser, and printed to PDF from the print
+dialog. `src/cover-letter.html` applies the same tokens to a one-sheet letter.
 
 PDF export takes a local file or a served URL (`just pdf-file`, or `PDF_INPUT` /
 `PDF_OUTPUT`). Both routes yield identical PDF text; the served route only adds a

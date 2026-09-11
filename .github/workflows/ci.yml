@@ -32,8 +32,8 @@ jobs:
       - name: Install Chromium
         run: bunx playwright install --with-deps chromium
 
-      - name: Build primary bundle
-        run: bun scripts/run.ts ci
+      - name: Build site
+        run: bun scripts/build-site.ts
 
       - name: Verify expected artifacts
         run: |

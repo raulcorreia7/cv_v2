@@ -4,17 +4,19 @@ import { pathToFileURL } from "node:url";
 
 import { chromium } from "playwright";
 
-import { resolveConfig, type BuildConfig } from "./config";
-
 const isRemote = (value: string): boolean => /^https?:\/\//i.test(value);
 
-export async function exportPdf(config: BuildConfig = resolveConfig()): Promise<void> {
-  const input = process.env.PDF_INPUT ?? config.outputHtml;
-  const output = process.env.PDF_OUTPUT ?? config.outputPdf;
-
+/**
+ * Export an HTML document to PDF. Input accepts a local path or an http(s) URL;
+ * the defaults render the CV from its source document.
+ */
+export async function exportPdf(
+  input: string = process.env.PDF_INPUT ?? "src/resume.html",
+  output: string = process.env.PDF_OUTPUT ?? "tmp/resume.pdf",
+): Promise<void> {
   if (!isRemote(input)) {
     await access(input).catch(() => {
-      throw new Error(`HTML input not found: ${input}. Run the HTML build first.`);
+      throw new Error(`HTML input not found: ${input}`);
     });
   }
 

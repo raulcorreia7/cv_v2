@@ -6,105 +6,59 @@ Purpose
 - Prefer boring, explicit workflows over clever automation.
 
 Repository snapshot (observed)
-- Primary artifact: `src/template/resume.json` (FRESH format data).
-- Default local outputs live in `./tmp/` (HTML/PDF/JSON).
-- `output/` holds the publishable bundle.
-- Build tooling: `justfile` (Docker; host needs only `just` + Docker), `Bun`, `resumed`, `Playwright` inside the image.
-- `Dockerfile` exposes `base`, `build`, `release`, `dev`, and `runtime` stages; `just` runs every task in the `base` image.
-- Theme patches live in `patches/` and apply to `node_modules`.
-- Runtime: Node.js v24.14.0 (`.nvmrc`).
-
-Cursor/Copilot rules
-- No `.cursor/rules/`, `.cursorrules`, or `.github/copilot-instructions.md` found.
+- Primary artifacts: `src/resume.html` (CV, published) and `src/cover-letter.html` (private).
+- Each document is self-contained: content, CSS tokens, and the profile photo embedded as a data URI.
+- No framework, no template, no build step, no webfonts.
+- `tmp/` holds scratch exports; `output/` holds the publishable site.
+- Build tooling: `justfile`, Docker, Bun, Playwright.
+- `DESIGN.md` specifies the design.
 
 Key paths
-- `src/template/resume.json` — primary content source.
-- `src/assets/` — images and static assets used by the theme.
-- `scripts/export-pdf.ts` — Playwright PDF export.
-- `patches/` — pnpm patches for theme/tooling.
-- `./tmp/` — generated artifacts (do not edit by hand).
+- `src/resume.html` — the CV.
+- `src/cover-letter.html` — the cover letter.
+- `src/assets/` — source images; the documents embed a copy.
+- `scripts/export-pdf.ts` — HTML to PDF via Playwright.
+- `scripts/build-site.ts` — PDF export plus site assembly.
+- `scripts/serve.ts` — static preview server.
+- `DESIGN.md` — tokens, type scale, spacing, components, print rules.
+- `./tmp/`, `./output/` — generated; never edit by hand.
 
-Commands (from README + justfile; all run in the container)
-- Build the dev image: `just build-image` (`just install` alias)
-- Build the resume HTML: `just build`
-- Export the resume PDF: `just pdf`
-- Build HTML + PDF for the primary resume bundle: `just all` (`just ci`)
-- Build release bundle to `output/`: `just release`
-- Start local server: `just serve`
-- Watch for changes: `just dev`
-- Stop the serve/dev container: `just stop`
-- Clean generated files: `just clean`
-- List recipes: `just --list`
+Commands (from justfile; all run in the container)
+- Build the image: `just build-image` (`just install`)
+- CV PDF: `just pdf` to `tmp/resume.pdf`
+- Cover letter PDF: `just cover-letter-pdf` to `tmp/cover-letter.pdf`
+- Any HTML or URL to PDF: `just pdf-file <input> <output>`
+- Publishable site: `just site` to `output/` (`just ci`)
+- Preview: `just serve` on `http://localhost:8080`
+- Stop preview: `just stop`; clean artifacts: `just clean`; shell: `just shell`
 
-Single-task “test” guidance
-- There is no automated test runner configured.
-- Treat `just build` as a smoke check after data or theme changes.
-- If PDFs are affected, run `just pdf`.
-- If you add tests in the future, document the single-test command here.
-
-Linting/formatting
-- No lint or formatter scripts are configured in `package.json`.
-- Formatting conventions are inferred from existing files (see below).
+Verification
+- There is no test runner. `just pdf` is the smoke check after content or style changes; `just site` after layout changes.
+- Check the PDF stays 2 pages: `pdfinfo tmp/resume.pdf`.
+- Confirm nothing was pushed off a sheet: `pdftotext tmp/resume.pdf - | grep "<text>"`.
 
 Configuration and environment
-- Default paths are defined in `scripts/config.ts` and can be overridden via env vars / `.env` (`just` loads `.env` via `dotenv-load` and forwards them into the container):
-  - `RESUME_FILE`, `ASSETS_DIR`, `OUTPUT_DIR`, `TEMPLATE_DIR`, `THEME`.
-- Example override: `OUTPUT_DIR=dist just build`.
+- `PORT` overrides the preview port; `PDF_INPUT` and `PDF_OUTPUT` override the export paths (a URL is accepted).
+- `just` loads an optional gitignored `.env` via `dotenv-load`. No other configuration exists.
 
-Code style — observed conventions
-- JSON uses 2-space indentation and double quotes.
-- Lists are ordered by relevance and grouped logically by section.
-- Dates are `YYYY-MM` (partial ISO 8601) in `employment` and `projects`.
-- Content strings are sentence case with minimal punctuation.
+Document conventions
+- HTML uses two-space indentation, sentence case, double quotes on attributes, and semantic elements (`article` for entries, `section` for blocks).
+- Prose uses plain words, active voice, no em dashes, and no filler. Keep names, dates, and technologies exact.
+- Position lines keep the `Title - City, Country` delimiter; that hyphen is data, not punctuation.
 
-Code style — general guidance (Unverified)
-- Preserve key order in `src/template/resume.json` to minimize diff noise.
-- Keep bullet lists concise and parallel in tone and tense.
-- Avoid adding new fields unless the theme or schema requires them.
-- Keep asset filenames lowercase and use hyphens for words.
-
-JavaScript/Node guidance (project-wide)
-- The repo is ESM (`"type": "module"` in `package.json`).
-- Use `import`/`export` syntax if adding JS files.
-- Keep Node compatibility aligned to `.nvmrc` (v24.14.0).
-
-Shell scripts
-- Use POSIX sh (`#!/bin/sh`) and keep `set -eu` at top.
-- Quote variables and check required commands/files explicitly.
-- Fail fast with clear error messages.
-
-justfile conventions
-- Recipes are small and explicit; prefer env-var wiring forwarded into the container.
-- Avoid adding complex shell logic inside recipes.
-- Keep recipes idempotent and safe to rerun.
-
-Theme and patch workflow
-- Do not edit `node_modules` directly without creating a patch.
-- Use `pnpm patch-package <package>` to capture changes.
-- Keep patch scope minimal and focused on specific UI tweaks.
+Editing rules
+- Edit the documents directly; they are the only source of truth. Content lives nowhere else.
+- Keep each sheet at or under 1122.5px tall. A taller sheet silently becomes an extra PDF page instead of clipping.
+- Sheet 1 = `sheet--main` (summary and recent roles); sheet 2 = `sheet--more` (earlier roles, projects, education, awards). Move an entry between them to rebalance.
+- Update `src/resume.html` and `src/cover-letter.html` together when a token or spacing value changes, and mirror it in `DESIGN.md`.
 
 Data and content rules
-- `./tmp/` is generated and should not be hand-edited or committed.
-- Add new images to `src/assets/` and run `just build`.
-- Keep skill, employment, and project entries consistent in structure.
-
-Error handling and resilience
-- Validate existence of expected files before running tools.
-- Prefer explicit checks over implicit assumptions.
-- Log actionable errors (file missing, command missing, invalid path).
+- Dates in entries are `MM/YYYY` ranges rendered by hand; keep the existing format.
+- Keep the tech line format `<tech> · <tech> · ...` on one trailing line per entry.
+- Replacing the photo means rebuilding its data URI from `src/assets/`.
 
 Security and secrets
-- `.env` is optional and gitignored; `.env.example` lists the supported keys. `just` loads `.env` via `dotenv-load` and forwards those keys into the container.
-- Avoid embedding private info in `./tmp/` artifacts.
-
-Agent workflow note
-- Local builds still render HTML/PDF artifacts in `./tmp/` first.
-- Cover-letter generation is manual-only via `just cover-letter` or `just cover-letter-pdf`.
-- Prefer `just release` when the user explicitly wants to build directly into `output/`.
-
-Documentation hygiene
-- Update `README.md` or this file when commands or workflows change.
-- If new lint/test tools are added, record their commands here.
+- Do not commit secrets or private data. `src/cover-letter.html` and `src/template/motivation-letter-*.txt` are private documents and are not published.
 
 Change discipline
 - Keep diffs small and scoped to the requested change.
@@ -112,11 +66,9 @@ Change discipline
 - If a change is speculative, label it `Unverified` and explain why.
 
 Quick examples
-- Build with a different output directory:
-  - `OUTPUT_DIR=dist just build`
-- Rebuild after changing `resume.json`:
-  - `just build`
-- Generate a PDF after theme tweaks:
-  - `just pdf`
+- Rebuild the CV PDF after editing: `just pdf`
+- Rebuild the site after a layout change: `just site`
+- Preview documents while editing: `just serve`, then open `/src/resume.html`
+- Export an older revision of a document: `just pdf-file /tmp/old.html /tmp/old.pdf`
 
 End of file
