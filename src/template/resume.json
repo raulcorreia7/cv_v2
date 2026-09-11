@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "meta": {
     "version": "0.4.0",
-    "lastModified": "2026-01-26T00:00:00.000Z",
+    "lastModified": "2026-09-11T00:00:00.000Z",
     "x-layout": {
       "pages": [
         {
@@ -16,7 +16,7 @@
           ],
           "right": [
             "summary",
-            "work:all"
+            "work:core"
           ]
         },
         {
@@ -24,6 +24,7 @@
           "header": false,
           "left": [],
           "right": [
+            "work:secondary",
             "projects",
             "education",
             "awards"
@@ -55,10 +56,30 @@
   },
   "work": [
     {
+      "company": "Forbion",
+      "website": "https://forbion.com/",
+      "position": "Senior Software Engineer - Naarden, Netherlands",
+      "startDate": "2026-06",
+      "endDate": "2026-10",
+      "summary": "Internal engineering role at a life-sciences venture capital firm, documenting and modernising the Dataverse fund system and supporting internal AI solutions. || Python, C#/.NET, Azure, CI/CD, Dataverse, Power BI",
+      "x-layout": {
+        "page": "core"
+      },
+      "highlights": [
+        "Partnered with the Solutions Architect and AI Researcher to implement and streamline internal AI solutions, including their CI/CD, IaC, and build systems",
+        "Reversed a five-year legacy Dataverse fund system with no documentation, tests, or CI/CD into an architecture, codebase design map, security analysis, and remediation plan",
+        "Built golden-path CI/CD, IaC, and build-system foundations, including golden samples adopted as the company standard",
+        "Established the platform governance framework and the engineering working mode covering patterns, static analysis, code coverage, code health, and dependency health",
+        "Ran internal audit alignment for a regulated EU/US fund, owning the evidence, mitigations, and remediation path for investors and stakeholders",
+        "Created an agentic pack to streamline delivery across engineering teams and external consultants"
+      ]
+    },
+    {
       "company": "Shell Recharge Solutions",
       "website": "https://shellrecharge.com/nl-nl",
       "position": "Lead Software Engineer - Amsterdam, Netherlands",
       "startDate": "2024-10",
+      "endDate": "2026-03",
       "summary": "Promoted to Lead Software Engineer in October 2024 to lead Asset Management backend services for Shell Recharge on AWS serverless infrastructure. || TypeScript, Node.js, AWS, API design, Datadog, CloudWatch",
       "x-layout": {
         "page": "core"
