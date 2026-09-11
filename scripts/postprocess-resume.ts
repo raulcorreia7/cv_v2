@@ -436,8 +436,8 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .left-column {
-    width: 118px;
-    margin-right: 8px;
+    width: 164px;
+    margin-right: 12px;
   }
 
   #resume.resume-stack .container {
@@ -637,7 +637,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
 
   #resume.resume-stack .left-column .info-tag-container .info-text {
     width: auto;
-    max-width: 118px;
+    max-width: 164px;
     line-height: 1.16;
   }
 
@@ -814,7 +814,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
   }
 
   #resume.resume-stack .page--secondary .container {
-    padding-top: 12px;
+    padding-top: 16px;
   }
 
   #resume.resume-stack .page--secondary .title h3 {
@@ -859,7 +859,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
 
   #resume.resume-stack .page--secondary .project-container h4 {
     margin-top: 1px;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
     font-size: 10px;
     font-weight: 500;
     line-height: 1.26;
@@ -872,7 +872,7 @@ function buildPrintFixStyles(palette: ResumePalette): string {
 
   #resume.resume-stack .page--secondary .education-container .item,
   #resume.resume-stack .page--secondary .awards-container .item {
-    margin-bottom: 8px;
+    margin-bottom: 10px;
   }
 
   #resume.resume-stack .page--secondary .education-container .item {
@@ -982,6 +982,44 @@ function buildPrintFixStyles(palette: ResumePalette): string {
     font-size: 9.5px;
     line-height: 1.18;
     margin-bottom: 0;
+  }
+
+  /* sheet 2 reads as two columns, matching sheet 1's measure */
+  #resume.resume-stack .page--secondary .work-container--secondary,
+  #resume.resume-stack .page--secondary .project-container {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: 28px;
+    row-gap: 14px;
+  }
+
+  #resume.resume-stack .page--secondary .work-container--secondary .title,
+  #resume.resume-stack .page--secondary .project-container .title {
+    grid-column: 1 / -1;
+  }
+
+  #resume.resume-stack .page--secondary .work-container--secondary .item,
+  #resume.resume-stack .page--secondary .project-container .item {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  #resume.resume-stack .page--secondary .work-container--secondary .item + .item,
+  #resume.resume-stack .page--secondary .project-container .item + .item {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  #resume.resume-stack p,
+  #resume.resume-stack .project-container h4,
+  #resume.resume-stack .summary {
+    text-wrap: pretty;
+  }
+
+  /* bullets are one to three lines, so balance them instead of leaving a stub */
+  #resume.resume-stack li,
+  #resume.resume-stack .work-container .summary {
+    text-wrap: balance;
   }
 
   @media print {
