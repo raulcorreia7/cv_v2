@@ -68,17 +68,23 @@ Actions, the custom domain set to `cv.raulcorreia.dev`, and the Cloudflare
 
 ```text
 src/
-  assets/          Source images (the documents embed a copy)
+  assets/                Source images (the documents embed a copy)
   cover-letter.html
   resume.html
+  motivation-letter-*.txt  private letters, not published
 scripts/
-  export-pdf.ts    HTML to PDF via Playwright
-  build-site.ts    PDF export plus site assembly
-  serve.ts         static preview server
-DESIGN.md          design specification
-Dockerfile         base (bun + chromium), site, runtime stages
-output/            generated, not published from the repo
-tmp/               generated scratch
+  export-pdf.ts          HTML to PDF via Playwright
+  build-site.ts          PDF export plus site assembly
+  serve.ts               static preview server
+  check-copy.ts          copy and structure gate, runs before every export
+  check-coverage.ts      posting terms the CV does not carry yet
+docs/
+  applying.md            per-application pass
+  resume-writing-evidence.md  the research behind these rules
+DESIGN.md                design specification
+Dockerfile               base (bun + chromium), site, runtime stages
+output/                  generated, not published from the repo
+tmp/                     generated scratch
 ```
 
 ## Notes

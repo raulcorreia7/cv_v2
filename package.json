@@ -6,8 +6,11 @@
     "playwright": "^1.53.2"
   },
   "scripts": {
-    "pdf": "bun scripts/export-pdf.ts",
+    "check": "bun scripts/check-copy.ts",
+    "pdf": "bun scripts/check-copy.ts && bun scripts/export-pdf.ts",
+    "pdf:ats": "PDF_ATS=1 PDF_OUTPUT=tmp/resume-ats.pdf bun scripts/export-pdf.ts",
     "pdf:cover-letter": "PDF_INPUT=src/cover-letter.html PDF_OUTPUT=tmp/cover-letter.pdf bun scripts/export-pdf.ts",
+    "coverage": "bun scripts/check-coverage.ts",
     "site": "bun scripts/build-site.ts",
     "serve": "bun scripts/serve.ts"
   }
