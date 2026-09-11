@@ -32,6 +32,10 @@ cover-letter: (run "build:cover-letter")
 # Build the resume PDF
 pdf: (run "pdf")
 
+# Export any HTML file or URL to PDF: just pdf-file src/resume.html tmp/out.pdf
+pdf-file input="src/resume.html" output="tmp/resume-standalone.pdf": build-image
+    docker run --rm {{ common }} -e PDF_INPUT={{ input }} -e PDF_OUTPUT={{ output }} {{ image }} bun scripts/export-pdf.ts
+
 # Build the cover-letter PDF
 cover-letter-pdf: (run "pdf:cover-letter")
 

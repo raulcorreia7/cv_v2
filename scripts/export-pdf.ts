@@ -6,13 +6,20 @@ import { chromium } from "playwright";
 
 import { resolveConfig, type BuildConfig } from "./config";
 
-export async function exportPdf(config: BuildConfig = resolveConfig()): Promise<void> {
-  await access(config.outputHtml).catch(() => {
-    throw new Error(`HTML input not found: ${config.outputHtml}. Run the HTML build first.`);
-  });
+const isRemote = (value: string): boolean => /^https?:\/\//i.test(value);
 
-  await mkdir(path.dirname(config.outputPdf), { recursive: true });
-  const entryUrl = pathToFileURL(path.resolve(config.outputHtml)).href;
+export async function exportPdf(config: BuildConfig = resolveConfig()): Promise<void> {
+  const input = process.env.PDF_INPUT ?? config.outputHtml;
+  const output = process.env.PDF_OUTPUT ?? config.outputPdf;
+
+  if (!isRemote(input)) {
+    await access(input).catch(() => {
+      throw new Error(`HTML input not found: ${input}. Run the HTML build first.`);
+    });
+  }
+
+  await mkdir(path.dirname(output), { recursive: true });
+  const entryUrl = isRemote(input) ? input : pathToFileURL(path.resolve(input)).href;
 
   const browser = await chromium.launch({
     executablePath: process.env.CHROME_BIN || undefined,
@@ -44,7 +51,7 @@ export async function exportPdf(config: BuildConfig = resolveConfig()): Promise<
     });
 
     await page.pdf({
-      path: config.outputPdf,
+      path: output,
       format: "A4",
       margin: {
         top: "0",
@@ -59,4 +66,8 @@ export async function exportPdf(config: BuildConfig = resolveConfig()): Promise<
   } finally {
     await browser.close();
   }
+}
+
+if (import.meta.main) {
+  await exportPdf();
 }
