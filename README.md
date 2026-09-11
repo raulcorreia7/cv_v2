@@ -33,6 +33,7 @@ Local requirements:
 ```text
 src/
   assets/                  Static files copied into tmp during builds
+  resume.html              Standalone self-contained resume document (no build step)
   template/resume.json     Primary resume source
   template/cover-letter.json
 scripts/
@@ -53,6 +54,7 @@ DESIGN.md                  Reverse-engineered design spec of the rendered resume
 - `just resume` builds only `./tmp/resume.html`
 - `just cover-letter` builds only `./tmp/cover-letter.html` as a manual step
 - `just pdf` builds and exports `./tmp/resume.pdf`
+- `just pdf-file src/resume.html tmp/out.pdf` exports any HTML file, or a served URL, to PDF
 - `just cover-letter-pdf` builds and exports `./tmp/cover-letter.pdf` as a manual step
 - `just all` builds the primary resume bundle
 - `just ci` runs the local smoke-check used by CI
@@ -183,3 +185,5 @@ The primary published bundle currently contains:
 - Theme changes are handled in `scripts/postprocess-resume.ts` to keep the upstream theme dependency untouched.
 - `./tmp/index.html` is generated from `./tmp/resume.html` during the resume build.
 - The resume uses explicit page grouping and currently validates as a 2-page PDF with Chromium export.
+- `src/resume.html` is a standalone document: content, CSS, and the photo in one file, with no framework or build step. Edit it directly, print it from the browser, or run `just pdf-file`. `DESIGN.md` is its specification.
+- Both routes render the same design but are separate sources. Pick one to maintain: the JSON pipeline keeps `resume.json` authoritative, the standalone document keeps `resume.html` authoritative. Editing both drifts.
