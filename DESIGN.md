@@ -327,9 +327,12 @@ pattern in current use.
 - **Sheet 2 grid block** — two equal columns, section title spanning both, items
   with no separator rule; used for earlier experience and projects.
 - **Work entry** — company (12.4px/700 `heading`, linked), dates (9.3px/500
-  `muted`, right-aligned), role (10.9px/600 `muted`), summary (10.3px `body-alt`),
-  technology line (8.6px `muted`, `·`-separated), then bullets (10.7px, 13px
-  indent, 3px spacing).
+  `muted`, right-aligned) with a duration line beneath (8.6px `muted`), role
+  (10.9px/600 `muted`), summary (10.3px `body-alt`), technology line (8.6px
+  `muted`, `·`-separated), then bullets (10.7px, 13px indent, 3px spacing).
+  Consecutive roles at one employer carry the combined tenure once, on the most
+  recent entry, labelled `at <employer>`; the earlier entries keep their own dates
+  without a duration so the same months are not counted twice.
 - **Project entry** — company/title line as above, 10px/500 description in
   `body-alt`, technology line beneath.
 - **Education entry** — institution 11.2px, programme 9.9px/500 `body-alt`, dates

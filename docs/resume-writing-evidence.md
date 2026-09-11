@@ -193,10 +193,11 @@ Each item states what it costs and how to tell it worked. Items 1 to 3 are local
    words, double spaces, inconsistent date formats, and passive phrases such as
    "responsible for". Cost: a small script. Acceptance: it runs as part of `just pdf`
    and fails loudly on a hit.
-7. **Decide on duration salience.** The strongest causal study found that showing years
-   worked, rather than only dates, raised callbacks. A per-role duration would also
-   advertise the five-month Forbion stint. Cost: a judgement call, currently resolved as
-   no (the summary states ten years, and per-role durations would hurt more than help).
+7. ~~Decide on duration salience.~~ **Done.** Every work entry shows its length
+   under the dates, which is what the salience study rewards. Shell Recharge held
+   two consecutive roles, so the combined tenure (3 yr 1 mos) sits once on the most
+   recent entry and the earlier entry carries no duration, which avoids counting the
+   same months twice and avoids presenting one employer as two short stints.
 
 Not recommended, on the evidence: keyword blocks, a one-page rewrite, switching to DOCX,
 adding a photo or date of birth, or chasing an ATS "score".

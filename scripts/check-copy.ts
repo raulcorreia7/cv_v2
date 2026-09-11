@@ -34,6 +34,8 @@ const RULES: Rule[] = [
 
 const VALID_DATE = /^(\d{2}\/\d{4} - (\d{2}\/\d{4}|Present)|\d{4})$/;
 
+const VALID_DURATION = /^(\d+ yr( \d+ mos)?|\d+ mos)( at [A-Za-z0-9 .&'-]+)?$/;
+
 const BALANCED_TAGS = ["div", "section", "article", "aside", "main", "ul", "p", "h1", "h2", "h3", "h4", "h5", "dl"];
 
 const findings: string[] = [];
@@ -75,12 +77,18 @@ for (const file of FILES) {
     }
   });
 
-  // date elements must hold a date, not free text
-  for (const [index, match] of [...source.matchAll(/<p class="entry__dates">([^<]*)<\/p>/g)].entries()) {
+  // date elements must hold a date, not free text; the duration span may follow it
+  for (const [index, match] of [...source.matchAll(/<p class="entry__dates">([^<]*)/g)].entries()) {
     const value = decode(match[1]).trim();
 
     if (/\d/.test(value) && !VALID_DATE.test(value)) {
       findings.push(`${file}  entry date ${index + 1}: "${value}" is not MM/YYYY - MM/YYYY, MM/YYYY - Present, or YYYY`);
+    }
+  }
+
+  for (const match of source.matchAll(/<span class="entry__duration">([^<]*)<\/span>/g)) {
+    if (!VALID_DURATION.test(match[1].trim())) {
+      findings.push(`${file}  entry duration "${match[1]}" is not "N yr", "N yr N mos", or "N mos"`);
     }
   }
 
