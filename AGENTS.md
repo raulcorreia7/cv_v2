@@ -25,7 +25,11 @@ Key paths
 
 Commands (from justfile; all run in the container)
 - Build the image: `just build-image` (`just install`)
-- CV PDF: `just pdf` to `tmp/resume.pdf`
+- CV PDF: `just pdf` to `tmp/resume.pdf`; it runs the copy check first
+- Single-column CV PDF for portals that parse: `just pdf-ats` to `tmp/resume-ats.pdf`
+- Copy check alone: `just check`
+- Posting terms the CV lacks: `just coverage <file-or-url>`
+- Per-application working copy: `just tailor <slug>` into `tmp/applications/<slug>/`
 - Cover letter PDF: `just cover-letter-pdf` to `tmp/cover-letter.pdf`
 - Any HTML or URL to PDF: `just pdf-file <input> <output>`
 - Publishable site: `just site` to `output/` (`just ci`)
@@ -34,11 +38,13 @@ Commands (from justfile; all run in the container)
 
 Verification
 - There is no test runner. `just pdf` is the smoke check after content or style changes; `just site` after layout changes.
-- Check the PDF stays 2 pages: `pdfinfo tmp/resume.pdf`.
+- `just check` gates every export: doubled words, dash style, duty phrasing, date and duration formats, unescaped ampersands, unbalanced tags.
+- Check the PDF stays 2 pages: `pdfinfo tmp/resume.pdf`. Both export variants must stay at 2.
 - Confirm nothing was pushed off a sheet: `pdftotext tmp/resume.pdf - | grep "<text>"`.
+- Confirm the ATS export reads in order: `pdftotext tmp/resume-ats.pdf - | head -20`.
 
 Configuration and environment
-- `PORT` overrides the preview port; `PDF_INPUT` and `PDF_OUTPUT` override the export paths (a URL is accepted).
+- `PORT` overrides the preview port; `PDF_INPUT`, `PDF_OUTPUT` and `PDF_ATS=1` control the export (a URL is accepted as input).
 - `just` loads an optional gitignored `.env` via `dotenv-load`. No other configuration exists.
 
 Document conventions
@@ -54,6 +60,8 @@ Editing rules
 
 Data and content rules
 - Dates in entries are `MM/YYYY` ranges rendered by hand; keep the existing format.
+- Each work entry carries a duration under its dates, counted inclusively (`6 mos`, `1 yr 7 mos`).
+- Consecutive roles at one employer state the combined tenure once, on the most recent entry, labelled `at <employer>`; the earlier entry carries no duration line so the same months are not counted twice.
 - Keep the tech line format `<tech> · <tech> · ...` on one trailing line per entry.
 - Replacing the photo means rebuilding its data URI from `src/assets/`.
 

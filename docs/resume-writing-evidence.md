@@ -156,16 +156,17 @@ Measured on the current build (2026-09-11):
 
 | Check | Guidance | Current | Verdict |
 |---|---|---|---|
-| Length | 2 A4 pages for a senior engineer | 2 pages, 942px and 996px of 1122.5px | pass |
+| Length | 2 A4 pages for a senior engineer | 2 pages, 902px and 1016px of 1122.5px | pass |
 | Sheet 2 substance | Page 2 must earn its place | 4 roles, 5 projects, education, awards | pass |
-| Bullet length | 1 to 2 rendered lines | mean 75 characters, longest 156 | pass |
-| Bullets per role | 3 to 5 per role | Forbion 5; Shell roles 7 and 7; TM-Pro 6; older roles 3 | over on three roles |
-| Quantified bullets | Google: numbers, volumes, baselines | 6 of 37 bullets contain a number | weak |
-| Opening verb | Start with an action verb, no "responsible for" | 97% start with a past-tense verb; "Built" opens 9 of 37 | pass, repetitive verb |
+| Bullet length | 1 to 2 rendered lines | mean 78 characters, longest 156 | pass |
+| Bullets per role | 3 to 5 per role | every role holds 3 to 5; 32 in total | pass |
+| Quantified bullets | Google: numbers, volumes, baselines | 9 of 32 carry a quantity, some spelled out | improved, ceiling reached |
+| Opening verb | Start with an action verb, no "responsible for" | 97% start with a past-tense verb; "Built" opens 7 of 32 | pass, repetitive verb |
+| Daily rate | Figures must be defensible | only author-supplied numbers used | pass |
 | Photo, date of birth, marital status | Omit in the Netherlands | none present | pass |
 | File format | Text-based PDF | selectable text, no rasterisation | pass |
 | PDF text order | Single column reads cleanly | visual PDF interleaves; `resume-ats.pdf` reads in order | handled by the ATS export, see section 3 |
-| Typo risk | Largest measured penalty | not yet checked mechanically | untested |
+| Typo risk | Largest measured penalty | `just check` runs before every export | checked mechanically |
 
 ## 8. Follow-up, in priority order
 
@@ -176,23 +177,21 @@ Each item states what it costs and how to tell it worked. Items 1 to 3 are local
    that reads summary, experience, skills; the visual PDF is unchanged. See section 3.
 2. ~~Trim the three over-long roles to 5 bullets.~~ **Done.** Every role now holds 3 to 5
    bullets; the stack detail the dropped lines carried survives in the technology lines.
-3. **Raise the quantified-bullet share.** Target 12 of 37 bullets carrying a number,
-   scale, or frequency. Sources for honest ones: team size, services owned, request or
-   data volume, release cadence, incident counts, review time. Cost: a pass over the
-   bullets with the author, since only the author knows the figures. Acceptance: no
-   invented precision, and each number is defensible in an interview.
-4. **Add a tailoring pass per application.** The strongest field evidence rewards content
-   that matches the posting. Cost: a documented one-command flow that copies
-   `resume.html`, and re-exports the PDF and letter. Acceptance: a checked-in short
-   checklist plus a `just` recipe, and no change to the published CV.
-5. **Add a posting-coverage check.** Given a posting URL or text, report which of its
-   named terms appear in the CV and which do not. Cost: a small script next to
-   `build-site.ts`. Acceptance: it finds canonical terms such as "PostgreSQL" or
-   "Kubernetes" that are missing, and never edits the CV itself.
-6. **Add a proofreading gate.** Extract text from the exported PDF and flag doubled
-   words, double spaces, inconsistent date formats, and passive phrases such as
-   "responsible for". Cost: a small script. Acceptance: it runs as part of `just pdf`
-   and fails loudly on a hit.
+3. ~~Raise the quantified-bullet share.~~ **Done, at the honest ceiling.** 9 of 32 bullets
+   now carry a quantity, up from 6 of 37, using the author's figures: over ten internal
+   APIs at 100k to 1M requests a day, uptime above 99.9% across more than ten services,
+   30% pipeline time, two pilot banks, a five-year-old system, five engineers. The target
+   of 12 is not reachable without inventing numbers, and inventing them is what the note
+   warns against, so it is left unmet on purpose.
+4. ~~Add a tailoring pass per application.~~ **Done.** `just tailor <slug>` copies both
+   documents, `docs/applying.md` walks the pass, and the published CV is untouched.
+5. ~~Add a posting-coverage check.~~ **Done.** `just coverage <posting>` ranks the terms
+   the CV lacks. Tested against a sample posting: it found Kubernetes, Kafka, PostgreSQL,
+   gRPC, GraphQL, OpenTelemetry, ClickHouse and Rust, and ignored the filler.
+6. ~~Add a proofreading gate.~~ **Done.** `just check` runs before every export and fails
+   on doubled words, dash style, duty phrasing, malformed dates or durations, unescaped
+   ampersands and unbalanced tags. Verified by injecting a doubled word and a bad date:
+   both were caught, and the same check caught a lost `</aside>` tag during this work.
 7. ~~Decide on duration salience.~~ **Done.** Every work entry shows its length
    under the dates, which is what the salience study rewards. Shell Recharge held
    two consecutive roles, so the combined tenure (3 yr 1 mos) sits once on the most
