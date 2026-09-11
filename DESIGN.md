@@ -369,7 +369,12 @@ pattern in current use.
 no framework, no build step, and no network fonts. It carries the content, the
 tokens above, the two-sheet structure, and the profile photo as a data URI, so it
 can be edited directly, opened in a browser, and printed to PDF from the print
-dialog. `src/cover-letter.html` applies the same tokens to a one-sheet letter.
+dialog. `src/cover-letter.html` shares those tokens on one sheet. It differs in
+three deliberate ways: its contact block sits in the header at 9.3px rather than in
+the rail at 8.7px, its keyline opens the letter with a 12px/20px margin instead of
+the 4px/5px used between sections, and its line-height is 1.62 rather than 1.28,
+because a letter is read as prose. Everything else, including colours, type sizes
+and the 208mm sheet, matches.
 
 PDF export takes a local file or a served URL (`just pdf-file`, or `PDF_INPUT` /
 `PDF_OUTPUT`). Both routes yield identical PDF text; the served route only adds a
