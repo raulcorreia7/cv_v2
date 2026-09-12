@@ -1,0 +1,27 @@
+:root { --text-contact: 9.3px; }
+
+body { line-height: 1.62; }
+
+.letter {
+  display: flex;
+  justify-content: center;
+  padding: var(--sheet-gap) 0;
+}
+
+.head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.head__name { margin: 0; font-family: var(--font-display); font-size: var(--text-name); font-weight: 700; line-height: 0.96; letter-spacing: 0.2px; color: var(--ink-strong); }
+.head__label { margin: 0; font-size: var(--text-label); font-weight: 500; line-height: 1.1; color: var(--muted); }
+.head__contact { margin: 0; flex: 0 0 auto; text-align: right; font-size: var(--text-contact); line-height: 1.5; color: var(--muted); }
+
+.keyline { width: 42px; border-top: 1px solid var(--accent); margin: 12px 0 20px; }
+.greeting { margin: 0 0 12px; }
+.letter p { margin: 0 0 12px; text-wrap: pretty; }
+.letter p:last-of-type { margin-bottom: 0; }
+.closing { margin-top: 24px; }
+.signature { margin-top: 18px; font-family: var(--font-display); font-size: 19px; color: var(--ink-strong); }
+
+@media print {
+  .letter { display: block; padding: 0; }
+}
+
+@page { size: A4; margin: 12mm 0; }

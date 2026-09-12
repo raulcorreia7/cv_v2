@@ -25,4 +25,4 @@ Bun.serve({
 });
 
 console.log(`Serving ${root} on http://localhost:${port}/`);
-console.log(`Documents: /src/resume.html  /src/cover-letter.html  site: /output/`);
+console.log(`Documents: /tmp/resume.html  /tmp/cover-letter.html  site: /output/`);

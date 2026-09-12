@@ -11,7 +11,7 @@ const isRemote = (value: string): boolean => /^https?:\/\//i.test(value);
  * the defaults render the CV from its source document.
  */
 export async function exportPdf(
-  input: string = process.env.PDF_INPUT ?? "src/resume.html",
+  input: string = process.env.PDF_INPUT ?? "tmp/resume.html",
   output: string = process.env.PDF_OUTPUT ?? "tmp/resume.pdf",
   atsMode: boolean = process.env.PDF_ATS === "1",
 ): Promise<void> {

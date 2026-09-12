@@ -12,8 +12,8 @@ posting asks for, not keyword density.
    just tailor <company-or-role-slug>
    ```
 
-   This copies both documents into `tmp/applications/<slug>/`. The directory is scratch,
-   so the published CV is never touched.
+   This writes portable JSON and rendered HTML into `tmp/applications/<slug>/`.
+   The directory is scratch, so the published CV is never touched.
 
 2. Find the posting's terms that the CV does not carry yet:
 
@@ -24,8 +24,9 @@ posting asks for, not keyword density.
    Save the posting text first, or pass a URL. The report lists terms by frequency. It
    reads only, never edits.
 
-3. Edit the copy. For each term worth answering, add the real experience behind it to an
-   existing bullet or the technology line. Wording to prefer, in order:
+3. Edit `resume.json` and `cover-letter.json` in the application directory. For each term
+   worth answering, add the real experience behind it to an existing bullet or the
+   technology list. Wording to prefer, in order:
    - the posting's exact term inside a bullet that already describes that work
    - the term in the technology line, if the work only touched it briefly
    - nothing, if the experience is not real
@@ -36,9 +37,10 @@ posting asks for, not keyword density.
    role you are applying for. That is the whole tailoring pass; the rest of either
    document stays as published.
 
-5. Export both files, and a parse-friendly copy of the CV:
+5. Render and export both files, plus a parse-friendly copy of the CV:
 
    ```bash
+   just render-application <slug>
    just pdf-file tmp/applications/<slug>/resume.html tmp/applications/<slug>/resume.pdf
    just pdf-file tmp/applications/<slug>/cover-letter.html tmp/applications/<slug>/cover-letter.pdf
    PDF_ATS=1 PDF_INPUT=tmp/applications/<slug>/resume.html PDF_OUTPUT=tmp/applications/<slug>/resume-ats.pdf \
@@ -65,11 +67,11 @@ posting asks for, not keyword density.
 - Do not inflate a short role. The dates show the tenure.
 - Do not send the published PDF when the posting names a technology the CV omits. A
   tailored copy exists for that.
-- Do not let the tailored copies accumulate as the only record of a claim. Anything true
-  belongs in `src/resume.html` too.
+- Do not let the tailored copies become the only record of a claim. Anything generally
+  true belongs in the relevant module under `src/data/`.
 
 ## Tracking
 
-The PDF and HTML share the same source, so a claim added in one application can be
-promoted back into `src/resume.html` when it holds generally. That keeps the published CV
-and the applied variants from drifting apart.
+The HTML, JSON, and PDF share the same typed source. Promote a claim from an application
+back into `src/data/` when it holds generally. That keeps the published CV and tailored
+variants from drifting apart.

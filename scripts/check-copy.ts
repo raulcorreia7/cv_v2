@@ -1,14 +1,18 @@
 import { readFile } from "node:fs/promises";
 
 /**
- * House-style check for the CV and cover letter sources. Runs before the PDF export so
+ * House-style check for the rendered CV and cover letter. Runs before the PDF export so
  * a defect cannot reach a shared copy.
  *
- * It reads the HTML source rather than the exported PDF, so it catches wording and date
+ * It reads the rendered HTML rather than the exported PDF, so it catches wording and date
  * rules, not font or layout problems. Verify layout by opening the export.
  */
 
-const FILES = ["src/resume.html", "src/cover-letter.html"];
+const FILES = process.argv.slice(2);
+
+if (FILES.length === 0) {
+  FILES.push("tmp/resume.html", "tmp/cover-letter.html");
+}
 
 const decode = (text: string): string =>
   text
@@ -79,7 +83,7 @@ for (const file of FILES) {
 
   // date elements must hold a date, not free text; the duration span may follow it
   for (const [index, match] of [...source.matchAll(/<p class="entry__dates">([^<]*)/g)].entries()) {
-    const value = decode(match[1]).trim();
+    const value = decode(match[1] ?? "").trim();
 
     if (/\d/.test(value) && !VALID_DATE.test(value)) {
       findings.push(`${file}  entry date ${index + 1}: "${value}" is not MM/YYYY - MM/YYYY, MM/YYYY - Present, or YYYY`);
@@ -87,8 +91,10 @@ for (const file of FILES) {
   }
 
   for (const match of source.matchAll(/<span class="entry__duration">([^<]*)<\/span>/g)) {
-    if (!VALID_DURATION.test(match[1].trim())) {
-      findings.push(`${file}  entry duration "${match[1]}" is not "N yr", "N yr N mos", or "N mos"`);
+    const value = match[1] ?? "";
+
+    if (!VALID_DURATION.test(value.trim())) {
+      findings.push(`${file}  entry duration "${value}" is not "N yr", "N yr N mos", or "N mos"`);
     }
   }
 

@@ -1,6 +1,6 @@
 # CV writing: what the evidence actually supports
 
-Research note for `src/resume.html`. Every claim below was traced to the source that
+Research note for the CV generated from `src/data/`. Every claim below was traced to the source that
 owns it and fetched on 2026-09-11. Resume advice is full of numbers that nobody can
 source, so each item carries an evidence label:
 
@@ -152,11 +152,11 @@ get screened out for not matching exact job-description criteria
 
 ## 7. Where this CV stands
 
-Measured on the current build (2026-09-11):
+Measured on the current build (2026-09-12):
 
 | Check | Guidance | Current | Verdict |
 |---|---|---|---|
-| Length | 2 A4 pages for a senior engineer | 2 pages, 902px and 1016px of 1122.5px | pass |
+| Length | 2 A4 pages for a senior engineer | 2 pages, 886.1px and 890.4px of 1122.5px | pass |
 | Sheet 2 substance | Page 2 must earn its place | 4 roles, 5 projects, education, awards | pass |
 | Bullet length | 1 to 2 rendered lines | mean 78 characters, longest 156 | pass |
 | Bullets per role | 3 to 5 per role | every role holds 3 to 5; 32 in total | pass |

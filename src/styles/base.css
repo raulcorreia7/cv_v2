@@ -1,0 +1,50 @@
+/* Normative values and rationale live in DESIGN.md. */
+:root {
+  color-scheme: light;
+  --ink: #23343c;
+  --ink-strong: #1f3139;
+  --heading: #24353d;
+  --body-alt: #31454d;
+  --chip-ink: #2f4443;
+  --muted: #5c6d75;
+  --accent: #4c6b68;
+  --accent-soft: #eef4f3;
+  --border-soft: #d9e4e2;
+  --surface: #ffffff;
+  --font-display: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", "Noto Serif", "Liberation Serif", Georgia, serif;
+  --font-ui: Aptos, "Segoe UI", "Noto Sans", "Liberation Sans", Arial, sans-serif;
+  --sheet-width: 208mm;
+  --sheet-pad: 8px 3mm 6px;
+  --sheet-rule: 10px;
+  --sheet-gap: 24px;
+  --text-name: 35px;
+  --text-label: 15.4px;
+  --text-body: 10.7px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #eceff1;
+  color: var(--ink);
+  font-family: var(--font-ui);
+  font-size: var(--text-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.sheet {
+  width: var(--sheet-width);
+  padding: var(--sheet-pad);
+  background: var(--surface);
+  border-top: var(--sheet-rule) solid var(--accent);
+  box-shadow: 0 1px 10px rgb(0 0 0 / 0.5);
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+@media print {
+  html, body { background: #fff; }
+  .sheet { box-shadow: none; margin: 0 auto; }
+}

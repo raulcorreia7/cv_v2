@@ -3,13 +3,17 @@
   "type": "module",
   "packageManager": "bun@1.3.11",
   "devDependencies": {
-    "playwright": "^1.53.2"
+    "@types/bun": "1.4.2",
+    "playwright": "1.58.2",
+    "typescript": "7.0.2"
   },
   "scripts": {
-    "check": "bun scripts/check-copy.ts",
-    "pdf": "bun scripts/check-copy.ts && bun scripts/export-pdf.ts",
-    "pdf:ats": "PDF_ATS=1 PDF_OUTPUT=tmp/resume-ats.pdf bun scripts/export-pdf.ts",
-    "pdf:cover-letter": "PDF_INPUT=src/cover-letter.html PDF_OUTPUT=tmp/cover-letter.pdf bun scripts/export-pdf.ts",
+    "render": "bun scripts/render-documents.ts",
+    "typecheck": "tsc",
+    "check": "bun run typecheck && bun scripts/render-documents.ts && bun scripts/check-copy.ts && bun scripts/check-layout.ts",
+    "pdf": "bun run check && bun scripts/export-pdf.ts",
+    "pdf:ats": "bun run typecheck && bun scripts/render-documents.ts && PDF_ATS=1 PDF_OUTPUT=tmp/resume-ats.pdf bun scripts/export-pdf.ts",
+    "pdf:cover-letter": "bun run typecheck && bun scripts/render-documents.ts && PDF_INPUT=tmp/cover-letter.html PDF_OUTPUT=tmp/cover-letter.pdf bun scripts/export-pdf.ts",
     "coverage": "bun scripts/check-coverage.ts",
     "site": "bun scripts/build-site.ts",
     "serve": "bun scripts/serve.ts"

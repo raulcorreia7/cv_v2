@@ -3,7 +3,7 @@ set dotenv-load
 image := "cv-v2"
 port := env("PORT", "8080")
 app := justfile_directory()
-common := '-v "' + app + ':/app" -w /app -v cv-v2-node-modules:/app/node_modules'
+common := '-v "' + app + ':/app" -w /app -v /app/node_modules'
 
 default:
     @just --list
@@ -19,30 +19,41 @@ alias install := build-image
 run cmd: build-image
     docker run --rm {{ common }} {{ image }} sh -c "{{ cmd }}"
 
-# Export src/resume.html to tmp/resume.pdf (runs the copy check first)
-pdf: (run "bun scripts/check-copy.ts && bun scripts/export-pdf.ts")
+# Check the TypeScript document contracts and build scripts
+typecheck: (run "bun run typecheck")
+
+# Render the structured document sources to self-contained HTML
+render: (run "bun run typecheck && bun scripts/render-documents.ts")
+
+# Render the typed sources and export tmp/resume.pdf (runs all checks first)
+pdf: (run "bun run typecheck && bun scripts/render-documents.ts && bun scripts/check-copy.ts && bun scripts/check-layout.ts && bun scripts/export-pdf.ts")
 
 # Run the copy check on both documents
-check: (run "bun scripts/check-copy.ts")
+check: (run "bun run typecheck && bun scripts/render-documents.ts && bun scripts/check-copy.ts && bun scripts/check-layout.ts")
 
 # Single-column PDF for portals that parse the CV (no interleaved columns)
-pdf-ats: (run "PDF_ATS=1 PDF_OUTPUT=tmp/resume-ats.pdf bun scripts/export-pdf.ts")
+pdf-ats: (run "bun run typecheck && bun scripts/render-documents.ts && PDF_ATS=1 PDF_OUTPUT=tmp/resume-ats.pdf bun scripts/export-pdf.ts")
 
 # Report which of a posting's terms are missing from the CV
 coverage file: build-image
-    docker run --rm {{ common }} -v "{{ file }}:/posting:ro" {{ image }} bun scripts/check-coverage.ts /posting
+    docker run --rm {{ common }} -v "{{ file }}:/posting:ro" {{ image }} sh -c "bun run typecheck && bun scripts/render-documents.ts && bun scripts/check-coverage.ts /posting"
 
-# Copy both documents into tmp/applications/<slug>/ for one tailored application
+# Copy the structured sources and render a per-application working set
 tailor slug: build-image
-    docker run --rm {{ common }} {{ image }} sh -c "mkdir -p tmp/applications/{{ slug }} && cp src/resume.html src/cover-letter.html tmp/applications/{{ slug }}/ && ls -1 tmp/applications/{{ slug }}/"
-    @echo "Edit tmp/applications/{{ slug }}/ with the posting's wording, then:"
+    docker run --rm {{ common }} {{ image }} sh -c "bun run typecheck && bun scripts/render-documents.ts && mkdir -p tmp/applications/{{ slug }} && cp tmp/resume.json tmp/cover-letter.json tmp/applications/{{ slug }}/ && RESUME_DATA=tmp/applications/{{ slug }}/resume.json COVER_LETTER_DATA=tmp/applications/{{ slug }}/cover-letter.json DOCUMENT_OUTPUT_DIR=tmp/applications/{{ slug }} bun scripts/render-documents.ts && ls -1 tmp/applications/{{ slug }}/"
+    @echo "Edit the JSON files in tmp/applications/{{ slug }}/, then run:"
+    @echo "  just render-application {{ slug }}"
     @echo "  just pdf-file tmp/applications/{{ slug }}/resume.html tmp/applications/{{ slug }}/resume.pdf"
 
-# Export src/cover-letter.html to tmp/cover-letter.pdf
-cover-letter-pdf: (run "PDF_INPUT=src/cover-letter.html PDF_OUTPUT=tmp/cover-letter.pdf bun scripts/export-pdf.ts")
+# Rerender a tailored application's JSON sources
+render-application slug: build-image
+    docker run --rm {{ common }} -e RESUME_DATA=tmp/applications/{{ slug }}/resume.json -e COVER_LETTER_DATA=tmp/applications/{{ slug }}/cover-letter.json -e DOCUMENT_OUTPUT_DIR=tmp/applications/{{ slug }} {{ image }} sh -c "bun run typecheck && bun scripts/render-documents.ts"
 
-# Export any HTML file or URL: just pdf-file src/resume.html tmp/out.pdf
-pdf-file input="src/resume.html" output="tmp/out.pdf": build-image
+# Render the typed sources and export tmp/cover-letter.pdf
+cover-letter-pdf: (run "bun run typecheck && bun scripts/render-documents.ts && PDF_INPUT=tmp/cover-letter.html PDF_OUTPUT=tmp/cover-letter.pdf bun scripts/export-pdf.ts")
+
+# Export any HTML file or URL: just pdf-file tmp/resume.html tmp/out.pdf
+pdf-file input="tmp/resume.html" output="tmp/out.pdf": build-image
     docker run --rm {{ common }} -e PDF_INPUT={{ input }} -e PDF_OUTPUT={{ output }} {{ image }} bun scripts/export-pdf.ts
 
 # Assemble the publishable site in output/

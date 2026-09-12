@@ -61,7 +61,7 @@ const toText = (html: string): string =>
     .replace(/&nbsp;/g, " ");
 
 const posting = toText(await readSource());
-const cv = toText(await readFile("src/resume.html", "utf8")).toLowerCase();
+const cv = toText(await readFile(process.env.CV_INPUT ?? "tmp/resume.html", "utf8")).toLowerCase();
 
 const tokens = posting.match(/[A-Za-z][A-Za-z0-9+#./-]*/g) ?? [];
 const counts = new Map<string, number>();
